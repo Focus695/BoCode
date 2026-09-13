@@ -1,8 +1,30 @@
-# BoCode
+<p align="center">
+  <img src=".github/assets/banner.svg" alt="BoCode — documentation drives code, code writes back" width="720">
+</p>
+
+<p align="center">
+  <b>English</b> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ja.md">日本語</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Focus695/BoCode/actions/workflows/git-policy.yml"><img src="https://github.com/Focus695/BoCode/actions/workflows/git-policy.yml/badge.svg" alt="Git Policy"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="https://github.com/Focus695/BoCode/generate"><img src="https://img.shields.io/badge/use_this-template-2ea44f.svg" alt="Use this template"></a>
+</p>
 
 **A project template where documentation drives code, and code writes back.**
 
 BoCode gives a repository two half-brains — `code/` for the source, `book/` for the documentation stream and knowledge base — wired together in both directions. It is built for the way software is actually written now: by a human and AI coding agents together, where agents are fast but stateless, and the difference between a project that compounds and one that resets every session is whether its knowledge lives somewhere durable.
+
+## Adopt it in one line
+
+Already have a project? Paste this to your AI agent:
+
+```text
+Read https://github.com/Focus695/BoCode — start with ADOPT.md — and retrofit this project onto the BoCode workflow exactly as it prescribes.
+```
+
+Starting from scratch? The three-command Quick Start is below.
 
 Clone it, run one script, install three skills, and your project gains: a gated development workflow, a self-indexing knowledge base, a write-back discipline that turns every feature into accumulated experience, and a git policy that keeps history readable.
 

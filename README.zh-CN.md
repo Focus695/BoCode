@@ -1,8 +1,30 @@
-# BoCode
+<p align="center">
+  <img src=".github/assets/banner.svg" alt="BoCode — 文档驱动代码，代码回写文档" width="720">
+</p>
+
+<p align="center">
+  <a href="README.md">English</a> · <b>简体中文</b> · <a href="README.ja.md">日本語</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Focus695/BoCode/actions/workflows/git-policy.yml"><img src="https://github.com/Focus695/BoCode/actions/workflows/git-policy.yml/badge.svg" alt="Git Policy"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="https://github.com/Focus695/BoCode/generate"><img src="https://img.shields.io/badge/use_this-template-2ea44f.svg" alt="Use this template"></a>
+</p>
 
 **一个文档驱动代码、代码回写文档的项目模板。**
 
 BoCode 给仓库装上两个半脑——`code/` 放源代码，`book/` 放文档流与知识库——并且双向连接。它面向的是现在软件真实的写法：人和 AI coding agent 一起开发。agent 快，但没有状态；一个项目是复利增长还是每个会话都从零开始，取决于它的知识有没有落在一个耐用的地方。
+
+## 一句话接入
+
+已经有项目了？把这句发给你的 AI agent：
+
+```text
+阅读 https://github.com/Focus695/BoCode（从 ADOPT.md 开始），按照它的步骤把当前项目改造为 BoCode 工作流。
+```
+
+从零开始？三条命令的快速开始在下面。
 
 Clone、跑一条命令、装三个 skill，你的项目就有了：带关卡的六阶段开发流程、自动建索引的知识库、把每个功能变成经验沉淀的回写纪律、保持提交历史可读的 git 规范。
 
