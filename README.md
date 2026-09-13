@@ -157,7 +157,7 @@ Requirements: `bash` and `node` for the two scripts. No packages, no install ste
 ## FAQ
 
 **I have an existing project. Can I adopt BoCode?**
-Yes — copy `book/`, `skills/`, `scripts/`, `.githooks/`, `AGENTS.md`, and `code/tools/` into it, merge your existing docs into the book, and run the index generator. No migration tooling needed; `init-project.sh` is only for fresh clones.
+Yes — hand [ADOPT.md](ADOPT.md) to your AI agent. It's a step-by-step retrofit playbook written for agents: inventory, book skeleton, layout decision, doc migration, tooling, skills, and the first writeback. The manual path also works: copy `book/`, `skills/`, `scripts/`, `.githooks/`, `AGENTS.md`, and `code/tools/` in, merge your existing docs into the book, and run the index generator.
 
 **Does it lock me into a language or stack?**
 No. The book is Markdown; the two scripts are plain Node with zero dependencies. Your `code/` can hold anything — the template's own `code/` contains only the tooling.

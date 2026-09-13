@@ -157,7 +157,7 @@ cp -r skills/bocode skills/feature-flow skills/book-writeback <your-skills-dir>/
 ## 常见问题
 
 **已有项目能用 BoCode 吗？**
-能。把 `book/`、`skills/`、`scripts/`、`.githooks/`、`AGENTS.md`、`code/tools/` 拷进去，已有文档并进 book，跑一次索引生成。不需要迁移工具；`init-project.sh` 只服务新 clone。
+能——把 [ADOPT.md](ADOPT.md) 交给你的 AI agent。它是写给 agent 的分步改造手册：盘点项目、引入 book 骨架、布局决策、文档迁移、装工具链和 skills、首笔回写。手工路径也可行：把 `book/`、`skills/`、`scripts/`、`.githooks/`、`AGENTS.md`、`code/tools/` 拷进去，已有文档并进 book，跑一次索引生成。
 
 **会绑定语言或技术栈吗？**
 不会。book 是 Markdown；两个脚本是零依赖纯 Node。你的 `code/` 放什么都行——模板自己的 `code/` 只装工具。
