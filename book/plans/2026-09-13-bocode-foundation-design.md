@@ -4,7 +4,7 @@ description: BoCode 基础设计:自举式 code+book 双向驱动工作流模板
 
 # BoCode 基础设计（Design Spec）
 
-> 状态：已确认（2026-09-13 用户 kickoff："重新构建我们的模板仓库和工具链" 即 Phase 2 推进确认，依据六阶段工作流的 kickoff 规则）· 本文档是 BoCode 仓库的第一篇 plan，仓库从这一刻起自举。
+> 状态：completed（2026-09-13 八步施工与验收完成；推 GitHub 开源在作用域外，由维护者执行）· 本文档是 BoCode 仓库的第一篇 plan，仓库从这一刻起自举。
 > 确认时追加的约束：方法论本体是 structured-feature-implementation（结构化功能实现），superpowers 仅作参考融合；skill 套件与流程文档不得出现对 superpowers 的依赖或引用。
 
 ## 1. 背景与目标
