@@ -20,16 +20,12 @@ description: Master index of the book — the map of every document. Regenerate 
 | Directory | Purpose |
 |------|------|
 | `changelogs/` | Change log: what landed and when |
-| `changelogs/2026-09/` | Archived under changelogs/, grouped by month |
 | `docs/` | Technical docs: architecture, API, decisions |
 | `docs/api/` | API design and interface docs |
 | `docs/architecture/` | Architecture snapshots: modules, data flow |
 | `docs/decisions/` | Architecture decision records (ADR) |
 | `guidelines/` | Development rules every contributor (including AI) must follow |
 | `notes/` | Running records: learn / summary / task / issue |
-| `notes/issue/2026-09/` | Archived under notes/issue/, grouped by month |
-| `notes/learn/2026-09/` | Archived under notes/learn/, grouped by month |
-| `notes/summary/2026-09/` | Archived under notes/summary/, grouped by month |
 | `plans/` | Implementation plans: the construction blueprint agents build from |
 
 ## All files
@@ -37,10 +33,6 @@ description: Master index of the book — the map of every document. Regenerate 
 ### changelogs/
 
 - [README.md](changelogs/README.md) — Changelogs directory usage — dated change records archived by month, found via the index
-
-### changelogs/2026-09/
-
-- [2026-09-13-bocode-foundation.md](changelogs/2026-09/2026-09-13-bocode-foundation.md) — BoCode 模板仓库奠基——工具链、book 模板、skills 三件套、init 脚本、CI 与双语 README 全部落成
 
 ### docs/
 
@@ -73,21 +65,8 @@ description: Master index of the book — the map of every document. Regenerate 
 
 - [README.md](notes/README.md) — The four note types (learn, summary, task, issue), when each is written, the retrieval order, and the template for each
 
-### notes/issue/2026-09/
-
-- [2026-09-13-init-interactive-path-untested.md](notes/issue/2026-09/2026-09-13-init-interactive-path-untested.md) — init-project.sh 的交互式 git 重置路径未被测试覆盖，非交互主路径已验证
-
-### notes/learn/2026-09/
-
-- [2026-09-13-template-repo-lessons.md](notes/learn/2026-09/2026-09-13-template-repo-lessons.md) — 把一个项目的方法论抽成通用模板时，工具可移植性、活记录清理、skill/guidelines 分工三条经验
-
-### notes/summary/2026-09/
-
-- [2026-09-13-bocode-foundation.md](notes/summary/2026-09/2026-09-13-bocode-foundation.md) — BoCode 奠基总结——从 StarBell 抽象通用模板的完整过程、关键取舍与验证结果
-
 ### plans/
 
-- [2026-09-13-bocode-foundation-design.md](plans/2026-09-13-bocode-foundation-design.md) — BoCode 基础设计:自举式 code+book 双向驱动工作流模板仓库的完整蓝图与已确认决策
 - [README.md](plans/README.md) — Plans directory usage — implementation plans land here after Phase 2 approval, with naming and the plan template
 
-<!-- 20 documents -->
+<!-- 15 documents -->
