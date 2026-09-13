@@ -1,0 +1,10 @@
+{
+  "name": "bocode",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Project source tree. The only script here is the book index generator — this file has zero dependencies by design.",
+  "scripts": {
+    "book:index": "node tools/gen-book-index.mjs"
+  }
+}
