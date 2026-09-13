@@ -19,12 +19,55 @@ description: Master index of the book — the map of every document. Regenerate 
 
 | Directory | Purpose |
 |------|------|
+| `changelogs/` | Change log: what landed and when |
+| `docs/` | Technical docs: architecture, API, decisions |
+| `docs/api/` | API design and interface docs |
+| `docs/architecture/` | Architecture snapshots: modules, data flow |
+| `docs/decisions/` | Architecture decision records (ADR) |
+| `guidelines/` | Development rules every contributor (including AI) must follow |
+| `notes/` | Running records: learn / summary / task / issue |
 | `plans/` | Implementation plans: the construction blueprint agents build from |
 
 ## All files
 
+### changelogs/
+
+- [README.md](changelogs/README.md) — Changelogs directory usage — dated change records archived by month, found via the index
+
+### docs/
+
+- [README.md](docs/README.md) — Map of docs/ — architecture snapshots, API design, and architecture decision records
+
+### docs/api/
+
+- [README.md](docs/api/README.md) — API design docs — where interface contracts are written before and while they are implemented
+
+### docs/architecture/
+
+- [README.md](docs/architecture/README.md) — Architecture snapshots — dated documents describing the current state of modules and data flow
+
+### docs/decisions/
+
+- [ADR-001-adopt-bocode.md](docs/decisions/ADR-001-adopt-bocode.md) — We run this repository on the BoCode workflow — book drives code, code writes back, six phases gate every feature
+- [README.md](docs/decisions/README.md) — How to write an ADR here — sections, naming, numbering, and when a decision needs a record
+
+### guidelines/
+
+- [README.md](guidelines/README.md) — Index of the five guidelines — workflow, writing style, git, review checklist, plus the architecture and coding templates
+- [architecture.md](guidelines/architecture.md) — Template for your project's long-term architecture rules — boundary invariants, module map, tech baseline, with a worked example of boundary-style rules
+- [coding-style.md](guidelines/coding-style.md) — Template for your project's coding baseline — the language-specific rules any contributor or agent must follow
+- [git-workflow.md](guidelines/git-workflow.md) — Clean Commit message format and Clean Flow branch, PR, and merge rules for solo and team development
+- [review-checklist.md](guidelines/review-checklist.md) — The eight code-review checks every change must pass — findings are recorded, never fixed in passing
+- [workflow.md](guidelines/workflow.md) — Six-phase gate workflow with the seven code↔book interaction rules and the document routing table
+- [writing-style.md](guidelines/writing-style.md) — Plain-language writing standard for every book document — fidelity contract first, then minimal style rules, intensity levels, and a read-back check
+
+### notes/
+
+- [README.md](notes/README.md) — The four note types (learn, summary, task, issue), when each is written, the retrieval order, and the template for each
+
 ### plans/
 
 - [2026-09-13-bocode-foundation-design.md](plans/2026-09-13-bocode-foundation-design.md) — BoCode 基础设计:自举式 code+book 双向驱动工作流模板仓库的完整蓝图与已确认决策
+- [README.md](plans/README.md) — Plans directory usage — implementation plans land here after Phase 2 approval, with naming and the plan template
 
-<!-- 1 documents -->
+<!-- 16 documents -->
