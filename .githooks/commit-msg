@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+set -eu
+
+subject=$(sed -n '1p' "$1")
+exec node scripts/check-commit-message.mjs "$subject"
