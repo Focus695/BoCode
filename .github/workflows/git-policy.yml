@@ -1,0 +1,70 @@
+name: Git policy
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+  push:
+    branches:
+      - dev
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-pull-request:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        ref: ${{ github.event.pull_request.base.sha }}
+        fetch-depth: 0
+      - name: Validate Clean Flow branch direction
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          if [ "$BASE_REF" = "dev" ]; then
+            case "$HEAD_REF" in
+              feature/*|fix/*|docs/*|chore/*|test/*|refactor/*) ;;
+              *)
+                echo "PRs into dev must come from an approved short-lived work branch."
+                exit 1
+                ;;
+            esac
+          elif [ "$BASE_REF" = "main" ] && [ "$HEAD_REF" != "dev" ]; then
+            echo "Only dev may open a PR into main."
+            exit 1
+          fi
+      - name: Validate Clean Commit subjects in the pull request
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if [ "$BASE_REF" = "dev" ]; then
+            git fetch origin "pull/$PR_NUMBER/head:refs/remotes/origin/pr-head"
+            git log --format=%s "$BASE_SHA..origin/pr-head" | node scripts/check-commit-message.mjs
+          else
+            node scripts/check-commit-message.mjs "$PR_TITLE"
+          fi
+
+  validate-protected-push:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        fetch-depth: 0
+      - name: Validate Clean Commit subjects pushed to protected branches
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: |
+          if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            git log --format=%s -1 "$AFTER_SHA" | node scripts/check-commit-message.mjs
+          else
+            git log --format=%s "$BEFORE_SHA..$AFTER_SHA" | node scripts/check-commit-message.mjs
+          fi
