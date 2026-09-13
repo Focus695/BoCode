@@ -23,8 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        ref: ${{ github.event.pull_request.base.sha }}
-        fetch-depth: 0
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
       - name: Validate Clean Flow branch direction
         env:
           BASE_REF: ${{ github.event.pull_request.base.ref }}
@@ -61,7 +62,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        fetch-depth: 0
+        with:
+          fetch-depth: 0
       - name: Validate Clean Commit subjects pushed to protected branches
         env:
           BEFORE_SHA: ${{ github.event.before }}
