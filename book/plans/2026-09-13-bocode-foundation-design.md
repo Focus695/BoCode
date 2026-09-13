@@ -138,7 +138,22 @@ guidelines 五篇核心（workflow/writing-style/git-workflow/review-checklist�
 - 不做文档站 / 不做 Obsidian 插件
 - v1 不做 CONTRIBUTING.md / SECURITY.md（开源后按需加）
 
-## 6. 风险与对策
+## 7. 实施顺序（Phase 3 施工拆解）
+
+plan 本身即施工图，确认后按下列顺序直接施工，每步带验证，全部在 `dev` 分支提交：
+
+| # | 施工内容 | 验证 |
+|---|----------|------|
+| 1 | `code/package.json` + `code/tools/gen-book-index.mjs` + `scripts/check-commit-message.mjs` | node 直跑两脚本，构造缺 description 的文件确认退出 1；校验器对正反例行为正确 |
+| 2 | book/ 骨架与全部文档：guidelines 英文成品 5 篇 + architecture/coding-style 模板 2 篇 + docs/{architecture,api,decisions} README + ADR-001 示范 + notes 四类 README（内嵌写作模板）+ plans/changelogs README | 每篇带 frontmatter description；`book:index` 首跑零警告 |
+| 3 | AGENTS.md（通用化）+ CLAUDE.md 一行指针 + .gitignore + LICENSE(MIT, Focus, 2026) | AGENTS.md 无 StarBell 残留；CLAUDE.md 只有指针 |
+| 4 | skills/ 三件套（bocode、feature-flow、book-writeback）+ skills/README 安装指引 | 每个 SKILL.md 有 name/description frontmatter，触发条件互斥 |
+| 5 | `scripts/init-project.sh` | 在临时 clone 上跑通：改名替换生效、月度记录清空、索引重生成零警告 |
+| 6 | `.github/workflows/git-policy.yml` | YAML 语法校验；规则与 git-workflow.md 一致 |
+| 7 | README.md（英）+ README.zh-CN.md | 九章哲学逐点落到实物（目录/脚本/规则）；中英章节一一对应；按说人话标准回读 |
+| 8 | 收尾：重跑索引、验收清单（第 9 节）全绿、回写 changelog | 全部勾选 |
+
+## 8. 风险与对策
 
 | 风险 | 对策 |
 |------|------|
@@ -147,7 +162,7 @@ guidelines 五篇核心（workflow/writing-style/git-workflow/review-checklist�
 | 英文文档表达打折 | 英文定稿前用说人话标准回读；术语表与中文版一一对应 |
 | skills 与 guidelines 内容重复漂移 | 原则：guidelines 管"是什么/为什么"（人类读），skills 管"何时做/怎么做"（agent 执行）；引用不复制 |
 
-## 7. 验收清单
+## 9. 验收清单
 
 - [ ] `bash scripts/init-project.sh` 在干净 clone 上跑通，产出项目无 BoCode 自身记录残留
 - [ ] `node code/tools/gen-book-index.mjs` 首跑零警告退出 0
