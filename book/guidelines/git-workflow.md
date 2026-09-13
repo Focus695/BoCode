@@ -28,12 +28,12 @@ PRs are for reviews that deserve their own record: multi-person collaboration, a
 Short, lowercase, hyphenated:
 
 ```text
-feature/watchlist-alerts
-fix/calendar-timezone
+feature/user-profile
+fix/login-timeout
 docs/deployment-guide
 chore/update-dependencies
-test/flow-classifier
-refactor/provider-client
+test/upload-validation
+refactor/api-client
 ```
 
 ## Clean Commit format
@@ -62,9 +62,9 @@ Every non-merge commit subject uses one of these forms. The rule applies to new 
 Rules: type and scope are lowercase; scope is optional and short; the description is present tense, doesn't end with a period, and stays under 72 characters. The breaking marker `!` goes right after the type and only on `new`, `update`, `remove`, and `security`.
 
 ```text
-📦 new (alerts): add signal threshold rules
+📦 new (auth): add login rate limiting
 🔧 update (api): improve error handling
-🧪 test: add flow classifier coverage
+🧪 test: add upload validation coverage
 📖 docs: describe deployment process
 🚀 release: promote dev to main
 ```
@@ -81,8 +81,8 @@ Keep them single-purpose, quickly verifiable, free of migrations, irreversible d
 git checkout dev
 git pull --ff-only origin dev
 # change, test
-node scripts/check-commit-message.mjs "🔧 update (hot): handle empty option data"
-git commit -am "🔧 update (hot): handle empty option data"
+node scripts/check-commit-message.mjs "🔧 update (form): handle empty optional input"
+git commit -am "🔧 update (form): handle empty optional input"
 git push origin dev
 ```
 
@@ -96,23 +96,23 @@ git checkout dev
 git pull --ff-only origin dev
 
 # 2. cut a work branch
-git checkout -b feature/watchlist-alerts
+git checkout -b feature/user-profile
 
 # 3. validate a subject before committing
-node scripts/check-commit-message.mjs "📦 new (alerts): add signal threshold rules"
+node scripts/check-commit-message.mjs "📦 new (auth): add login rate limiting"
 git add <files>
-git commit -m "📦 new (alerts): add signal threshold rules"
+git commit -m "📦 new (auth): add login rate limiting"
 
 # 4. sync with dev before merging back
 git fetch origin
 git rebase origin/dev
 git checkout dev
-git merge --squash feature/watchlist-alerts
-git commit -m "📦 new (alerts): add signal threshold rules"
+git merge --squash feature/user-profile
+git commit -m "📦 new (auth): add login rate limiting"
 git push origin dev
 ```
 
-When several people build the same feature, open the PR from `feature/watchlist-alerts` into `dev` and **Squash and merge** after checks; the squash subject uses Clean Commit too. Delete the work branch after merging.
+When several people build the same feature, open the PR from `feature/user-profile` into `dev` and **Squash and merge** after checks; the squash subject uses Clean Commit too. Delete the work branch after merging.
 
 When `dev` is stable, open the `dev → main` PR and choose **Create a merge commit** to preserve the integration boundary. The merge-commit subject is Clean Commit as well, e.g.:
 

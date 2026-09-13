@@ -113,9 +113,9 @@ book 文档按读者分流，不按产物类型（`book/notes/`）：
 
 git 历史是 book 的一部分（`book/guidelines/git-workflow.md`）。每个非合并提交遵循 [Clean Commit](https://github.com/wgtechlabs/clean-commit) 格式——`📦 new (index): add book index generator`；分支遵循 [Clean Flow](https://github.com/wgtechlabs/clean-flow) 模型（`工作分支 → dev → main`）。两个规范本身不带工具，BoCode 把它们补齐了：零依赖校验器在本地（`.githooks/`）和 CI（`.github/workflows/git-policy.yml`）双重执行。实践中：`dev` 是单人开发的集成分支，验证过的小修复直接落；大功能切工作分支；`main` 只接收来自 `dev` 的 merge commit。
 
-### 这个仓库自己就在用它
+### 用自己建的，干干净净交付
 
-BoCode 是自己的第一个用户。产出本仓库的设计文档在 `book/plans/`；构建的 changelog 和 summary 在 `book/changelogs/` 与 `book/notes/summary/`；决策是 `book/docs/decisions/` 里的 ADR。提交历史遵守它自带的 git 规范。采用模板时，`scripts/init-project.sh` 会清掉这些活记录、保留模板。
+BoCode 是自己的第一个用户：奠基走完了结构化需求、经确认的设计计划、分阶段施工与逐步验证，提交历史全程 Clean Commit——整个故事在 git log 里可读。你拿到的模板是干净的：没有带日期的记录、没有遗留的 plan，book 是空的、等着写你的。只留一个示范：[ADR-001](book/docs/decisions/ADR-001-adopt-bocode.md)——"采用这套工作流"的决策记录，这也是你的项目要重申的第一个决策。
 
 ---
 

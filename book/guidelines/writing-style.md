@@ -63,7 +63,7 @@ description: one plain-language line about the content
 ---
 ```
 
-Good: `Three-process overview: responsibilities and boundaries of web, api, and market-engine`
+Good: `Module overview: responsibilities and boundaries of web, api, and worker`
 Bad: `This document describes the overall architecture of the system` (that's the genre, not the content)
 
 The master index `book/README.md` is generated from these descriptions; `cd code && npm run book:index` warns and exits 1 when one is missing.

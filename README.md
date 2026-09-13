@@ -113,9 +113,9 @@ Documentation is read for years and written in minutes, so the style rule is str
 
 The git history is part of the book (`book/guidelines/git-workflow.md`). Every non-merge commit follows the [Clean Commit](https://github.com/wgtechlabs/clean-commit) format — `📦 new (index): add book index generator` — and branching follows the [Clean Flow](https://github.com/wgtechlabs/clean-flow) model (`work → dev → main`). The specs themselves ship no tooling; BoCode closes that gap with a zero-dependency validator running locally (`.githooks/`) and in CI (`.github/workflows/git-policy.yml`). Branching in practice: `dev` is the solo-developer integration branch where small verified fixes land directly; big features cut work branches; `main` only ever receives merge commits from `dev`.
 
-### This repo runs on itself
+### Built with itself, shipped clean
 
-BoCode is its own first user. The design spec that produced this repository is in `book/plans/`; the build's changelog and summary are in `book/changelogs/` and `book/notes/summary/`; the decisions are ADRs in `book/docs/decisions/`. The commit history follows the git policy it ships. When you adopt the template, `scripts/init-project.sh` clears these living records and keeps the templates.
+BoCode is its own first user: the foundation went through a structured requirements brief, an approved design plan, phased implementation with per-step verification, and a Clean Commit history — the whole story is readable in the git log. The template you receive is clean: no dated records, no leftover plans — an empty book waiting for yours. One example ships on purpose: [ADR-001](book/docs/decisions/ADR-001-adopt-bocode.md), the decision to run on this workflow — the first decision your project will re-affirm.
 
 ---
 

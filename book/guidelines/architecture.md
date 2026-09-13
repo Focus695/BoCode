@@ -19,8 +19,8 @@ A boundary rule names two concerns and keeps them apart, with the reason a revie
 
 | Rule | Why |
 |------|-----|
-| Provider ≠ Domain | A data vendor's taxonomy must not leak into domain logic; swapping vendors then touches adapters only |
-| Market Data ≠ Signal | Raw data and derived signals have different lifecycles and different owners; fusing them couples ingestion to strategy |
+| Provider ≠ Domain | An external provider's structure must not leak into domain logic; swapping providers then touches adapters only |
+| Raw Data ≠ Derived View | Raw inputs and computed views have different lifecycles and different owners; fusing them couples ingestion to presentation |
 | Primary DB ≠ Cache | A cache may speed things up but never own truth; everything in it must be rebuildable |
 
 Write rules you can enforce in review. If a rule can't be checked against a diff, it's a wish, not a boundary.

@@ -9,7 +9,8 @@
 #   2. Fills the project overview paragraph in AGENTS.md
 #   3. Writes a fresh minimal README.md (the BoCode philosophy README is
 #      replaced — find it in the BoCode repository itself)
-#   4. Clears BoCode's own living records (plans, month archives, task files)
+#   4. Clears any dated living records (defensive: the template ships clean;
+#      this covers clones that carry records, e.g. from the BoCode origin)
 #   5. Regenerates the book index
 #   6. Optionally resets git history for a clean start
 #
