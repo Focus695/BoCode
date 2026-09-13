@@ -51,7 +51,7 @@ jobs:
         run: |
           if [ "$BASE_REF" = "dev" ]; then
             git fetch origin "pull/$PR_NUMBER/head:refs/remotes/origin/pr-head"
-            git log --format=%s "$BASE_SHA..origin/pr-head" | node scripts/check-commit-message.mjs
+            git log --no-merges --format=%s "$BASE_SHA..origin/pr-head" | node scripts/check-commit-message.mjs
           else
             node scripts/check-commit-message.mjs "$PR_TITLE"
           fi
@@ -68,7 +68,7 @@ jobs:
           AFTER_SHA: ${{ github.sha }}
         run: |
           if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
-            git log --format=%s -1 "$AFTER_SHA" | node scripts/check-commit-message.mjs
+            git log --no-merges --format=%s -1 "$AFTER_SHA" | node scripts/check-commit-message.mjs
           else
-            git log --format=%s "$BEFORE_SHA..$AFTER_SHA" | node scripts/check-commit-message.mjs
+            git log --no-merges --format=%s "$BEFORE_SHA..$AFTER_SHA" | node scripts/check-commit-message.mjs
           fi
