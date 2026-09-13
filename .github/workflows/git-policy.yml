@@ -70,7 +70,12 @@ jobs:
           AFTER_SHA: ${{ github.sha }}
         run: |
           if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
-            git log --no-merges --format=%s -1 "$AFTER_SHA" | node scripts/check-commit-message.mjs
+            SUBJECTS=$(git log --no-merges --format=%s -1 "$AFTER_SHA")
           else
-            git log --no-merges --format=%s "$BEFORE_SHA..$AFTER_SHA" | node scripts/check-commit-message.mjs
+            SUBJECTS=$(git log --no-merges --format=%s "$BEFORE_SHA..$AFTER_SHA")
+          fi
+          if [ -n "$SUBJECTS" ]; then
+            echo "$SUBJECTS" | node scripts/check-commit-message.mjs
+          else
+            echo "No non-merge commits in range; nothing to validate."
           fi
