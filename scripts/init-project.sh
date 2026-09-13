@@ -77,7 +77,7 @@ ${DESC}
 
 This project runs on the BoCode workflow.
 EOF
-rm -f README.zh-CN.md ADOPT.md
+rm -f README.zh-CN.md README.ja.md ADOPT.md
 
 # 4. Clear BoCode's own living records
 for kind in learn summary issue; do
