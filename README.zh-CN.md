@@ -111,7 +111,7 @@ book 文档按读者分流，不按产物类型（`book/notes/`）：
 
 ### 干净的 git 流
 
-git 历史是 book 的一部分（`book/guidelines/git-workflow.md`）。每个非合并提交走 Clean Commit 格式——`📦 new (index): add book index generator`——由零依赖脚本在本地（`.githooks/`）和 CI（`.github/workflows/git-policy.yml`）双重校验。分支走 Clean Flow：`dev` 是单人开发的集成分支，验证过的小修复直接落；大功能切工作分支；`main` 只接收来自 `dev` 的 merge commit。
+git 历史是 book 的一部分（`book/guidelines/git-workflow.md`）。每个非合并提交遵循 [Clean Commit](https://github.com/wgtechlabs/clean-commit) 格式——`📦 new (index): add book index generator`；分支遵循 [Clean Flow](https://github.com/wgtechlabs/clean-flow) 模型（`工作分支 → dev → main`）。两个规范本身不带工具，BoCode 把它们补齐了：零依赖校验器在本地（`.githooks/`）和 CI（`.github/workflows/git-policy.yml`）双重执行。实践中：`dev` 是单人开发的集成分支，验证过的小修复直接落；大功能切工作分支；`main` 只接收来自 `dev` 的 merge commit。
 
 ### 这个仓库自己就在用它
 
@@ -170,6 +170,10 @@ cp -r skills/bocode skills/feature-flow skills/book-writeback <your-skills-dir>/
 
 **为什么用 `YYYY-MM/` 归档而不是按功能建目录？**
 月份是稳定、低维护的物理分组。功能靠索引、frontmatter 和链接找到——不靠把每个跨月功能切碎的目录嵌套。
+
+## 致谢
+
+BoCode 的 git 纪律构建在 WGTech Labs 的两个开放标准上——[Clean Commit](https://github.com/wgtechlabs/clean-commit)（提交格式）与 [Clean Flow](https://github.com/wgtechlabs/clean-flow)（分支模型）——并为两个"只有规范没有工具"的标准补上了执行工具链。说人话书写规范源自 MrGeDiao 的 [shuorenhua](https://github.com/MrGeDiao/shuorenhua)。
 
 ## 许可
 

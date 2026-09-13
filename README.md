@@ -111,7 +111,7 @@ Documentation is read for years and written in minutes, so the style rule is str
 
 ### Clean git flow
 
-The git history is part of the book (`book/guidelines/git-workflow.md`). Every non-merge commit follows the Clean Commit format — `📦 new (index): add book index generator` — validated by a zero-dependency script locally (`.githooks/`) and in CI (`.github/workflows/git-policy.yml`). Branching follows Clean Flow: `dev` is the solo-developer integration branch where small verified fixes land directly; big features cut work branches; `main` only ever receives merge commits from `dev`.
+The git history is part of the book (`book/guidelines/git-workflow.md`). Every non-merge commit follows the [Clean Commit](https://github.com/wgtechlabs/clean-commit) format — `📦 new (index): add book index generator` — and branching follows the [Clean Flow](https://github.com/wgtechlabs/clean-flow) model (`work → dev → main`). The specs themselves ship no tooling; BoCode closes that gap with a zero-dependency validator running locally (`.githooks/`) and in CI (`.github/workflows/git-policy.yml`). Branching in practice: `dev` is the solo-developer integration branch where small verified fixes land directly; big features cut work branches; `main` only ever receives merge commits from `dev`.
 
 ### This repo runs on itself
 
@@ -170,6 +170,10 @@ Nothing breaks at runtime — but a stale index erodes the discoverability the w
 
 **Why `YYYY-MM/` folders instead of per-feature folders?**
 Months are stable, low-maintenance physical grouping. Features are found through the index, frontmatter, and links — not through directory nesting that fragments every multi-month effort.
+
+## Credits
+
+BoCode's git discipline builds on two open standards by WGTech Labs — [Clean Commit](https://github.com/wgtechlabs/clean-commit) (commit message format) and [Clean Flow](https://github.com/wgtechlabs/clean-flow) (branching model) — and adds the enforcement tooling both specs describe but don't ship. The plain-language writing standard draws on [shuorenhua](https://github.com/MrGeDiao/shuorenhua) by MrGeDiao.
 
 ## License
 

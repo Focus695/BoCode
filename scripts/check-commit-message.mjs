@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 /**
- * Validates commit subjects against the Clean Commit format.
- * See book/guidelines/git-workflow.md for the full standard.
+ * Validates commit subjects against the Clean Commit format
+ * (spec: https://github.com/wgtechlabs/clean-commit — which ships as
+ * documentation only; this script is the enforcement).
+ * See book/guidelines/git-workflow.md for the full standard as applied here.
  *
  * Usage:
  *   node scripts/check-commit-message.mjs "<subject>"     # one subject

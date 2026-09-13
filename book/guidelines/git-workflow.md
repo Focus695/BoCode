@@ -4,7 +4,7 @@ description: Clean Commit message format and Clean Flow branch, PR, and merge ru
 
 # Git workflow
 
-This repository follows [Clean Commit](https://github.com/wgtechlabs/clean-commit) and [Clean Flow](https://github.com/wgtechlabs/clean-flow): commit history stays readable, and `main` only ever receives code that already integrated stably on `dev`.
+This repository follows [Clean Commit](https://github.com/wgtechlabs/clean-commit) and [Clean Flow](https://github.com/wgtechlabs/clean-flow): commit history stays readable, and `main` only ever receives code that already integrated stably on `dev`. Both specs ship as documentation only — this repository enforces them with its own zero-dependency tooling (`scripts/check-commit-message.mjs`, `.githooks/`, and `.github/workflows/git-policy.yml`).
 
 ## The whole flow in one picture
 

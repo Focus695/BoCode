@@ -1,3 +1,7 @@
+# Git policy — enforces the Clean Flow branching model
+# (spec: https://github.com/wgtechlabs/clean-flow) and the Clean Commit
+# subject format (spec: https://github.com/wgtechlabs/clean-commit).
+# Both specs ship as documentation only; this workflow is the enforcement.
 name: Git policy
 
 on:
