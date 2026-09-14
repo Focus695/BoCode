@@ -47,7 +47,7 @@ Git commits and branching strictly follow `book/guidelines/git-workflow.md`: eve
 
 ## code ↔ book interaction rules
 
-1. **Before coding**: read `book/guidelines/` for the baseline; search `book/notes/learn/YYYY-MM/` for related experience.
+1. **Before coding**: search `book/notes/learn/YYYY-MM/` for related experience, and consult only the guideline the task actually touches — the input pointers in `book/guidelines/README.md` route you. No blanket pre-reading.
 2. **While coding**: new experience or pitfalls go straight into the current month's `book/notes/learn/YYYY-MM/`.
 3. **After coding**: check the book — is the plan's status updated, is a summary needed, do new issues exist?
 4. **Plans drive code**: `book/plans/` documents are the input to implementation. Read the plan, build in `code/`, write back to `book/`.
@@ -55,11 +55,15 @@ Git commits and branching strictly follow `book/guidelines/git-workflow.md`: eve
 
 `changelogs/` and `notes/{summary,learn,issue}/` archive under `YYYY-MM/`; the month is a physical grouping, retrieval happens through `book/README.md`, frontmatter, and links. `book/` opens directly as an Obsidian vault.
 
+## Safe by default
+
+Local commands are disposable and have no production access — npm scripts, tests, builds, `git status/diff/log`, `npm run book:index`, `node scripts/check-commit-message.mjs`. Run them, fix failures, and rerun without asking. A human still owns anything touching production data or credentials, destructive operations, and every push to `main` (which never happens directly anyway).
+
 ## Hard constraints
 
 - Step 0 (the structured requirements brief) is required before any code
 - No skipping between phases
-- Phase 2 designs proceed only after user approval
+- Phase 2 stops for the user only on real gaps — scope conflict, undetermined data shape, unclear external dependency — never just for confirmation
 - Problems found in Phase 5 / Phase 6 are **recorded, never fixed**
 - Feature work touches no code outside its scope: no opportunistic refactors, no new abstractions
 
