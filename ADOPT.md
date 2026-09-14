@@ -48,7 +48,7 @@ Every migrated file gets a frontmatter `description` — one plain-language line
 
 1. Copy `code/tools/gen-book-index.mjs` and wire the script (see the `scripts` block in BoCode's `code/package.json`). If the project has no JavaScript tooling at all, a shell wrapper calling `node` is fine — the script is zero-dependency.
 2. Optional, recommended: copy `scripts/check-commit-message.mjs` and `.githooks/`, then run `git config core.hooksPath .githooks`.
-3. Optional: copy `.github/workflows/git-policy.yml`. **Check the branch names** — if the project's integration branch isn't `dev`, either ask the user to adopt the branch model or adapt the workflow's branch filters. Don't silently rewrite their branch model.
+3. Optional: copy `.github/workflows/git-policy.yml`. **Check the branch names** — if the project's integration branch isn't `dev`, either ask the user to adopt the branch model or adapt the workflow's branch filters. Don't silently rewrite their branch model. Also **delete the "Check template cleanliness" step** — it enforces the BoCode template repository's own cleanliness rule (its ADR-004) and would fail on a real project's notes and changelogs.
 4. Run the index generator: every book file must carry a `description` and every internal link must resolve; zero warnings is the only passing state.
 
 ## Step 5 — Install the skills

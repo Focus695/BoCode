@@ -5,6 +5,7 @@
   "type": "module",
   "description": "Project source tree. The only script here is the book index generator — this file has zero dependencies by design.",
   "scripts": {
-    "book:index": "node tools/gen-book-index.mjs"
+    "book:index": "node tools/gen-book-index.mjs",
+    "book:release-check": "node tools/check-template-clean.mjs"
   }
 }

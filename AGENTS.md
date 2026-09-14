@@ -55,6 +55,8 @@ Git commits and branching strictly follow `book/guidelines/git-workflow.md`: eve
 
 `changelogs/` and `notes/{summary,learn,issue}/` archive under `YYYY-MM/`; the month is a physical grouping, retrieval happens through `book/README.md`, frontmatter, and links. `book/` opens directly as an Obsidian vault.
 
+This repository is the template itself, not an adopting project: knowledge work here lands in `book/docs/decisions/` ADRs — never in `notes/{learn,summary,issue,task}/`, `plans/`, or `changelogs/` entries. `cd code && npm run book:release-check` enforces the boundary (ADR-004).
+
 ## Safe by default
 
 Local commands are disposable and have no production access — npm scripts, tests, builds, `git status/diff/log`, `npm run book:index`, `node scripts/check-commit-message.mjs`. Run them, fix failures, and rerun without asking. A human still owns anything touching production data or credentials, destructive operations, and every push to `main` (which never happens directly anyway).
@@ -70,4 +72,5 @@ Local commands are disposable and have no production access — npm scripts, tes
 ## Tooling
 
 - `cd code && npm run book:index` — regenerate `book/README.md` after any book change (do not edit by hand; missing frontmatter `description` warns and exits 1)
+- `cd code && npm run book:release-check` — verify the tree holds no instance working records; must be green before the `dev → main` release PR
 - `node scripts/check-commit-message.mjs "<subject>"` — validate a commit subject against Clean Commit

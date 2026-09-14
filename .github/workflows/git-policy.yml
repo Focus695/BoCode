@@ -56,6 +56,8 @@ jobs:
           else
             node scripts/check-commit-message.mjs "$PR_TITLE"
           fi
+      - name: Check template cleanliness
+        run: cd code && npm run book:release-check
 
   validate-protected-push:
     if: github.event_name == 'push'
@@ -79,3 +81,5 @@ jobs:
           else
             echo "No non-merge commits in range; nothing to validate."
           fi
+      - name: Check template cleanliness
+        run: cd code && npm run book:release-check
