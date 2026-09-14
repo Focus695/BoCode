@@ -1,9 +1,13 @@
 ---
-name: feature-flow
-description: Splits a feature into a Step-0 structured requirements brief plus six hard-gated phases (analysis, design, implementation, testing, review, wrap-up). Use when the user asks to implement/add/support/change a feature and the request is sparse — missing background, scope, or detailed logic. Do not use for one-line fixes, typos, pure questions, or tasks whose scope the user has already fully specified.
+name: boscope
+description: BoCode's feature-development skill（中文名：薄界）— scope it thin, gate it hard. Splits a feature into a Step-0 structured requirements brief plus six hard-gated phases (analysis, design, implementation, testing, review, wrap-up). Use when the user asks to implement/add/support/change a feature and the request is sparse — missing background, scope, or detailed logic. Do not use for one-line fixes, typos, pure questions, or tasks whose scope the user has already fully specified.
 ---
 
-# feature-flow
+# BoScope（薄界）
+
+Scope it thin. Gate it hard.
+
+薄界：把界画清——范围、排除、边界先说死，再动代码；阶段一关一关过，不许跳。与 BoWrite 成对：薄写把书写薄，薄界把界画薄——内容薄、边界也薄，薄到一眼见底。
 
 ## Goal
 

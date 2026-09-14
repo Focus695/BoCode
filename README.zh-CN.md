@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/banner.svg" alt="BoCode — 文档驱动代码，代码回写文档" width="720">
+  <img src=".github/assets/banner.svg" alt="BoCode — 人定方向，agent 写码，book 记住一切" width="720">
 </p>
 
 <p align="center">
@@ -12,9 +12,9 @@
   <a href="https://github.com/Focus695/BoCode/generate"><img src="https://img.shields.io/badge/use_this-template-2ea44f.svg" alt="Use this template"></a>
 </p>
 
-**让文档驱动代码，让代码反过来写文档。**
+**人定方向，agent 写码，book 记住一切。**
 
-BoCode 把仓库分成两半：`code/` 放源代码，`book/` 放文档和知识库，两边互相驱动。它是为现在最常见的开发方式设计的：人和 AI agent 一起写代码。agent 快，但没有记忆。项目知识存在哪里，决定了开发是越做越顺，还是每个会话都重新踩一遍坑。
+BoCode 把仓库分成两半：`code/` 放源代码，`book/` 放文档和知识库，两边互相驱动。它是为现在最常见的开发方式设计的：人和 AI agent 一起写代码。agent 快，也有记忆，可记忆只归它自己：人读不懂、管不了。项目知识放在哪里、给谁读，决定了开发是又快又稳，还是快得让人心里没底。
 
 ## 一句话接入
 
@@ -24,7 +24,7 @@ BoCode 把仓库分成两半：`code/` 放源代码，`book/` 放文档和知识
 阅读 https://github.com/Focus695/BoCode（从 ADOPT.md 开始），按照它的步骤把当前项目改造为 BoCode 工作流。
 ```
 
-新开项目？三条命令的快速开始在下面。
+新开项目？直接跳到[快速开始](#快速开始)。
 
 ---
 
@@ -34,13 +34,13 @@ BoCode 把仓库分成两半：`code/` 放源代码，`book/` 放文档和知识
 
 用 AI agent 写代码的项目，几乎都会撞上三件事：
 
-1. **Agent 没有记忆。** 每个会话从零开始。没写下来的知识，每个会话都要重新推导一遍、重新问一遍、重新踩一遍坑。
+1. **记忆只归 agent 自己。** 现在的 agent 都有 memory，可那是个黑盒：人读不懂，也管不了。最近推进了什么、踩过哪些坑、哪些问题等着修，人一概看不见——agent 干得越快，人的掌控感越少。缺的不是记忆，是人和 agent 共读的同一个地方：进展的总结、踩过的坑、待修的问题、项目的指南。agent 靠它干活，人靠它掌舵。
 2. **文档会过时。** 立项时写一次，之后没人更新。更新文档的好处要很久之后才看得到，跳过它马上就省事，所以文档总是作用不大。到最后没人信文档——过时的文档确实不值得信。
 3. **人抓不住方向盘。** 你让 agent 做一件事，它会顺手多做十二件。速度上去了、关卡没跟上，作用域就开始漂移：改了不该改的，做了没人知道的决定，半年后没人说得清"当时为什么这么做"。
 
 三件事的根源是同一个：知识不能只存在聊天记录和人脑里。
 
-### 两个半脑
+### 各管一半
 
 BoCode 用结构回答这个问题。一个项目有两半：
 
@@ -86,19 +86,32 @@ BoCode 用结构回答这个问题。一个项目有两半：
 
 ## 方法
 
-### 是关卡，不是刹车
+BoCode 的规矩由四个 skill 分头执行、各自独立调用：
 
-每个功能走六阶段，每阶段是硬关卡（`book/guidelines/workflow.md`，由 `feature-flow` skill 在行为层执行）：
+| Skill | 中文 | 管 | 何时出手 |
+|-------|------|-----|---------|
+| `bocode` | 薄码 | 结构地图与全程纪律 | 会话开始；查文档去向、索引规则 |
+| `boscope` | 薄界 | 六阶段关卡——范围先说死，一关一关过 | 要实现 / 改一个功能 |
+| `book-writeback` | 返写 | 回写模板与质量线 | 功能收尾；写 summary / learn / issue |
+| `bowrite` | 薄写 | 写薄写好——内容变少，核心没变 | 写或改任何文档 |
+
+下面几节讲规则本身，skill 是它们的执行层。
+
+### 薄界（boscope）：是关卡，不是刹车
+
+每个功能走六阶段，每阶段是硬关卡（规范本体：`book/guidelines/workflow.md`）：
 
 | 阶段 | 产出 | 关卡 |
 |------|------|------|
-| Step 0 需求 Brief | 背景、作用域、排除项、需求 | 每个槽位填实——**排除清单必填**，空着的排除项是越界改动的头号原因 |
+| Step 0 需求 Brief | 背景、作用域、排除项、需求 | 每个槽位填实 |
 | 1 需求分析 | 影响图 + 风险清单 | 不改任何代码 |
 | 2 设计 | 数据流、文件清单、接口 | **用户确认后才推进** |
 | 3 实现 | 代码 | 严格按批准的作用域 |
 | 4 测试 | 先写测试 | 全绿，不削弱断言 |
 | 5 Review | 问题清单 | 只记录，不修复 |
 | 6 收尾 | summary、learn、issue、changelog、索引 | 只记录，不修复 |
+
+排除清单是 Step 0 的命门：空着的"不影响"清单，就是 Phase 3 越界改动的头号来源。
 
 设计意图：agent 把实现压到分钟级，瓶颈就挪到了决策和作用域上，关卡恰好守在那里——Step 0 补上需求没说的话，Phase 2 由人拍板方向，Phase 5/6 把"看"和"改"分开。**Review 时发现的问题进清单，修复是另一件事。** 只记录、不修复，review 的结论才可信。
 
@@ -113,7 +126,7 @@ book 的文档按读者分流，而不是按文档类型（`book/notes/`）：
 | `issue/` | 人类 + agent | 问题 + 复现 + 建议方向 |
 | `task/` | 任务跟踪 | 检查清单 |
 
-要读 diff 才懂的 summary 不是 summary；标题答不了问题的 learn，下个会话也搜不到。`book/notes/README.md` 里的模板就是合格线。
+要读 diff 才懂的 summary 不是 summary；标题答不了问题的 learn，下个会话也搜不到。`book/notes/README.md` 里的模板就是合格线，收尾回写时由 `book-writeback`（返写）skill 带着执行。
 
 ### 索引契约
 
@@ -125,9 +138,9 @@ book 的文档按读者分流，而不是按文档类型（`book/notes/`）：
 
 `book/README.md` 也是入口：agent 先读它拿地图；这个目录还能直接用 [Obsidian](https://obsidian.md) 打开当 vault。
 
-### 说人话
+### 薄写（bowrite）：说人话
 
-文档是几分钟写完、要被读好几年的东西，所以风格规则短而严（`book/guidelines/writing-style.md`）：像具体的人在具体场景里说话——专业可以，模板化不行。套话和空总结删掉，事实锁死：数字、命令、名称、责任主体一个不动。这套标准由 `bowrite` skill（薄写：写薄——内容变少、核心不变；写好——自然、直接、不抖机灵）在 agent 侧执行，它蒸馏自 MrGeDiao 的 [shuorenhua](https://github.com/MrGeDiao/shuorenhua)，加上本项目 review 中攒下的表达模式。
+文档是几分钟写完、要被读好几年的东西，所以风格规则短而严（`book/guidelines/writing-style.md`）：像具体的人在具体场景里说话——专业可以，模板化不行。写薄：内容变少、核心没变，删的是字不是信息；写好：自然、直接、不抖机灵，事实锁死——数字、命令、名称、责任主体一个不动。bowrite 蒸馏自 MrGeDiao 的 [shuorenhua](https://github.com/MrGeDiao/shuorenhua)，加上本项目 review 中攒下的表达模式账本。
 
 ### 干净的 git 流
 
@@ -150,7 +163,7 @@ git clone <your-fork-url> myproject && cd myproject
 bash scripts/init-project.sh myproject "一句话说明它是干什么的"
 
 # 3. 给你的 AI agent 装上四个 skill：
-cp -r skills/bocode skills/feature-flow skills/book-writeback skills/bowrite <your-skills-dir>/
+cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-skills-dir>/
 #    （ZCode: ~/.zcode/skills/ · Claude Code: ~/.claude/skills/ —— 见 skills/README.md）
 
 # 4. 让 agent 指向 AGENTS.md——多数工具会自动读。
@@ -169,7 +182,7 @@ cp -r skills/bocode skills/feature-flow skills/book-writeback skills/bowrite <yo
 | `book/plans/` | 实现计划（施工图） |
 | `book/notes/{summary,learn,task,issue}/` | 四类笔记 |
 | `book/docs/{architecture,api,decisions}/` | 快照、契约、ADR |
-| `skills/` | `bocode`、`feature-flow`、`book-writeback`、`bowrite` |
+| `skills/` | `bocode`、`boscope`、`book-writeback`、`bowrite` |
 | `code/tools/gen-book-index.mjs` | 索引生成器 |
 | `scripts/init-project.sh` | 模板 → 你的项目 |
 | `scripts/check-commit-message.mjs` | Clean Commit 校验器（含 `.githooks/`） |

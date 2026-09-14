@@ -24,7 +24,7 @@ Phase 4 runs test-first: write a failing test, write the minimum implementation 
 
 Phases 5 and 6 share one discipline: **record, never fix.** A problem found during review or wrap-up goes into `notes/issue/` — fixing it is a separate, later task. Fixing in passing feels efficient and destroys the gate: the review no longer reviews what was built.
 
-## code ↔ book — the two half-brains
+## code ↔ book — the two halves
 
 ```
                  book/  (knowledge base + driving force)

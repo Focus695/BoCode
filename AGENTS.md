@@ -16,7 +16,7 @@ This project runs on the **BoCode workflow**: `code/` holds the source, `book/` 
 └── book/       # documentation stream and knowledge base
 ```
 
-**code and book are the project's two half-brains — neither is optional.** The relationship runs both ways:
+**code and book are the project's two halves — neither is optional.** The relationship runs both ways:
 
 - **book → code**: plans drive implementation; guidelines provide the baseline; learn entries supply experience to consult before coding; issues provide direction for later iterations.
 - **code → book**: after code changes, check whether book needs syncing; when a feature completes, write its summary / learn / issue back into book.
