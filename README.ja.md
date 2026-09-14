@@ -135,8 +135,9 @@ diff を読まないと分からない summary は summary ではありません
 - すべての book ドキュメントは frontmatter の `description` で始まる——体裁ではなく内容を語る、人の言葉で一行
 - `code/tools/gen-book-index.mjs`（依存ゼロ、プレーン Node）が `book/README.md`——全ドキュメントのマスターインデックス——を再生成する
 - description の欠けたドキュメントはビルドを**失敗させる**（exit 1）。ゼロ警告だけが合格です
+- 内部リンクは解決必須——切れたリンクもビルドを失敗させます。book は vault を兼ねるため、切れたリンクはビルドバグです
 
-`book/README.md` は入口も兼ねます：エージェントはまずここで地図を手に入れる。フォルダはそのまま [Obsidian](https://obsidian.md) の vault として開けます。
+`book/README.md` は入口も兼ねます：エージェントはまずここで地図を手に入れる。フォルダはそのまま [Obsidian](https://obsidian.md) の vault として開けます——インデックス、タグ、バックリンク、グラフがすべて使えます（FAQ 参照）。
 
 ### bowrite（薄写）——人の言葉で書く
 
@@ -197,6 +198,9 @@ cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-sk
 
 **どの AI ツールで動きますか？**
 `AGENTS.md` を指示ファイルとして読み、`SKILL.md` 形式をサポートするものなら何でも（ZCode、Claude Code、互換エージェント）。スキルがなくてもワークフローは劣化なしで機能します：guidelines が同じルールを文章で運びます。
+
+**book は Obsidian などの PKM ツールで読めますか？**
+はい、設定なしで。book は純粋な Markdown です——相対リンク、YAML frontmatter（description、tags）、独自形式は一切なし。`book/` を Obsidian の vault として開けば、インデックス、タグ、バックリンク、グラフがすべて使えます。ビルドはリンクも検証し、切れたリンクはビルドを失敗させるため、開くものはいつも辿れる網です。Obsidian 固定でもありません：Logseq、Foam、VS Code、Markdown を読めるものなら何でも。
 
 **インデックスを再生成しないとどうなりますか？**
 実行時には何も壊れません——しかしインデックスが古くなれば、システム全体が依存する発見可能性が崩れていきます。だからこそチェックは、description の欠落を派手に失敗させます。

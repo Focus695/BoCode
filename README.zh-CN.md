@@ -135,8 +135,9 @@ book 的文档按读者分流，而不是按文档类型（`book/notes/`）：
 - 每篇 book 文档开头有 frontmatter `description`——一行说人话的内容摘要，写内容，不写体裁
 - `code/tools/gen-book-index.mjs`（零依赖、纯 Node）重新生成 `book/README.md`——全库文档总索引
 - 缺 description 的文档让构建直接失败（退出码 1）。零警告是唯一通过状态
+- 内部链接必须走得通：断链同样让构建失败——book 是个 vault，断链就是构建 bug
 
-`book/README.md` 也是入口：agent 先读它拿地图；这个目录还能直接用 [Obsidian](https://obsidian.md) 打开当 vault。
+`book/README.md` 也是入口：agent 先读它拿地图；这个目录还能直接用 [Obsidian](https://obsidian.md) 等知识管理工具打开当 vault——索引、标签、反链、关系图全部可用（详见 FAQ）。
 
 ### 薄写（bowrite）：说人话
 
@@ -197,6 +198,9 @@ cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-sk
 
 **支持哪些 AI 工具？**
 只要读 `AGENTS.md`、认 `SKILL.md` 格式就行（ZCode、Claude Code 和兼容工具）。没装 skill 也能跑：guidelines 用文字载着同样的规则。
+
+**book 能用 Obsidian 这类双链笔记工具读吗？**
+能，零设置。book 全是普通 Markdown：相对链接、YAML frontmatter（description、tags），没有任何专有格式。把 `book/` 当 vault 打开，索引、标签面板、反向链接、关系图全部可用。构建还会校验链接——断链直接构建失败，你打开的永远是一张走得通的网。也不锁 Obsidian：Logseq、Foam、VS Code，任何认 Markdown 的工具都行。
 
 **不刷索引会怎么样？**
 运行不会出问题——但索引一过期，文档就慢慢找不到了，而这套体系靠的正是"找得到"。所以检查让缺 description 的文档直接报错，而不是悄悄放过去。
