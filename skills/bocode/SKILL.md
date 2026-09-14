@@ -43,5 +43,5 @@ book/
 
 - Don't edit `book/README.md` by hand — it's generated.
 - Don't archive by feature: `summary/`, `learn/`, `issue/`, `changelogs/` group by `YYYY-MM/` only; features are found through the index, frontmatter, and links.
-- Don't write book documents in template-speak — follow `book/guidelines/writing-style.md` (plain language, facts locked).
+- Don't write book documents in template-speak — write them thin and well (the **bowrite** skill, 薄写), per `book/guidelines/writing-style.md`: plain language, facts locked.
 - Don't treat a plan in `book/plans/` as a suggestion: it is the input to implementation, and deviations go back through design, not silently into code.

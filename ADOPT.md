@@ -4,7 +4,7 @@
 
 ## What you are installing
 
-BoCode gives a project two half-brains: `code/` (the source) and `book/` (the documentation stream and knowledge base), driving each other in both directions. You will install: the `book/` skeleton, the index tooling, the git policy tooling (optional), the three skills, and an `AGENTS.md` entry point. You will migrate the project's existing docs into the book. You will **not** refactor any code.
+BoCode gives a project two half-brains: `code/` (the source) and `book/` (the documentation stream and knowledge base), driving each other in both directions. You will install: the `book/` skeleton, the index tooling, the git policy tooling (optional), the four skills, and an `AGENTS.md` entry point. You will migrate the project's existing docs into the book. You will **not** refactor any code.
 
 Before starting, read in the BoCode repository: `AGENTS.md`, `book/guidelines/workflow.md`, and `skills/README.md` — this playbook assumes you know the target shape.
 
@@ -53,7 +53,7 @@ Every migrated file gets a frontmatter `description` — one plain-language line
 
 ## Step 5 — Install the skills
 
-Copy `skills/bocode`, `skills/feature-flow`, `skills/book-writeback` into the agent's skills directory (see BoCode's `skills/README.md` for per-tool locations). If the user's agent can't install skills, the workflow still works — the guidelines carry the same rules in prose.
+Copy `skills/bocode`, `skills/feature-flow`, `skills/book-writeback`, and `skills/bowrite` into the agent's skills directory (see BoCode's `skills/README.md` for per-tool locations). If the user's agent can't install skills, the workflow still works — the guidelines carry the same rules in prose.
 
 ## Step 6 — Write the project's `AGENTS.md`
 
