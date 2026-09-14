@@ -57,7 +57,7 @@ Phases 5 and 6 share one discipline: **record, never fix.** A problem found duri
 4. **Plans drive code** — `book/plans/` is the input to implementation. The agent reads the plan, builds in `code/`, writes back to `book/`.
 5. **Issues feed code** — `notes/issue/` records problems that become the direction of later iterations.
 6. **The book compounds** — every feature should leave the book more complete than it found it. The book is both the agent's context and the human's reference manual.
-7. **Refresh the index** — after any book change, run `cd code && npm run book:index` before wrapping up. New files must carry a frontmatter `description`; missing ones fail the build.
+7. **Refresh the index** — after any book change, run `cd code && npm run book:index` before wrapping up. New files must carry a frontmatter `description`, and internal links must resolve — either failing fails the build.
 
 ## Document routing
 

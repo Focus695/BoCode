@@ -137,8 +137,9 @@ Documentation you can't find doesn't exist. BoCode makes discoverability a build
 - Every book document starts with a frontmatter `description` — one plain-language line about the *content*, not the genre.
 - `code/tools/gen-book-index.mjs` (zero dependencies, plain Node) regenerates `book/README.md` — the master index of every document, grouped by directory.
 - A document missing its description makes the build **fail** (exit 1). Zero warnings is the only passing state.
+- Internal links must resolve — a broken link fails the build. The book doubles as an Obsidian vault; a broken link is a build bug.
 
-`book/README.md` doubles as the entry point: agents read it first to get the map; the folder also opens directly as an [Obsidian](https://obsidian.md) vault.
+`book/README.md` doubles as the entry point: agents read it first to get the map; the folder also opens directly as an [Obsidian](https://obsidian.md) vault — index, tags, backlinks, and graph all work (see FAQ).
 
 ### bowrite（薄写）— speak human
 
@@ -199,6 +200,9 @@ No. The book is Markdown; the two scripts are plain Node with zero dependencies.
 
 **Which AI tools does it work with?**
 Anything that reads `AGENTS.md` as its instruction file and supports the `SKILL.md` format (ZCode, Claude Code, and compatible agents). The workflow degrades gracefully without skills: the guidelines carry the same rules in prose.
+
+**Does the book work in Obsidian or other PKM tools?**
+Yes, with zero setup. The book is plain Markdown — relative links, YAML frontmatter (`description`, `tags`), no proprietary formats. Open `book/` as an Obsidian vault and the index, tag pane, backlinks, and graph all work. The build also validates links — a broken link fails the build — so what you open is always a navigable web. Not Obsidian-locked either: Logseq, Foam, VS Code, anything that reads Markdown works.
 
 **What if I don't regenerate the index?**
 Nothing breaks at runtime — but a stale index erodes the discoverability the whole system rests on, which is why the check makes missing descriptions fail loudly.

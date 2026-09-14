@@ -6,13 +6,15 @@
  * Usage:   cd code && node tools/gen-book-index.mjs
  *          (or: npm run book:index)
  *
- * Convention: every document starts with frontmatter whose `description`
- * is a one-line, plain-language summary of the content. Files missing it
- * are listed on stderr and the script exits 1 — zero warnings is the
- * only passing state. Zero dependencies; runs on plain Node (and bun).
+ * Conventions:
+ *   1. Every document starts with frontmatter whose `description` is a
+ *      one-line, plain-language summary. Missing → warning, exit 1.
+ *   2. Internal links must resolve. Broken relative links → warning, exit 1 —
+ *      the book doubles as an Obsidian vault, so a broken link is a build bug.
+ * Zero dependencies; runs on plain Node (and bun).
  */
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join, dirname, relative } from "node:path";
+import { readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
+import { join, dirname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const TOOLS_DIR = dirname(fileURLToPath(import.meta.url));
@@ -66,8 +68,7 @@ function walkMd(dir) {
   return out;
 }
 
-function parseDescription(abs) {
-  const text = readFileSync(abs, "utf8");
+function parseDescription(text) {
   if (!text.startsWith("---")) return null;
   const lines = text.split("\n");
   for (let i = 1; i < lines.length; i++) {
@@ -76,6 +77,17 @@ function parseDescription(abs) {
     if (m) return m[1].trim();
   }
   return null;
+}
+
+function collectInternalLinks(text) {
+  const out = [];
+  const re = /(?:\]\(<([^>]+)>\)|\]\(([^)\s]+)\))/g;
+  let m;
+  while ((m = re.exec(text))) {
+    const target = (m[1] || m[2]).split("#")[0];
+    if (target && !/^[a-z]+:/.test(target)) out.push(target); // skip http:, mailto:, obsidian:…
+  }
+  return out;
 }
 
 function link(rel) {
@@ -87,13 +99,19 @@ const files = walkMd(BOOK_ROOT)
   .sort();
 
 const warnings = [];
+const brokenLinks = [];
 const byDir = new Map();
 
 for (const abs of files) {
   const rel = relative(BOOK_ROOT, abs);
   const dir = dirname(rel) === "." ? "" : dirname(rel);
-  const desc = parseDescription(abs);
+  const text = readFileSync(abs, "utf8");
+  const desc = parseDescription(text);
   if (!desc) warnings.push(rel);
+  for (const target of collectInternalLinks(text)) {
+    const resolved = resolve(dirname(abs), target);
+    if (!existsSync(resolved)) brokenLinks.push(`${rel} → ${target}`);
+  }
   if (!byDir.has(dir)) byDir.set(dir, []);
   byDir.get(dir).push({ name: rel.split("/").pop(), rel, desc: desc ?? "(missing description)" });
 }
@@ -132,10 +150,16 @@ out += `<!-- ${files.length} documents -->\n`;
 
 writeFileSync(OUTPUT, out);
 
-if (warnings.length > 0) {
-  console.error(`Files missing frontmatter description (${warnings.length}):`);
-  for (const w of warnings) console.error(`  - ${w}`);
-  console.error(`Index written to ${OUTPUT} (${files.length} documents), but the files above lack a summary. Fix them and rerun.`);
+if (warnings.length > 0 || brokenLinks.length > 0) {
+  if (warnings.length > 0) {
+    console.error(`Files missing frontmatter description (${warnings.length}):`);
+    for (const w of warnings) console.error(`  - ${w}`);
+  }
+  if (brokenLinks.length > 0) {
+    console.error(`Broken internal links (${brokenLinks.length}):`);
+    for (const l of brokenLinks) console.error(`  - ${l}`);
+  }
+  console.error(`Index written to ${OUTPUT} (${files.length} documents), but the issues above fail the build. Fix them and rerun.`);
   process.exit(1);
 }
-console.log(`Index written to ${OUTPUT} — ${files.length} documents, zero warnings.`);
+console.log(`Index written to ${OUTPUT} — ${files.length} documents, zero warnings, all links resolve.`);
