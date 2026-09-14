@@ -1,9 +1,9 @@
 ---
 name: bocode
-description: Entry skill for repositories running the BoCode workflow (code/ + book/ layout). Use when a session starts in such a repo, or when deciding where a document goes, how the book index works, or what the code↔book rules require. Teaches the structure map and the discipline; feature development itself is handled by feature-flow.
+description: Entry skill（中文名：薄码）for repositories running the BoCode workflow (code/ + book/ layout). Use when a session starts in such a repo, or when deciding where a document goes, how the book index works, or what the code↔book rules require. Teaches the structure map and the discipline; feature development itself is handled by boscope.
 ---
 
-# bocode
+# bocode（薄码）
 
 This repository runs BoCode: `code/` is the source, `book/` is the documentation stream and knowledge base. They drive each other in both directions. Your job in every session: keep the flywheel spinning — read from the book before coding, write back to the book after.
 

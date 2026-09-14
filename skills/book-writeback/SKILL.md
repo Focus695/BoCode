@@ -1,9 +1,9 @@
 ---
 name: book-writeback
-description: Guides writing back to the book after work completes — summary reports, learn entries, issue records, changelog entries — with templates and quality gates, then regenerating the index. Use at feature wrap-up, after small fixes that taught something, or when the user asks to write a summary, learn entry, issue, or changelog.
+description: The write-back skill（中文名：返写）— guides writing back to the book after work completes: summary reports, learn entries, issue records, changelog entries, with templates and quality gates, then regenerating the index. Use at feature wrap-up, after small fixes that taught something, or when the user asks to write a summary, learn entry, issue, or changelog.
 ---
 
-# book-writeback
+# book-writeback（返写）
 
 Development that doesn't write back to the book loses its experience. This skill covers what to write, where, and the quality bar — for the BoCode layout (`book/` with `notes/{summary,learn,issue}/`, `changelogs/`, `plans/`).
 
