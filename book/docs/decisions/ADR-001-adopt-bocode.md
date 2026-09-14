@@ -10,7 +10,7 @@ Accepted — the template ships with this decision made. Revisit only if the pro
 
 ## Context
 
-Most implementation in this project happens with AI coding agents. Agents are fast but stateless: every session starts from zero, and project knowledge either lives somewhere durable or it's gone. In projects that keep everything in chat history and memory, the same questions get re-answered, the same pitfalls get re-hit, and humans lose track of why the code looks the way it does.
+Most implementation in this project happens with AI coding agents. Agents are fast, and they have memory now — but that memory serves the agent alone: unreadable to humans, hard to manage, unreliable to search. The human loses the overview — what landed, what bit us, what waits to be fixed. A project needs one shared, readable place: an operating manual, organized experience, a kept list of problems; storage alone provides none of these. In projects that keep everything in chat history and memory, the same questions get re-answered, the same pitfalls get re-hit, and humans lose track of why the code looks the way it does.
 
 The alternatives considered:
 

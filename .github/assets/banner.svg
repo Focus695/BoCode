@@ -18,6 +18,6 @@
     <polyline points="93,106 104,118 93,130" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <text x="272" y="163" font-family="-apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="800" fill="#f8fafc">BoCode</text>
-  <text x="276" y="212" font-family="-apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="28" fill="#94a3b8">Documentation drives code. Code writes back.</text>
-  <text x="276" y="252" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="22" fill="#64748b">code/ + book/ — two half-brains, one flywheel</text>
+  <text x="276" y="212" font-family="-apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="28" fill="#94a3b8">Humans steer. Agents build.</text>
+  <text x="276" y="252" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="22" fill="#64748b">the book remembers everything</text>
 </svg>

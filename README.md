@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/banner.svg" alt="BoCode — documentation drives code, code writes back" width="720">
+  <img src=".github/assets/banner.svg" alt="BoCode — humans steer, agents build, the book remembers" width="720">
 </p>
 
 <p align="center">
@@ -12,9 +12,9 @@
   <a href="https://github.com/Focus695/BoCode/generate"><img src="https://img.shields.io/badge/use_this-template-2ea44f.svg" alt="Use this template"></a>
 </p>
 
-**A project template where documentation drives code, and code writes back.**
+**Humans steer, agents build, the book remembers.**
 
-BoCode gives a repository two half-brains — `code/` for the source, `book/` for the documentation stream and knowledge base — wired together in both directions. It is built for the way software is written now: a human and AI coding agents together. Whether a project compounds or resets every session comes down to whether its knowledge lives somewhere durable.
+BoCode gives a repository two halves — `code/` for the source, `book/` for the documentation stream and knowledge base — wired together in both directions. It is built for the way software is written now: a human and AI coding agents together. Agents are fast and have memory now — but that memory serves the agent alone: unreadable to humans, unmanageable. Where a project's knowledge lives, and who can read it, decides whether speed comes with control or without it.
 
 ## Adopt it in one line
 
@@ -24,7 +24,7 @@ Already have a project? Paste this to your AI agent:
 Read https://github.com/Focus695/BoCode — start with ADOPT.md — and retrofit this project onto the BoCode workflow exactly as it prescribes.
 ```
 
-Starting from scratch? The three-command Quick Start is below.
+Starting from scratch? Jump straight to the [Quick Start](#quick-start).
 
 Clone it, run one script, install four skills, and your project gains: a gated development workflow, a self-indexing knowledge base, a write-back discipline that turns every feature into accumulated experience, and a git policy that keeps history readable.
 
@@ -36,13 +36,13 @@ Clone it, run one script, install four skills, and your project gains: a gated d
 
 Three failures show up in almost every project built with AI agents:
 
-1. **Agents are stateless.** Every session starts from zero. Knowledge that isn't written down somewhere durable gets re-derived, re-asked, and re-broken.
+1. **Memory serves the agent alone.** Agents have memory now, but it's a black box: humans can't read it, let alone manage it. What shipped, what bit us, what's waiting to be fixed — all invisible. The faster the agent moves, the less control the human holds. What's missing isn't memory; it's one shared, readable place: recent summaries, known pitfalls, the open fix list, the project's guidelines. Agents work from it; humans steer by it.
 2. **Documentation rots.** Written once at the start, updated never. Because updating it pays off later and skipping it pays off now, it always gets skipped. Eventually nobody trusts it — a stale document doesn't deserve trust.
 3. **Humans lose the wheel.** An agent will implement what you asked plus twelve things you didn't. Speed without gates means scope drifts, decisions go unrecorded, and the project's "why" evaporates.
 
 Each failure points at the same root: knowledge and control need a place to live that isn't chat history or someone's memory.
 
-### Two half-brains
+### Two halves
 
 BoCode's answer is structural. A project has two halves:
 
@@ -88,19 +88,32 @@ This is the flywheel: every cycle leaves the book more complete than it found it
 
 ## The method
 
-### Gates, not brakes
+BoCode's rules are carried by four skills, each invoked independently:
 
-Every feature runs a six-phase workflow with hard gates (`book/guidelines/workflow.md`, enforced in behavior by the `feature-flow` skill):
+| Skill | Chinese name | Owns | Triggers |
+|-------|--------------|------|----------|
+| `bocode` | 薄码 | The structure map and session discipline | Session start; where documents go |
+| `boscope` | 薄界 | The six gated phases — scope it thin, gate it hard | "Implement / add / change X" |
+| `book-writeback` | 返写 | Write-back templates and quality gates | Feature wrap-up; summary / learn / issue |
+| `bowrite` | 薄写 | Write thin and well — fewer words, same core | Writing or revising any document |
+
+The sections below state the rules; the skills are their enforcement layer.
+
+### boscope（薄界）— gates, not brakes
+
+Every feature runs a six-phase workflow with hard gates (the rules live in `book/guidelines/workflow.md`):
 
 | Phase | Output | Gate |
 |-------|--------|------|
-| Step 0 — requirements brief | background, scope, exclusions, requirement | Every slot filled — **the exclusions list is required**, an empty one is the top cause of out-of-scope changes |
+| Step 0 — requirements brief | background, scope, exclusions, requirement | Every slot filled |
 | 1 — Analysis | impact map + risk list | No code changed |
 | 2 — Design | data flow, files, interfaces | **User approval required** |
 | 3 — Implementation | the code | Nothing outside the approved scope |
 | 4 — Testing | tests, written first | All green, no weakened assertions |
 | 5 — Review | findings list | Recorded, never fixed |
 | 6 — Wrap-up | summary, learn, issues, changelog, index | Recorded, never fixed |
+
+The exclusions list is Step 0's crux: an empty "does not affect" list is the number-one cause of out-of-scope changes in Phase 3.
 
 The design intent: agents compress implementation to minutes, which moves the bottleneck to decisions and scope. The gates hold exactly there — Step 0 fills in what the request didn't say, Phase 2 is where a person approves direction, and Phases 5–6 enforce the separation of observing and fixing. **A problem found at review becomes a recorded issue; fixing it is separate work.** That is what keeps the review honest.
 
@@ -113,9 +126,9 @@ Book documents are routed by audience, not by kind of artifact (`book/notes/`):
 | `summary/` | Humans first | A report: background → what was done → why → outcome |
 | `learn/` | Humans + agents | A searchable knowledge entry with tags — including symptom tags like "timeout" |
 | `issue/` | Humans + agents | Problem + reproduction + suggested direction |
-| `task/` | Working memory | A checklist |
+| `task/` | Task tracking | A checklist |
 
-A summary that requires reading the diff isn't a summary. A learn entry whose title doesn't answer the question won't be found by the next session. The templates in `book/notes/README.md` encode the quality bar.
+A summary that requires reading the diff isn't a summary. A learn entry whose title doesn't answer the question won't be found by the next session. The templates in `book/notes/README.md` encode the quality bar, and the `book-writeback` skill carries them at wrap-up.
 
 ### The index contract
 
@@ -127,9 +140,9 @@ Documentation you can't find doesn't exist. BoCode makes discoverability a build
 
 `book/README.md` doubles as the entry point: agents read it first to get the map; the folder also opens directly as an [Obsidian](https://obsidian.md) vault.
 
-### Speak human
+### bowrite（薄写）— speak human
 
-Documentation is read for years and written in minutes, so the style rule is strict and short (`book/guidelines/writing-style.md`): write like a specific person in a specific situation — professional is fine, templated is not. Cut filler openers and empty summaries; keep the facts locked — numbers, commands, names, and responsibility attribution never move. The `bowrite` skill（薄写 — write thin, write well: fewer words, same core）carries this standard for agents; it distills [shuorenhua](https://github.com/MrGeDiao/shuorenhua) by MrGeDiao together with patterns accumulated in this project's own reviews.
+Documentation is read for years and written in minutes, so the style rule is strict and short (`book/guidelines/writing-style.md`): write like a specific person in a specific situation — professional is fine, templated is not. Thin: fewer words, same core — cut words, not information. Well: natural, direct, no strained cleverness, facts locked — numbers, commands, names, and responsibility attribution never move. bowrite distills [shuorenhua](https://github.com/MrGeDiao/shuorenhua) by MrGeDiao, plus the pattern ledger accumulated in this project's own reviews.
 
 ### Clean git flow
 
@@ -152,7 +165,7 @@ git clone <your-fork-url> myproject && cd myproject
 bash scripts/init-project.sh myproject "What it does, in one line"
 
 # 3. Install the four skills for your AI agent:
-cp -r skills/bocode skills/feature-flow skills/book-writeback skills/bowrite <your-skills-dir>/
+cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-skills-dir>/
 #    (ZCode: ~/.zcode/skills/ · Claude Code: ~/.claude/skills/ — see skills/README.md)
 
 # 4. Point your agent at AGENTS.md — most tools read it automatically.
@@ -171,7 +184,7 @@ Requirements: `bash` and `node` for the two scripts. No packages, no install ste
 | `book/plans/` | Implementation blueprints |
 | `book/notes/{summary,learn,task,issue}/` | The four note types |
 | `book/docs/{architecture,api,decisions}/` | Snapshots, contracts, ADRs |
-| `skills/` | `bocode`, `feature-flow`, `book-writeback`, `bowrite` |
+| `skills/` | `bocode`, `boscope`, `book-writeback`, `bowrite` |
 | `code/tools/gen-book-index.mjs` | The index generator |
 | `scripts/init-project.sh` | Template → your project |
 | `scripts/check-commit-message.mjs` | Clean Commit validator (+ `.githooks/`) |
