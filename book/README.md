@@ -20,14 +20,12 @@ description: Master index of the book — the map of every document. Regenerate 
 | Directory | Purpose |
 |------|------|
 | `changelogs/` | Change log: what landed and when |
-| `changelogs/2026-09/` | Archived under changelogs/, grouped by month |
 | `docs/` | Technical docs: architecture, API, decisions |
 | `docs/api/` | API design and interface docs |
 | `docs/architecture/` | Architecture snapshots: modules, data flow |
 | `docs/decisions/` | Architecture decision records (ADR) |
 | `guidelines/` | Development rules every contributor (including AI) must follow |
 | `notes/` | Running records: learn / summary / task / issue |
-| `notes/learn/2026-09/` | Archived under notes/learn/, grouped by month |
 | `plans/` | Implementation plans: the construction blueprint agents build from |
 
 ## All files
@@ -35,10 +33,6 @@ description: Master index of the book — the map of every document. Regenerate 
 ### changelogs/
 
 - [README.md](changelogs/README.md) — Changelogs directory usage — dated change records archived by month, found via the index
-
-### changelogs/2026-09/
-
-- [2026-09-14-capable-model-workflow-calibration.md](changelogs/2026-09/2026-09-14-capable-model-workflow-calibration.md) — Workflow calibrated to capable-model guidance — safe-by-default permissions, input pointers, gap-based Phase 2, gate-not-recipe Phase 4, plan done-criteria, and a model-change re-audit rule
 
 ### docs/
 
@@ -57,6 +51,7 @@ description: Master index of the book — the map of every document. Regenerate 
 - [ADR-001-adopt-bocode.md](docs/decisions/ADR-001-adopt-bocode.md) — We run this repository on the BoCode workflow — book drives code, code writes back, six phases gate every feature
 - [ADR-002-adopt-bowrite.md](docs/decisions/ADR-002-adopt-bowrite.md) — We distill shuorenhua plus our own review patterns into bowrite (薄写), an in-repo writing skill — write thin, write well
 - [ADR-003-intent-gates-vs-distrust-gates.md](docs/decisions/ADR-003-intent-gates-vs-distrust-gates.md) — We classify workflow gates by justification — intent gates stay hard, distrust gates soften as models improve; Phase 2 approval becomes gap-based stopping
+- [ADR-004-template-free-of-instance-records.md](docs/decisions/ADR-004-template-free-of-instance-records.md) — This repository ships template content only — instance working records (notes entries, plans, changelog months) never enter it; a release check enforces the boundary
 - [README.md](docs/decisions/README.md) — How to write an ADR here — sections, naming, numbering, and when a decision needs a record
 
 ### guidelines/
@@ -73,12 +68,8 @@ description: Master index of the book — the map of every document. Regenerate 
 
 - [README.md](notes/README.md) — The four note types (learn, summary, task, issue), when each is written, the retrieval order, and the template for each
 
-### notes/learn/2026-09/
-
-- [gpt6-astra-scaffold-audit.md](notes/learn/2026-09/gpt6-astra-scaffold-audit.md) — BoCode audited against OpenAI's "Rethinking skills and prompts for GPT-6 Astra" — index-first routing and intent gates hold, five gaps worth closing
-
 ### plans/
 
 - [README.md](plans/README.md) — Plans directory usage — implementation plans land here after Phase 2 approval, with naming and the plan template
 
-<!-- 19 documents -->
+<!-- 18 documents -->

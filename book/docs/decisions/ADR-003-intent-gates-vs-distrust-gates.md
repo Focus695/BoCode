@@ -10,7 +10,7 @@ Accepted — applied 2026-09-14 in the capable-model workflow calibration. Amend
 
 ## Context
 
-The workflow's gates were written when agent models needed firm rails: blanket pre-reading, prescribed step sequences, stops for confirmation. Capable models invert the economics — OpenAI's "Rethinking skills and prompts for GPT-6 Astra" (audit: `notes/learn/2026-09/gpt6-astra-scaffold-audit.md`) documents the shift: scaffolding that helped weaker models now causes wrong routing, consumed context, premature stops, and halts on approvals the environment already allows.
+The workflow's gates were written when agent models needed firm rails: blanket pre-reading, prescribed step sequences, stops for confirmation. Capable models invert the economics — OpenAI's [Rethinking skills and prompts for GPT-6 Astra](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra) documents the shift: scaffolding that helped weaker models now causes wrong routing, consumed context, premature stops, and halts on approvals the environment already allows.
 
 The gates had mixed justifications. Some exist because a human owns the decision (review integrity, scope discipline, production safety). Others exist only because weaker models couldn't be trusted to act (blanket design approval, prescribed coding loops, ask-before-running defaults). Only the second kind ages with model capability.
 
