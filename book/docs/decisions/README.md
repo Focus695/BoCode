@@ -4,7 +4,7 @@ description: How to write an ADR here — sections, naming, numbering, and when 
 
 # Decisions (ADR)
 
-An architecture decision record answers one question: why this choice. Future readers — humans and agents — will ask "why is it like this"; the ADR is the answer they find.
+An architecture decision record answers the question future readers — humans and agents — will ask: why is it like this.
 
 ## When to write one
 

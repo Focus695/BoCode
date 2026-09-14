@@ -18,7 +18,7 @@ Every feature moves through these phases in order. **No skipping.**
 | Phase 5 | Code review | Review findings | Record only — no fixes |
 | Phase 6 | Wrap-up | Docs, learnings, issues | Record only — no fixes |
 
-Step 0 comes before any code. Fill the brief: background, scope (what it affects, what it explicitly does **not** affect, and the boundaries), and the requirement itself. An empty "does not affect" list is the number-one cause of out-of-scope changes in Phase 3 — it is a required slot, not an optional one.
+Step 0 comes before any code. Fill the brief: background, scope (what it affects, what it explicitly does **not** affect, and the boundaries), and the requirement itself. An empty "does not affect" list is the number-one cause of out-of-scope changes in Phase 3 — the exclusions slot is required.
 
 Phase 4 runs test-first: write a failing test, write the minimum implementation that passes it, refactor with the test staying green. Coverage must include the normal path, boundary inputs (ranges, empty, extremes), error paths, and a regression check that existing behavior didn't break.
 
