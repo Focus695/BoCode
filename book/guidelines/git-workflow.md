@@ -114,7 +114,7 @@ git push origin dev
 
 When several people build the same feature, open the PR from `feature/user-profile` into `dev` and **Squash and merge** after checks; the squash subject uses Clean Commit too. Delete the work branch after merging.
 
-When `dev` is stable, open the `dev → main` PR and choose **Create a merge commit** to preserve the integration boundary. The merge-commit subject is Clean Commit as well, e.g.:
+When `dev` is stable, run `cd code && npm run book:release-check` first — the release ships template content only, and instance working records (note entries, plans, changelog months) fail the check (ADR-004). Then open the `dev → main` PR and choose **Create a merge commit** to preserve the integration boundary. The merge-commit subject is Clean Commit as well, e.g.:
 
 ```text
 🚀 release: promote dev to main
@@ -123,6 +123,7 @@ When `dev` is stable, open the `dev → main` PR and choose **Create a merge com
 ## Automation and platform settings
 
 - PRs into `dev`/`main` and pushes to them are checked by `.github/workflows/git-policy.yml` for branch direction and commit subjects; direct pushes to `dev` still pass Clean Commit validation.
+- The same workflow runs `book:release-check` on every PR and push to `dev`/`main`; it fails the moment an instance working record enters the tree (ADR-004).
 - Run `git config core.hooksPath .githooks` once per clone to get the same `commit-msg` check locally.
 - Protect `main` on GitHub: require a PR from `dev`, status checks, and merge commits. Keep direct pushes to `dev` allowed for solo speed; team PRs still use squash merges.
 
