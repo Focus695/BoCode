@@ -14,7 +14,7 @@
 
 **A project template where documentation drives code, and code writes back.**
 
-BoCode gives a repository two half-brains — `code/` for the source, `book/` for the documentation stream and knowledge base — wired together in both directions. It is built for the way software is actually written now: by a human and AI coding agents together, where agents are fast but stateless, and the difference between a project that compounds and one that resets every session is whether its knowledge lives somewhere durable.
+BoCode gives a repository two half-brains — `code/` for the source, `book/` for the documentation stream and knowledge base — wired together in both directions. It is built for the way software is written now: a human and AI coding agents together. Whether a project compounds or resets every session comes down to whether its knowledge lives somewhere durable.
 
 ## Adopt it in one line
 
@@ -26,7 +26,7 @@ Read https://github.com/Focus695/BoCode — start with ADOPT.md — and retrofit
 
 Starting from scratch? The three-command Quick Start is below.
 
-Clone it, run one script, install three skills, and your project gains: a gated development workflow, a self-indexing knowledge base, a write-back discipline that turns every feature into accumulated experience, and a git policy that keeps history readable.
+Clone it, run one script, install four skills, and your project gains: a gated development workflow, a self-indexing knowledge base, a write-back discipline that turns every feature into accumulated experience, and a git policy that keeps history readable.
 
 ---
 
@@ -36,8 +36,8 @@ Clone it, run one script, install three skills, and your project gains: a gated 
 
 Three failures show up in almost every project built with AI agents:
 
-1. **Agents are stateless.** Every session starts from zero. Knowledge that isn't written down somewhere durable gets re-derived, re-asked, and re-broken — at full price, every time.
-2. **Documentation rots.** Written once at the start, updated never. Because updating it pays off later and skipping it pays off now, it always loses. Eventually nobody trusts it, and reasonably so.
+1. **Agents are stateless.** Every session starts from zero. Knowledge that isn't written down somewhere durable gets re-derived, re-asked, and re-broken.
+2. **Documentation rots.** Written once at the start, updated never. Because updating it pays off later and skipping it pays off now, it always gets skipped. Eventually nobody trusts it — a stale document doesn't deserve trust.
 3. **Humans lose the wheel.** An agent will implement what you asked plus twelve things you didn't. Speed without gates means scope drifts, decisions go unrecorded, and the project's "why" evaporates.
 
 Each failure points at the same root: knowledge and control need a place to live that isn't chat history or someone's memory.
@@ -102,7 +102,7 @@ Every feature runs a six-phase workflow with hard gates (`book/guidelines/workfl
 | 5 — Review | findings list | Recorded, never fixed |
 | 6 — Wrap-up | summary, learn, issues, changelog, index | Recorded, never fixed |
 
-The design intent: agents compress implementation to minutes, which moves the bottleneck to decisions and scope. The gates put human hands exactly there — Step 0 fills in what the request didn't say, Phase 2 is where a person approves direction, and Phases 5–6 enforce the separation of observing and fixing. **A problem found at review becomes a recorded issue; fixing it is separate work.** The gate that didn't let you fix it in passing is the same gate that keeps the review honest.
+The design intent: agents compress implementation to minutes, which moves the bottleneck to decisions and scope. The gates hold exactly there — Step 0 fills in what the request didn't say, Phase 2 is where a person approves direction, and Phases 5–6 enforce the separation of observing and fixing. **A problem found at review becomes a recorded issue; fixing it is separate work.** That is what keeps the review honest.
 
 ### Write for the reader
 
@@ -119,7 +119,7 @@ A summary that requires reading the diff isn't a summary. A learn entry whose ti
 
 ### The index contract
 
-A knowledge base you can't navigate is a write-only disk. BoCode makes discoverability a build check:
+Documentation you can't find doesn't exist. BoCode makes discoverability a build check:
 
 - Every book document starts with a frontmatter `description` — one plain-language line about the *content*, not the genre.
 - `code/tools/gen-book-index.mjs` (zero dependencies, plain Node) regenerates `book/README.md` — the master index of every document, grouped by directory.
@@ -129,7 +129,7 @@ A knowledge base you can't navigate is a write-only disk. BoCode makes discovera
 
 ### Speak human
 
-Documentation is read for years and written in minutes, so the style rule is strict and short (`book/guidelines/writing-style.md`): write like a specific person in a specific situation — professional is fine, templated is not. Cut filler openers and empty summaries; keep the facts locked — numbers, commands, names, and responsibility attribution never move. For Chinese writing, the full ruleset is the [shuorenhua](https://github.com/MrGeDiao/shuorenhua) skill; the guideline file is the language-agnostic default.
+Documentation is read for years and written in minutes, so the style rule is strict and short (`book/guidelines/writing-style.md`): write like a specific person in a specific situation — professional is fine, templated is not. Cut filler openers and empty summaries; keep the facts locked — numbers, commands, names, and responsibility attribution never move. The `bowrite` skill（薄写 — write thin, write well: fewer words, same core）carries this standard for agents; it distills [shuorenhua](https://github.com/MrGeDiao/shuorenhua) by MrGeDiao together with patterns accumulated in this project's own reviews.
 
 ### Clean git flow
 
@@ -151,8 +151,8 @@ git clone <your-fork-url> myproject && cd myproject
 # 2. Turn the template into your project (name, description, clean records):
 bash scripts/init-project.sh myproject "What it does, in one line"
 
-# 3. Install the three skills for your AI agent:
-cp -r skills/bocode skills/feature-flow skills/book-writeback <your-skills-dir>/
+# 3. Install the four skills for your AI agent:
+cp -r skills/bocode skills/feature-flow skills/book-writeback skills/bowrite <your-skills-dir>/
 #    (ZCode: ~/.zcode/skills/ · Claude Code: ~/.claude/skills/ — see skills/README.md)
 
 # 4. Point your agent at AGENTS.md — most tools read it automatically.
@@ -171,7 +171,7 @@ Requirements: `bash` and `node` for the two scripts. No packages, no install ste
 | `book/plans/` | Implementation blueprints |
 | `book/notes/{summary,learn,task,issue}/` | The four note types |
 | `book/docs/{architecture,api,decisions}/` | Snapshots, contracts, ADRs |
-| `skills/` | `bocode`, `feature-flow`, `book-writeback` |
+| `skills/` | `bocode`, `feature-flow`, `book-writeback`, `bowrite` |
 | `code/tools/gen-book-index.mjs` | The index generator |
 | `scripts/init-project.sh` | Template → your project |
 | `scripts/check-commit-message.mjs` | Clean Commit validator (+ `.githooks/`) |
@@ -195,7 +195,7 @@ Months are stable, low-maintenance physical grouping. Features are found through
 
 ## Credits
 
-BoCode's git discipline builds on two open standards by WGTech Labs — [Clean Commit](https://github.com/wgtechlabs/clean-commit) (commit message format) and [Clean Flow](https://github.com/wgtechlabs/clean-flow) (branching model) — and adds the enforcement tooling both specs describe but don't ship. The plain-language writing standard draws on [shuorenhua](https://github.com/MrGeDiao/shuorenhua) by MrGeDiao.
+BoCode's git discipline builds on two open standards by WGTech Labs — [Clean Commit](https://github.com/wgtechlabs/clean-commit) (commit message format) and [Clean Flow](https://github.com/wgtechlabs/clean-flow) (branching model) — and adds the enforcement tooling both specs describe but don't ship. The plain-language writing standard draws on [shuorenhua](https://github.com/MrGeDiao/shuorenhua) by MrGeDiao, distilled into the `bowrite` skill.
 
 ## License
 

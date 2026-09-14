@@ -6,7 +6,7 @@ This file is the entry point for AI agents working on this repository. Humans: s
 
 <!-- Replace this paragraph in your project: what it is, who it's for, in two sentences. -->
 
-This project runs on the **BoCode workflow**: `code/` holds the source, `book/` holds the documentation stream and knowledge base. The highest architecture guidance lives inside the repository: long-term boundaries and hard constraints in `book/guidelines/architecture.md`, implementation snapshots in `book/docs/architecture/`. Internal documents never defer to external docs for authority.
+This project runs on the **BoCode workflow**: `code/` holds the source, `book/` holds the documentation stream and knowledge base. The highest architecture guidance lives inside the repository: long-term boundaries and hard constraints in `book/guidelines/architecture.md`, implementation snapshots in `book/docs/architecture/`.
 
 ## Repository layout
 

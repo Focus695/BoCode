@@ -14,7 +14,7 @@
 
 **ドキュメントがコードを駆動し、コードがドキュメントに書き戻す、プロジェクトテンプレート。**
 
-BoCode はリポジトリに二つの半脳を与えます——ソースを置く `code/` と、ドキュメントの流れとナレッジベースを置く `book/` です。両者は双方向に接続されます。今のソフトウェアが実際に書かれている方法、つまり人間と AI コーディングエージェントの共同開発を前提に設計されています。エージェントは速いが状態を持たない。プロジェクトが複利的に成長するか、セッションごとにゼロリセットされるかは、知識が耐久性のある場所に置かれているかどうかで決まります。
+BoCode はリポジトリに二つの半脳を与えます——ソースを置く `code/` と、ドキュメントの流れとナレッジベースを置く `book/` です。両者は双方向に接続されます。今のソフトウェアが実際に書かれている方法、つまり人間と AI コーディングエージェントの共同開発を前提に設計されています。プロジェクトが複利的に成長するか、セッションごとにゼロリセットされるかは、知識が耐久性のある場所に置かれているかどうかで決まります。
 
 ## 一行で導入
 
@@ -34,8 +34,8 @@ https://github.com/Focus695/BoCode を読み（まず ADOPT.md から）、そ�
 
 AI エージェントで開発するプロジェクトは、ほぼ必ず三つの問題にぶつかります。
 
-1. **エージェントは状態を持たない。** セッションは毎回ゼロから始まります。書き残されていない知識は、再導出され、再質問され、再破壊されます——毎回定価を払いながら。
-2. **ドキュメントは腐る。** 立ち上げ時に一度書かれ、二度と更新されない。更新の利益は後で、スキップの利益は今なので、常に負けます。やがて誰も信じなくなり、当然です。
+1. **エージェントは状態を持たない。** セッションは毎回ゼロから始まります。書き残されていない知識は、再導出され、再質問され、再破壊されます。
+2. **ドキュメントは腐る。** 立ち上げ時に一度書かれ、二度と更新されない。更新の利益は後で、スキップの利益は今なので、更新は常に後回しにされます。やがて誰も信じなくなります——古いドキュメントは信じる価値がありません。
 3. **人間がハンドルを失う。** エージェントは頼まれたものに加えて、頼まれていない十二個の変更も実装します。ゲートのないスピードは、スコープの漂移と意思決定の未記録と、「なぜ」の蒸発を意味します。
 
 三つとも同じ根っこを指しています：知識と制御は、チャット履歴でも誰かの記憶でもない場所に住む必要がある、と。
@@ -117,7 +117,7 @@ diff を読まないと分からない summary は summary ではありません
 
 ### インデックス契約
 
-ナビゲートできないナレッジベースは、書き込み専用のディスクです。BoCode は発見可能性をビルドチェックにします：
+見つけられないドキュメントは、存在しないのと同じです。BoCode は発見可能性をビルドチェックにします：
 
 - すべての book ドキュメントは frontmatter の `description` で始まる——体裁ではなく内容を語る、人の言葉で一行
 - `code/tools/gen-book-index.mjs`（依存ゼロ、プレーン Node）が `book/README.md`——全ドキュメントのマスターインデックス——を再生成する
@@ -127,7 +127,7 @@ diff を読まないと分からない summary は summary ではありません
 
 ### 人の言葉で書く
 
-ドキュメントは何年も読まれ、数分で書かれる。だからスタイル規則は短く厳格です（`book/guidelines/writing-style.md`）：具体的な人が具体的な状況で話すように書く——プロフェッショナルで構わないが、テンプレート的なのは不可。埋め草の前置きと空っぽのまとめを削り、事実は固定する——数値・コマンド・名前・責任の所在は動かさない。中国語の完全なルールセットは [shuorenhua](https://github.com/MrGeDiao/shuorenhua) スキルに、guideline ファイルは言語非依存のデフォルトです。
+ドキュメントは何年も読まれ、数分で書かれる。だからスタイル規則は短く厳格です（`book/guidelines/writing-style.md`）：具体的な人が具体的な状況で話すように書く——プロフェッショナルで構わないが、テンプレート的なのは不可。埋め草の前置きと空っぽのまとめを削り、事実は固定する——数値・コマンド・名前・責任の所在は動かさない。この基準は `bowrite` スキル（薄写：薄く書く——文は減り、核は変わらない；うまく書く——自然に、直接に）がエージェント側で担い、MrGeDiao の [shuorenhua](https://github.com/MrGeDiao/shuorenhua) と本プロジェクトのレビューで蓄積したパターンから蒸留されています。
 
 ### クリーンな git フロー
 
@@ -149,8 +149,8 @@ git clone <your-fork-url> myproject && cd myproject
 # 2. テンプレートをあなたのプロジェクトに変える（名前、説明、記録のクリーンアップ）：
 bash scripts/init-project.sh myproject "What it does, in one line"
 
-# 3. AI エージェントに三つのスキルをインストール：
-cp -r skills/bocode skills/feature-flow skills/book-writeback <your-skills-dir>/
+# 3. AI エージェントに四つのスキルをインストール：
+cp -r skills/bocode skills/feature-flow skills/book-writeback skills/bowrite <your-skills-dir>/
 #    (ZCode: ~/.zcode/skills/ · Claude Code: ~/.claude/skills/ — 詳細は skills/README.md)
 
 # 4. エージェントを AGENTS.md に向ける——ほとんどのツールが自動で読みます。
@@ -169,7 +169,7 @@ cp -r skills/bocode skills/feature-flow skills/book-writeback <your-skills-dir>/
 | `book/plans/` | 実装プラン（施工図） |
 | `book/notes/{summary,learn,task,issue}/` | 四種類のノート |
 | `book/docs/{architecture,api,decisions}/` | スナップショット、契約、ADR |
-| `skills/` | `bocode`、`feature-flow`、`book-writeback` |
+| `skills/` | `bocode`、`feature-flow`、`book-writeback`、`bowrite` |
 | `code/tools/gen-book-index.mjs` | インデックスジェネレータ |
 | `scripts/init-project.sh` | テンプレート → あなたのプロジェクト |
 | `scripts/check-commit-message.mjs` | Clean Commit バリデータ（`.githooks/` 付き） |
@@ -193,7 +193,7 @@ cp -r skills/bocode skills/feature-flow skills/book-writeback <your-skills-dir>/
 
 ## クレジット
 
-BoCode の git 規律は WGTech Labs の二つのオープンスタンダード——[Clean Commit](https://github.com/wgtechlabs/clean-commit)（コミットメッセージ形式）と [Clean Flow](https://github.com/wgtechlabs/clean-flow)（ブランチモデル）——の上に構築され、両スペックが記述するが同梱しない実行ツールを追加しています。人の言葉で書くスタイルは MrGeDiao の [shuorenhua](https://github.com/MrGeDiao/shuorenhua) に由来します。
+BoCode の git 規律は WGTech Labs の二つのオープンスタンダード——[Clean Commit](https://github.com/wgtechlabs/clean-commit)（コミットメッセージ形式）と [Clean Flow](https://github.com/wgtechlabs/clean-flow)（ブランチモデル）——の上に構築され、両スペックが記述するが同梱しない実行ツールを追加しています。人の言葉で書くスタイルは MrGeDiao の [shuorenhua](https://github.com/MrGeDiao/shuorenhua) に由来し、`bowrite` スキルへ蒸留されています。
 
 ## ライセンス
 

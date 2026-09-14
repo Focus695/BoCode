@@ -17,7 +17,7 @@ Render the brief below and fill every slot. For empty slots you have two duties:
 
 **A. Missing → ask.** Real gaps go to the user as questions. Don't guess background or scope — they change what gets built. Ask once, completely.
 
-**B. Sufficient → recommend.** Once enough is known to start, don't stop — raise the design axes the user didn't mention (permissions, notifications, idempotency, caching, transactions, boundaries, regression, generated-artifact sync…). Mark each as `[recommended — confirm or reject]`. This is the core increment of this skill: filling gaps the user didn't know were there.
+**B. Sufficient → recommend.** Once enough is known to start, don't stop — raise the design axes the user didn't mention (permissions, notifications, idempotency, caching, transactions, boundaries, regression, generated-artifact sync…). Mark each as `[recommended — confirm or reject]`. Fill the gaps the user didn't know were there.
 
 ### Brief template
 

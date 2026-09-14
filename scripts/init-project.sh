@@ -115,7 +115,7 @@ fi
 echo
 echo "Done. Next steps:"
 echo "  1. Install the skills:"
-echo "       cp -r skills/bocode skills/feature-flow skills/book-writeback <your-skills-dir>/"
+echo "       cp -r skills/bocode skills/feature-flow skills/book-writeback skills/bowrite <your-skills-dir>/"
 echo "  2. Point your AI agent at AGENTS.md (most tools pick it up automatically)."
 echo "  3. Fill in book/guidelines/architecture.md and coding-style.md for your project."
 echo "  4. Set your remote:"

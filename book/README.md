@@ -49,6 +49,7 @@ description: Master index of the book — the map of every document. Regenerate 
 ### docs/decisions/
 
 - [ADR-001-adopt-bocode.md](docs/decisions/ADR-001-adopt-bocode.md) — We run this repository on the BoCode workflow — book drives code, code writes back, six phases gate every feature
+- [ADR-002-adopt-bowrite.md](docs/decisions/ADR-002-adopt-bowrite.md) — We distill shuorenhua plus our own review patterns into bowrite (薄写), an in-repo writing skill — write thin, write well
 - [README.md](docs/decisions/README.md) — How to write an ADR here — sections, naming, numbering, and when a decision needs a record
 
 ### guidelines/
@@ -69,4 +70,4 @@ description: Master index of the book — the map of every document. Regenerate 
 
 - [README.md](plans/README.md) — Plans directory usage — implementation plans land here after Phase 2 approval, with naming and the plan template
 
-<!-- 15 documents -->
+<!-- 16 documents -->
