@@ -6,7 +6,7 @@ description: Plain-language writing standard for every book document — fidelit
 
 Everything under `book/` (summary, changelog, learn, issue, task, plans, guidelines, docs) is written the same way: like a specific person speaking in a specific situation — not like a model performing writing. Professional is fine; templated is not.
 
-Three layers carry this standard: the **`bowrite` skill**（薄写 — write thin, write well）is the executable form for agents, distilling [shuorenhua](https://github.com/MrGeDiao/shuorenhua) (source, MIT, by MrGeDiao) together with patterns accumulated in this project's own reviews; the upstream shuorenhua skill goes deepest for Chinese and is worth installing if available; this file is the in-project prose fallback when neither skill is loaded.
+Three layers carry this standard: the **`bowrite` skill**（薄写 — write thin, write well）is the executable form for agents, distilling [shuorenhua](https://github.com/MrGeDiao/shuorenhua) (MIT, by MrGeDiao) for cleanup and [human-writing](https://github.com/KKKKhazix/human-writing) (MIT, by KKKKhazix) for the from-scratch gates, together with patterns accumulated in this project's own reviews; the upstreams go deeper（shuorenhua for Chinese cleanup, human-writing for long-form creation）and are worth installing if available; this file is the in-project prose fallback when no skill is loaded.
 
 ## Fidelity contract — above any style
 

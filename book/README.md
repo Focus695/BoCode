@@ -49,7 +49,7 @@ description: Master index of the book — the map of every document. Regenerate 
 ### docs/decisions/
 
 - [ADR-001-adopt-bocode.md](docs/decisions/ADR-001-adopt-bocode.md) — We run this repository on the BoCode workflow — book drives code, code writes back, six phases gate every feature
-- [ADR-002-adopt-bowrite.md](docs/decisions/ADR-002-adopt-bowrite.md) — We distill shuorenhua plus our own review patterns into bowrite (薄写), an in-repo writing skill — write thin, write well
+- [ADR-002-adopt-bowrite.md](docs/decisions/ADR-002-adopt-bowrite.md) — We distill shuorenhua and human-writing plus our own review patterns into bowrite (薄写), an in-repo writing skill — write thin, write well
 - [ADR-003-intent-gates-vs-distrust-gates.md](docs/decisions/ADR-003-intent-gates-vs-distrust-gates.md) — We classify workflow gates by justification — intent gates stay hard, distrust gates soften as models improve; Phase 2 approval becomes gap-based stopping
 - [ADR-004-template-free-of-instance-records.md](docs/decisions/ADR-004-template-free-of-instance-records.md) — This repository ships template content only — instance working records (notes entries, plans, changelog months) never enter it; a release check enforces the boundary
 - [README.md](docs/decisions/README.md) — How to write an ADR here — sections, naming, numbering, and when a decision needs a record
