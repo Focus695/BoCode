@@ -1,6 +1,6 @@
 ---
 name: bowrite
-description: BoCode's writing skill (中文名：薄写) — write documents thin and well. Use when writing or revising any book document, README, summary, learn entry, issue, or changelog; when a draft smells like template-speak, translation-ese, or strained cleverness; and whenever text must shrink without losing substance.
+description: BoCode's writing skill (中文名：薄写) — write documents thin and well. Use when writing or revising any book document, README, summary, learn entry, issue, or changelog; when a draft smells like template-speak, translation-ese, or strained cleverness; whenever text must shrink without losing substance; and when drafting a document or public post from scratch — the material gate runs before writing.
 ---
 
 # BoWrite（薄写）
@@ -13,6 +13,12 @@ Two mandates, always together:
 
 1. **Thin（写薄）**: fewer words, zero information lost.
 2. **Well（写好）**: natural, direct, in the reader's language — never clever at the cost of clear.
+
+## The material gate — before any from-scratch draft
+
+Padding is written when material runs out. So the first thinning happens before writing: count what you actually hold — facts, numbers, actions, quotes, links, first-hand results. A long draft (roughly 1,200+ 字) needs enough distinct material to form a real process, not five ways to restate three ideas.
+
+Not enough material? Three exits, in order: research what is public; ask the source (at most three questions, once); write shorter. Never pay length with re-explanations, synonym rounds, or "significance" — that is padding being born. The same test works after drafting（压缩试验）: cut a third; if nothing of substance is gone, the draft was 注水.
 
 ## The fidelity contract — before any thinning
 
@@ -28,7 +34,7 @@ Thinning that loses facts isn't thinning — it's damage.
 
 ## How to write it thin — the method
 
-把书读薄 is a reading craft: strip the book until its skeleton shows, then retell it with the book closed. Writing thin runs the same craft at writing time. Five moves, in order:
+把书读薄 is a reading craft: strip the book until its skeleton shows, then retell it with the book closed. Writing thin runs the same craft at writing time. Six moves, in order:
 
 ### 1. 提骨架 — extract the skeleton
 
@@ -49,6 +55,10 @@ Adjectives and adverbs convert into concrete facts or get cut: `非常快` → h
 ### 5. 复述检验 — the retell test
 
 Thin it, read it once, close it, retell the core. What you can retell is the core that survived; what you can't means you cut into it — put that back. **内容变少，核心没变——核心保没保住，复述说了算。** This is 把书读薄's own test, applied at writing time.
+
+### 6. 段段有新货 — every paragraph pays new material
+
+Each paragraph must add something the reader didn't have: a fact, an action, an example, a distinction, a consequence. A paragraph that re-argues the previous point in new words fails the deletion test one level up — cut it or merge it. Forward motion comes from material and cause, not from "going deeper" signposts.
 
 ### Worked example
 
@@ -133,14 +143,33 @@ An opening paragraph that previews the document often restates the first section
 
 - Found: 引言说"每开一个新会话都从零开始"，问题 1 又说"每个会话从零开始"——引言留钩子，事实归问题 1。
 
+## Voice and rhythm — for from-scratch writing
+
+- **Know who is speaking, and why now.** A document has an author with a position: what they did, what they checked, what they are still unsure of. State the load-bearing ones once each; don't perform an author.
+- **Answer the reader's next question.** Write each section as the answer to what the previous section raised. Background arrives where it explains a choice — not up front to prove the writer knows a lot.
+- **主干早出**： subject and verb before their modifiers. `在经历了长达数年的……以后，最终促使他改变方向的，是一次邀请` → 他折腾了几年没挣到钱；后来老同事找过来，他才换了方向。
+- **Repeat the right word.** The keyword stays the keyword（`修表` stays `修表`）— upgrading it to `这门手艺` then `这项技能` is model-speak.
+- **Let lengths breathe.** A ten-character sentence next to a forty-character one is human; all-even sentences sound like a machine keeping time. 白话打底 — plain speech carries it; ornate archaism doesn't.
+
+## Hard bans — from-scratch public prose only
+
+A public long-form piece（帖、公众号文章、知乎回答）drafted from scratch clears one stricter layer at delivery, and only there — project documents keep their normal rules（docs use colons and dashes legitimately）:
+
+- No pivot scaffolding in any disguise: `不是……而是……`、`并非……而是……`、`与其说……不如说……`、`看似……实则……`、`你以为……其实……` — give the judgment from the front, then the grounds (ledger #3 is the cleanup-side version).
+- No parallel runs of three or more; two is the limit, the third changes shape or goes.
+- No lyric verbs on abstract nouns — time doesn't 保管 details, anxiety has no shape.
+- No `——`; colons only to introduce a direct quote（`一句话总结：` is banned）.
+- No business-report jargon: `赋能、抓手、闭环、底层逻辑、颗粒度、组合拳` → people, actions, money, time, consequences.
+
 ## Read-back — three passes before done
 
 1. **Fidelity**: protected spans intact, no facts lost, terms stable, nothing reads broken after the cuts.
 2. **Thinness**: what got removed — words, or information? Content shrinks, core doesn't. If the core shrank, put it back.
 3. **Residue** (only if it still smells): openers, summary-closers, emphasis formulas, cleverness, over-even rhythm.
+4. **From-scratch deliverables** (public prose drafted here): the material gate was passed before writing, forward motion holds（段段有新货）, and the hard bans are clear.
 
 The finish line is "ready to send" — not "sounds human". Stop there.
 
-## Standing on shuorenhua
+## Standing on shuorenhua and human-writing
 
-BoWrite distills [shuorenhua](https://github.com/MrGeDiao/shuorenhua)（MIT，by MrGeDiao）— the fuller plain-language ruleset, especially for Chinese — together with patterns accumulated in this project's own reviews. For deep Chinese cleanups the upstream skill goes further; `book/guidelines/writing-style.md` is the prose fallback inside every project.
+BoWrite distills two upstreams, attribution kept: [shuorenhua](https://github.com/MrGeDiao/shuorenhua)（MIT，by MrGeDiao）— the fuller plain-language ruleset, especially for Chinese cleanup — and [human-writing](https://github.com/KKKKhazix/human-writing)（MIT，by KKKKhazix）— the living-voice creation ruleset, from which the material gate, 段段有新货, voice-and-rhythm craft, and the from-scratch hard bans are distilled. Patterns from this project's own reviews ride on top. For deep Chinese cleanup or full long-form creation the upstreams go further and are worth installing alongside; `book/guidelines/writing-style.md` is the prose fallback inside every project.
