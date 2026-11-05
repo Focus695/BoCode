@@ -2,6 +2,15 @@
 
 Releases of the BoCode template itself. Adopting projects upgrade by handing [UPGRADE.md](UPGRADE.md) to an agent; each entry lists what changed and what an adopting project must do. History before 2026-11-05 lives in git log and [book/docs/decisions/](book/docs/decisions/) (ADR-001..ADR-004).
 
+## 2026-11-06 — bowrite's voice rules on every write (ADR-009)
+
+The skill could de-water a text but rarely made it human: voice rules were scoped to from-scratch drafts while most project writing is revision, and thinning could silently cut conditions（仅当/除非/不适用于）— facts survived, their boundaries didn't.
+
+- Added: `book/docs/decisions/ADR-009-bowrite-voice-on-every-write.md`
+- Changed: `skills/bowrite/SKILL.md` (voice rules universal; conditions join the fidelity contract; read-back gains a regular voice pass; the skill thinned by its own rules — the 把书读薄 story once, the duplicated rule merged into the ledger); `book/guidelines/writing-style.md` (same conditions clause, keeping the fallback in sync); `skills/book-writeback/SKILL.md` (names bowrite, writing-style.md as fallback); `book/notes/README.md` and `book/docs/decisions/README.md` (style stated at the templates)
+
+**Adopter action:** copy the five changed files; if you localized bowrite, port the same four changes (voice scope, conditions clause, voice read-back pass, self-thinning); regenerate the index.
+
 ## 2026-11-05 — task tiers before the gates (ADR-008)
 
 Small tasks were paying the full six-gate tax — agents packaged ten-minute fixes as "feature development". Grading is now explicit and comes first, before Step 0. Distilled from adopter feedback (Lighthouse3.0, verified in their repo).

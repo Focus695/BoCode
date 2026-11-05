@@ -25,6 +25,8 @@ Obsidian can open `book/` directly as a vault; existing links are plain relative
 
 ## Templates
 
+Every entry is written thin and well — the `bowrite` skill（薄写）when loaded, `guidelines/writing-style.md` otherwise.
+
 ### summary — a report a human can read without opening the code
 
 ```markdown

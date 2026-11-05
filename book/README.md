@@ -56,6 +56,7 @@ description: Master index of the book — the map of every document. Regenerate 
 - [ADR-006-distill-experience-first-design-into-phases.md](docs/decisions/ADR-006-distill-experience-first-design-into-phases.md) — Jobs's experience-first craft is woven in beside ADR-005 — the request is a proxy for an experience, design is how it works, focus is saying no, and gates are the polish point
 - [ADR-007-template-updates-reach-adopters.md](docs/decisions/ADR-007-template-updates-reach-adopters.md) — Template updates reach adopters through a root CHANGELOG, an agent-facing UPGRADE playbook, and a .bocode-version stamp — release-gated by CI; semver rejected, the commit SHA is the baseline
 - [ADR-008-grade-tasks-into-tiers-before-the-workflow.md](docs/decisions/ADR-008-grade-tasks-into-tiers-before-the-workflow.md) — Tasks are graded S/M/L before any work — S runs a light channel whose only gate is a one-sentence motive, M/L run Step 0 and all six phases; the tier is decided before Step 0 and recorded in the first commit's motive
+- [ADR-009-bowrite-voice-on-every-write.md](docs/decisions/ADR-009-bowrite-voice-on-every-write.md) — bowrite's voice rules now run on every write, not just from-scratch drafts; conditions and exceptions join the fidelity contract's never-move list; the writeback path names bowrite explicitly
 - [README.md](docs/decisions/README.md) — How to write an ADR here — sections, naming, numbering, and when a decision needs a record
 
 ### guidelines/
@@ -77,4 +78,4 @@ description: Master index of the book — the map of every document. Regenerate 
 
 - [README.md](plans/README.md) — Plans directory usage — implementation plans land here after Phase 2 approval, with naming and the plan template
 
-<!-- 23 documents -->
+<!-- 24 documents -->

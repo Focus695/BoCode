@@ -27,6 +27,7 @@ No rewrite may add facts, drop core facts, or change who is responsible. The fol
 - Numbers, versions, dates, commands, API names, parameter names, field names, config keys, logs, error messages
 - Code blocks, table data, directory structures, links
 - System-behavior subjects, domain terms, ADR conclusions, responsibility attribution
+- Conditions, prerequisites, exceptions, and scope of application（`仅当`、`除非`、`不适用于`）— cutting one doesn't remove a fact, it removes the fact's boundary; the claim survives unlimited
 - Predicate strength: "improved performance" never softens to "touches performance"; `性能提升` never dilutes to `涉及性能`
 - Ambiguous quantities stay as-is and get flagged, never "rounded" into new claims
 
@@ -34,7 +35,7 @@ Thinning that loses facts isn't thinning — it's damage.
 
 ## How to write it thin — the method
 
-把书读薄 is a reading craft: strip the book until its skeleton shows, then retell it with the book closed. Writing thin runs the same craft at writing time. Six moves, in order:
+Six moves, in order:
 
 ### 1. 提骨架 — extract the skeleton
 
@@ -54,7 +55,7 @@ Adjectives and adverbs convert into concrete facts or get cut: `非常快` → h
 
 ### 5. 复述检验 — the retell test
 
-Thin it, read it once, close it, retell the core. What you can retell is the core that survived; what you can't means you cut into it — put that back. **内容变少，核心没变——核心保没保住，复述说了算。** This is 把书读薄's own test, applied at writing time.
+Thin it, read it once, close it, retell the core. What you can retell is the core that survived; what you can't means you cut into it — put that back.
 
 ### 6. 段段有新货 — every paragraph pays new material
 
@@ -80,7 +81,6 @@ Same facts survive — 三天、全部、120 篇. What got cut is the rent-free 
 - Intensifier clusters（`重要 / 关键 / 核心 / significant`）→ the concrete fact behind them
 - Nominalized verbs（`进行 / 实现 / 完成` + 动名词）→ the action and its measure
 - Long attributive chains → short subjects, direct verbs
-- 二元对比骨架（`不是 X，而是 Y`）usually keeps only Y
 
 ## How to write it well — the pattern ledger
 
@@ -143,13 +143,16 @@ An opening paragraph that previews the document often restates the first section
 
 - Found: 引言说"每开一个新会话都从零开始"，问题 1 又说"每个会话从零开始"——引言留钩子，事实归问题 1。
 
-## Voice and rhythm — for from-scratch writing
+## Voice and rhythm — every document
 
-- **Know who is speaking, and why now.** A document has an author with a position: what they did, what they checked, what they are still unsure of. State the load-bearing ones once each; don't perform an author.
-- **Answer the reader's next question.** Write each section as the answer to what the previous section raised. Background arrives where it explains a choice — not up front to prove the writer knows a lot.
+These run on revisions and from-scratch drafts alike — thinning removes the noise, voice is what makes what remains human.
+
 - **主干早出**： subject and verb before their modifiers. `在经历了长达数年的……以后，最终促使他改变方向的，是一次邀请` → 他折腾了几年没挣到钱；后来老同事找过来，他才换了方向。
 - **Repeat the right word.** The keyword stays the keyword（`修表` stays `修表`）— upgrading it to `这门手艺` then `这项技能` is model-speak.
-- **Let lengths breathe.** A ten-character sentence next to a forty-character one is human; all-even sentences sound like a machine keeping time. 白话打底 — plain speech carries it; ornate archaism doesn't.
+- **Let lengths breathe.** A ten-character sentence next to a forty-character one is human; all-even sentences sound like a machine keeping time.
+- **白话打底** — plain speech carries it; ornate archaism doesn't.
+
+**From-scratch drafts also:** know who is speaking and why now — an author with a position: what they did, what they checked, what they are still unsure of; state the load-bearing ones once each, don't perform an author. And answer the reader's next question — each section is the answer to what the previous one raised; background arrives where it explains a choice, not up front to prove the writer knows a lot.
 
 ## Hard bans — from-scratch public prose only
 
@@ -161,11 +164,11 @@ A public long-form piece（帖、公众号文章、知乎回答）drafted from s
 - No `——`; colons only to introduce a direct quote（`一句话总结：` is banned）.
 - No business-report jargon: `赋能、抓手、闭环、底层逻辑、颗粒度、组合拳` → people, actions, money, time, consequences.
 
-## Read-back — three passes before done
+## Read-back — passes before done
 
-1. **Fidelity**: protected spans intact, no facts lost, terms stable, nothing reads broken after the cuts.
+1. **Fidelity**: protected spans intact — numbers, names, terms, conditions and exceptions — no facts lost, nothing reads broken after the cuts.
 2. **Thinness**: what got removed — words, or information? Content shrinks, core doesn't. If the core shrank, put it back.
-3. **Residue** (only if it still smells): openers, summary-closers, emphasis formulas, cleverness, over-even rhythm.
+3. **Voice**: would a specific person say this sentence, in this situation, to this reader? Openers, summary-closers, emphasis formulas, cleverness, over-even rhythm get rewritten.
 4. **From-scratch deliverables** (public prose drafted here): the material gate was passed before writing, forward motion holds（段段有新货）, and the hard bans are clear.
 
 The finish line is "ready to send" — not "sounds human". Stop there.

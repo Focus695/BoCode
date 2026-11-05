@@ -84,7 +84,7 @@ Flip `status:` to `completed` (or `in_progress`) so the blueprint doubles as the
 
 1. Every new file carries frontmatter `description`.
 2. Regenerate the index: `cd code && npm run book:index` — zero warnings or it didn't happen.
-3. Writing follows `book/guidelines/writing-style.md`: plain language, fidelity contract above style (numbers, commands, names, and responsibility attribution never move).
+3. Writing runs the **bowrite** skill（薄写 — thin and well, voice included）; `book/guidelines/writing-style.md` is the fallback when no skill is loaded.
 
 ## Quality bar
 
