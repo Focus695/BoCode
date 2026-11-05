@@ -189,11 +189,15 @@ Requirements: `bash` and `node` for the two scripts. No packages, no install ste
 | `code/tools/gen-book-index.mjs` | The index generator |
 | `scripts/init-project.sh` | Template → your project |
 | `scripts/check-commit-message.mjs` | Clean Commit validator (+ `.githooks/`) |
+| `scripts/check-release-changelog.mjs` | Release gate: template changes need a CHANGELOG entry |
 
 ## FAQ
 
 **I have an existing project. Can I adopt BoCode?**
 Yes — hand [ADOPT.md](ADOPT.md) to your AI agent. It's a step-by-step retrofit playbook written for agents: inventory, book skeleton, layout decision, doc migration, tooling, skills, and the first writeback. The manual path also works: copy `book/`, `skills/`, `scripts/`, `.githooks/`, `AGENTS.md`, and `code/tools/` in, merge your existing docs into the book, and run the index generator.
+
+**My project adopted an older BoCode — how do we upgrade?**
+Hand [UPGRADE.md](UPGRADE.md) to your AI agent. It diffs your project's `.bocode-version` stamp against the current template, refreshes template-owned files (guidelines, skills, tooling), and never touches your own records. [CHANGELOG.md](CHANGELOG.md) lists every change since your stamp.
 
 **Does it lock me into a language or stack?**
 No. The book is Markdown; the two scripts are plain Node with zero dependencies. Your `code/` can hold anything — the template's own `code/` contains only the tooling.

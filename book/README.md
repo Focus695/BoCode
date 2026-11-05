@@ -54,6 +54,7 @@ description: Master index of the book — the map of every document. Regenerate 
 - [ADR-004-template-free-of-instance-records.md](docs/decisions/ADR-004-template-free-of-instance-records.md) — This repository ships template content only — instance working records (notes entries, plans, changelog months) never enter it; a release check enforces the boundary
 - [ADR-005-distill-first-principles-into-design-phases.md](docs/decisions/ADR-005-distill-first-principles-into-design-phases.md) — Musk's first-principles engineering method is woven into the design phases — requirements face a physics test, estimates derive bottom-up, deletion precedes optimization
 - [ADR-006-distill-experience-first-design-into-phases.md](docs/decisions/ADR-006-distill-experience-first-design-into-phases.md) — Jobs's experience-first craft is woven in beside ADR-005 — the request is a proxy for an experience, design is how it works, focus is saying no, and gates are the polish point
+- [ADR-007-template-updates-reach-adopters.md](docs/decisions/ADR-007-template-updates-reach-adopters.md) — Template updates reach adopters through a root CHANGELOG, an agent-facing UPGRADE playbook, and a .bocode-version stamp — release-gated by CI; semver rejected, the commit SHA is the baseline
 - [README.md](docs/decisions/README.md) — How to write an ADR here — sections, naming, numbering, and when a decision needs a record
 
 ### guidelines/
@@ -74,4 +75,4 @@ description: Master index of the book — the map of every document. Regenerate 
 
 - [README.md](plans/README.md) — Plans directory usage — implementation plans land here after Phase 2 approval, with naming and the plan template
 
-<!-- 20 documents -->
+<!-- 21 documents -->

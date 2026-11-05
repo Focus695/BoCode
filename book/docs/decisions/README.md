@@ -25,4 +25,4 @@ An architecture decision record answers the question future readers — humans a
 
 `ADR-NNN-<short-slug>.md`, numbering monotonically up, never reused. A decision that reverses an earlier ADR gets a new number and flips the old one to "Superseded by ADR-NNN".
 
-See [ADR-001](ADR-001-adopt-bocode.md) for a worked example.
+ADR-001 in the BoCode repository is a worked example.

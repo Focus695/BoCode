@@ -56,6 +56,16 @@ jobs:
           else
             node scripts/check-commit-message.mjs "$PR_TITLE"
           fi
+      - name: Check release changelog
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if [ "$BASE_REF" = "main" ]; then
+            node scripts/check-release-changelog.mjs origin/main "$HEAD_SHA"
+          else
+            echo "Not a release PR; changelog gate skipped."
+          fi
       - name: Check template cleanliness
         run: cd code && npm run book:release-check
 

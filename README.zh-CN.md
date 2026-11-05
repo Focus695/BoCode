@@ -187,11 +187,15 @@ cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-sk
 | `code/tools/gen-book-index.mjs` | 索引生成器 |
 | `scripts/init-project.sh` | 模板 → 你的项目 |
 | `scripts/check-commit-message.mjs` | Clean Commit 校验器（含 `.githooks/`） |
+| `scripts/check-release-changelog.mjs` | 发布门禁：模板变更必须带 CHANGELOG 条目 |
 
 ## 常见问题
 
 **已经有项目了，能套用 BoCode 吗？**
 能。把 [ADOPT.md](ADOPT.md) 交给你的 AI agent——这是写给 agent 的分步改造手册：盘点项目、搭 book 骨架、定布局、迁文档、装工具链和 skills、写第一笔回写。想手工来也行：把 `book/`、`skills/`、`scripts/`、`.githooks/`、`AGENTS.md`、`code/tools/` 拷过去，已有文档并进 book，跑一次索引生成。
+
+**我的项目装的是老版 BoCode，怎么升级？**
+把 [UPGRADE.md](UPGRADE.md) 交给你的 AI agent。它会拿项目里的 `.bocode-version` 戳和当前模板做 diff：模板属主的文件（guidelines、skills、工具）刷新，你自己的记录一个不动。[CHANGELOG.md](CHANGELOG.md) 列着戳之后的所有变更。
 
 **会绑死语言或技术栈吗？**
 不会。book 全是 Markdown，两个脚本是零依赖纯 Node。`code/` 里放什么随意——模板自己的 `code/` 也只放了工具。

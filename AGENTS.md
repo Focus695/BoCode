@@ -31,6 +31,10 @@ Feature development strictly follows the six-phase gate workflow — see `book/g
 
 Git commits and branching strictly follow `book/guidelines/git-workflow.md`: every non-merge commit uses the Clean Commit format; independent big features branch from `dev`; small verified fixes may commit to `dev` directly; PRs serve multi-contributor work and the `dev → main` release, which only ever merges. Never commit or push directly to `main`.
 
+## Staying current
+
+This workflow's template evolves. To sync an installed project, an agent reads `UPGRADE.md` and `CHANGELOG.md` from the BoCode repository (https://github.com/Focus695/BoCode) — the project's `.bocode-version` stamp records what it last synced to.
+
 ## Document routing
 
 | Output | Location | Audience |
@@ -74,3 +78,4 @@ Local commands are disposable and have no production access — npm scripts, tes
 - `cd code && npm run book:index` — regenerate `book/README.md` after any book change (do not edit by hand; missing frontmatter `description` warns and exits 1)
 - `cd code && npm run book:release-check` — verify the tree holds no instance working records; must be green before the `dev → main` release PR
 - `node scripts/check-commit-message.mjs "<subject>"` — validate a commit subject against Clean Commit
+- `node scripts/check-release-changelog.mjs <base> <head>` — release gate: a dev→main range that touches template-owned content must also update `CHANGELOG.md` (ADR-007)

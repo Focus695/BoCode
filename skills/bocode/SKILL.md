@@ -34,10 +34,11 @@ book/
 
 **Finishing work:** sync the book — plan status, summary, new issues, changelog entry — then regenerate the index. Details of what to write where are in the **book-writeback** skill.
 
-## The two contracts
+## The contracts
 
 1. **Index contract**: every new book document starts with frontmatter `description` — one plain-language line about the *content* (not the genre). After any book change, run `cd code && npm run book:index`; the build fails on a missing description, and that's the point.
 2. **Record-only contract**: problems found during review or wrap-up are recorded to `notes/issue/`, never fixed in passing. A recorded problem becomes a task; fixing is separate work.
+3. **Upgrade contract**: the template evolves — when the user asks to sync BoCode or the workflow feels stale, read `UPGRADE.md` and `CHANGELOG.md` from the BoCode repository (https://github.com/Focus695/BoCode); the project's `.bocode-version` stamp is the baseline to diff against.
 
 ## What not to do
 

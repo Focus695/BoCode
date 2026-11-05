@@ -4,7 +4,7 @@
 
 ## What you are installing
 
-BoCode gives a project two halves: `code/` (the source) and `book/` (the documentation stream and knowledge base), driving each other in both directions. You will install: the `book/` skeleton, the index tooling, the git policy tooling (optional), the four skills, and an `AGENTS.md` entry point. You will migrate the project's existing docs into the book. You will **not** refactor any code.
+BoCode gives a project two halves: `code/` (the source) and `book/` (the documentation stream and knowledge base), driving each other in both directions. You will install: the `book/` skeleton, the index tooling, the git policy tooling (optional), the four skills, an `AGENTS.md` entry point, and a `.bocode-version` stamp so future upgrades know the baseline. You will migrate the project's existing docs into the book. You will **not** refactor any code.
 
 Before starting, read in the BoCode repository: `AGENTS.md`, `book/guidelines/workflow.md`, and `skills/README.md` — this playbook assumes you know the target shape.
 
@@ -63,14 +63,19 @@ Adapt BoCode's `AGENTS.md`: fill the project overview (what it is, in two senten
 
 1. Index generator: zero warnings, exit 0.
 2. `git config core.hooksPath .githooks` (if adopted) and the hook fires on commit.
-3. Commit the adoption. Follow the project's existing commit convention unless the user chooses to adopt Clean Commit — their call, not yours.
-4. Don't rewrite git history. Adoption is ordinary commits on top of what exists.
+3. Write `.bocode-version` at the project root — one line with the BoCode repository's current HEAD SHA (`git -C <bocode-clone> rev-parse HEAD`). Future upgrades diff against it.
+4. Commit the adoption. Follow the project's existing commit convention unless the user chooses to adopt Clean Commit — their call, not yours.
+5. Don't rewrite git history. Adoption is ordinary commits on top of what exists.
 
 ## Step 8 — First writeback
 
 1. Finalize the two draft guidelines with the user (Step 1).
 2. Write the project's own `ADR-001: adopt the BoCode workflow` in `book/docs/decisions/` — context from the inventory, the Option A/B decision and why, consequences.
 3. Regenerate the index. Done.
+
+## Later upgrades
+
+When the BoCode template evolves, hand `UPGRADE.md` from the BoCode repository to an agent — it diffs the project's `.bocode-version` stamp against template HEAD, refreshes template-owned files, and leaves the project's own records untouched. `CHANGELOG.md` lists every change since the stamp.
 
 ## What not to do
 
