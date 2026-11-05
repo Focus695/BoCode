@@ -2,6 +2,8 @@
 
 Releases of the BoCode template itself. Adopting projects upgrade by handing [UPGRADE.md](UPGRADE.md) to an agent; each entry lists what changed and what an adopting project must do. History before 2026-11-05 lives in git log and [book/docs/decisions/](book/docs/decisions/) (ADR-001..ADR-004).
 
+When adding an entry, also refresh the collapsed What's-new block near the top of the three READMEs (`README.md`, `README.zh-CN.md`, `README.ja.md`): newest title in the summary line, latest three titles as bullets.
+
 ## 2026-11-06 — tasks and issues archive by status (ADR-010)
 
 Handled and unhandled entries were indistinguishable from the outside; the tempting fix — a folder files move into — breaks the book's relative links. Archiving is now a status flip.
