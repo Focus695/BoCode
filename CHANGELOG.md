@@ -4,6 +4,14 @@ Releases of the BoCode template itself. Adopting projects upgrade by handing [UP
 
 When adding an entry, also refresh the collapsed What's-new block near the top of the three READMEs (`README.md`, `README.zh-CN.md`, `README.ja.md`): newest title in the summary line, latest three titles as bullets.
 
+## 2026-11-06 — phase-2 stop rule aligned, L-tier ADR trigger decidable
+
+The task-tiers replay (ADR-008) caught two leftovers: boscope still required Phase-2 approval while workflow.md, AGENTS.md, and the newer skill variants stop only on real gaps; and the L row's "an ADR when impact warrants" carried no criterion.
+
+- Changed: `skills/boscope/SKILL.md` (Phase 2 stops only on a real gap — scope conflict, undetermined data shape, unclear external dependency — and goes straight to Phase 3 otherwise; the plan step no longer hangs on approval; Phase 3 builds "per the design"; the constraints bullet splits the two rules it used to merge); `book/guidelines/task-tiers.md` (the L row's ADR gate defers to the triggers in `book/docs/decisions/README.md`: expensive to reverse · a reasonable person could have made differently · an architecture boundary rule)
+
+**Adopter action:** copy the two changed files; in translated boscope variants, replace the "stop and wait for approval" block with the real-gaps rule and drop it from any companion README's flow; regenerate the index.
+
 ## 2026-11-06 — tasks and issues archive by status (ADR-010)
 
 Handled and unhandled entries were indistinguishable from the outside; the tempting fix — a folder files move into — breaks the book's relative links. Archiving is now a status flip.
