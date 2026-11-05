@@ -23,6 +23,8 @@ Render the brief below and fill every slot. For empty slots you have two duties:
 
 **B. Sufficient → recommend.** Once enough is known to start, don't stop — raise the design axes the user didn't mention (permissions, notifications, idempotency, caching, transactions, boundaries, regression, generated-artifact sync…). Mark each as `[recommended — confirm or reject]`. Fill the gaps the user didn't know were there.
 
+**C. Inherited → question.** Every requirement is a suggestion until it shows its law — physics is the law, everything else negotiates. Physics here: correctness, data integrity, the user's explicit hard constraints, real resource limits. Suggestions wearing physics clothes: "how it's done", industry habit, past practice, third-party defaults. The user's WHAT is physics; the HOW is suggestion — question what was inherited, never what was asked.
+
 ### Brief template
 
 ```
@@ -56,6 +58,10 @@ Understand the requirement → find the relevant code → trace the call chain �
 
 **Output:** data flow, sequence diagram (optional), file change list, new interfaces, permission design, notification design, test points.
 
+**Derive, don't analogize.** Design and estimate bottom-up: decompose to primitives — what the data actually is, what the code actually does, measured costs — and reason up from there. An analogy ("the last similar feature took three days") is a data point, not an estimate. A gap between the bottom-up answer and the received number marks the real problem.
+
+**Delete before you optimize.** Question every part against its requirement: delete what nothing calls for, simplify what remains, and only then optimize or speed up. If nothing ever gets added back, you're deleting too little; optimizing a part that shouldn't exist is waste, faster.
+
 **Stop and wait for approval.** Do not enter Phase 3 until the user explicitly approves. (A kickoff message that clearly orders implementation and sets the technical context counts as approval — record that basis in the plan.)
 
 > **Permissions + notifications** are the two slots agents forget most. Even when the answer is "not needed this time", state it explicitly.
@@ -68,7 +74,7 @@ Strictly per the approved design. **No changes outside scope, no refactors, no n
 
 ### Phase 4: Testing (test-first)
 
-Write a failing test → write the minimal implementation that passes → refactor with tests green.
+Write a failing test → write the minimal implementation that passes → refactor with tests green. This loop is the iteration engine — run it fast and let it fail: a red test is data, not a setback. Iterate freely inside the phase, never past the gate.
 
 **Coverage (all required):** normal path · permission checks · boundaries (input ranges / empty / extremes) · error paths · regression (existing behavior intact).
 
