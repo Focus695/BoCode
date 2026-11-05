@@ -1,5 +1,5 @@
 ---
-description: The ten code-review checks every change must pass — findings are recorded, never fixed in passing
+description: The eleven code-review checks every M/L change must pass — findings are recorded, never fixed in passing
 ---
 
 # Code review checklist
@@ -16,6 +16,7 @@ description: The ten code-review checks every change must pass — findings are 
 - [ ] Parts that trace to no requirement (delete before optimize)
 - [ ] Experience seams treated as design (defaults, empty states, error messages)
 - [ ] Changes outside the approved scope
+- [ ] Task tier too low (the change meets a higher tier's criteria in `task-tiers.md`) — record an issue, never backfill
 
 ## Principle
 

@@ -55,15 +55,17 @@ description: Master index of the book — the map of every document. Regenerate 
 - [ADR-005-distill-first-principles-into-design-phases.md](docs/decisions/ADR-005-distill-first-principles-into-design-phases.md) — Musk's first-principles engineering method is woven into the design phases — requirements face a physics test, estimates derive bottom-up, deletion precedes optimization
 - [ADR-006-distill-experience-first-design-into-phases.md](docs/decisions/ADR-006-distill-experience-first-design-into-phases.md) — Jobs's experience-first craft is woven in beside ADR-005 — the request is a proxy for an experience, design is how it works, focus is saying no, and gates are the polish point
 - [ADR-007-template-updates-reach-adopters.md](docs/decisions/ADR-007-template-updates-reach-adopters.md) — Template updates reach adopters through a root CHANGELOG, an agent-facing UPGRADE playbook, and a .bocode-version stamp — release-gated by CI; semver rejected, the commit SHA is the baseline
+- [ADR-008-grade-tasks-into-tiers-before-the-workflow.md](docs/decisions/ADR-008-grade-tasks-into-tiers-before-the-workflow.md) — Tasks are graded S/M/L before any work — S runs a light channel whose only gate is a one-sentence motive, M/L run Step 0 and all six phases; the tier is decided before Step 0 and recorded in the first commit's motive
 - [README.md](docs/decisions/README.md) — How to write an ADR here — sections, naming, numbering, and when a decision needs a record
 
 ### guidelines/
 
-- [README.md](guidelines/README.md) — Index of the five guidelines and the input pointer table — which guideline to read for which kind of task, with no blanket pre-reading
+- [README.md](guidelines/README.md) — Index of the guidelines and the input pointer table — which guideline to read for which kind of task, with no blanket pre-reading
 - [architecture.md](guidelines/architecture.md) — Template for your project's long-term architecture rules — boundary invariants, module map, tech baseline, with a worked example of boundary-style rules
 - [coding-style.md](guidelines/coding-style.md) — Template for your project's coding baseline — the language-specific rules any contributor or agent must follow
 - [git-workflow.md](guidelines/git-workflow.md) — Clean Commit message format and Clean Flow branch, PR, and merge rules for solo and team development
-- [review-checklist.md](guidelines/review-checklist.md) — The ten code-review checks every change must pass — findings are recorded, never fixed in passing
+- [review-checklist.md](guidelines/review-checklist.md) — The eleven code-review checks every M/L change must pass — findings are recorded, never fixed in passing
+- [task-tiers.md](guidelines/task-tiers.md) — S/M/L task grading — criteria per tier, which channel a change runs, the four hard rules, and the always-L list each adopting project declares
 - [workflow.md](guidelines/workflow.md) — Six-phase gate workflow with the eight code↔book interaction rules and the document routing table
 - [writing-style.md](guidelines/writing-style.md) — Plain-language writing standard for every book document — fidelity contract first, then minimal style rules, intensity levels, and a read-back check
 
@@ -75,4 +77,4 @@ description: Master index of the book — the map of every document. Regenerate 
 
 - [README.md](plans/README.md) — Plans directory usage — implementation plans land here after Phase 2 approval, with naming and the plan template
 
-<!-- 21 documents -->
+<!-- 23 documents -->

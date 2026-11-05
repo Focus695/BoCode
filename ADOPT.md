@@ -18,7 +18,7 @@ Before starting, read in the BoCode repository: `AGENTS.md`, `book/guidelines/wo
 
 Copy from the BoCode repository into the project:
 
-- `book/guidelines/` — all of it (README, workflow, writing-style, git-workflow, review-checklist, architecture, coding-style)
+- `book/guidelines/` — all of it (README, workflow, task-tiers, writing-style, git-workflow, review-checklist, architecture, coding-style)
 - `book/docs/README.md`, `book/docs/architecture/README.md`, `book/docs/api/README.md`, `book/docs/decisions/README.md`
 - `book/notes/README.md`, `book/plans/README.md`, `book/changelogs/README.md`
 

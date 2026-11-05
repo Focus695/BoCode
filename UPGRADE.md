@@ -10,7 +10,7 @@ The one table that decides everything. Template-owned files get refreshed; proje
 
 | Template-owned (refresh) | Project-owned (never touch) |
 |--------------------------|------------------------------|
-| `book/guidelines/{README,workflow,writing-style,git-workflow,review-checklist}.md` | `AGENTS.md`, root `README.md` |
+| `book/guidelines/{README,workflow,task-tiers,writing-style,git-workflow,review-checklist}.md` | `AGENTS.md`, root `README.md` |
 | the `README.md` of every `book/` directory (`docs/`, `docs/decisions/`, `docs/architecture/`, `docs/api/`, `notes/`, `plans/`, `changelogs/`) | `book/guidelines/architecture.md` and `coding-style.md` (project drafts since adoption) |
 | `skills/` — all four skills plus `skills/README.md` | everything under `book/docs/decisions/`, `book/docs/architecture/`, `book/docs/api/` (the project's own records) |
 | `code/tools/*.mjs`; the `scripts` block of `code/package.json` (keep the project's `name`) | everything under `book/notes/`, `book/plans/`, `book/changelogs/` |

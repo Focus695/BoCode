@@ -2,6 +2,15 @@
 
 Releases of the BoCode template itself. Adopting projects upgrade by handing [UPGRADE.md](UPGRADE.md) to an agent; each entry lists what changed and what an adopting project must do. History before 2026-11-05 lives in git log and [book/docs/decisions/](book/docs/decisions/) (ADR-001..ADR-004).
 
+## 2026-11-05 — task tiers before the gates (ADR-008)
+
+Small tasks were paying the full six-gate tax — agents packaged ten-minute fixes as "feature development". Grading is now explicit and comes first, before Step 0. Distilled from adopter feedback (Lighthouse3.0, verified in their repo).
+
+- Added: `book/guidelines/task-tiers.md` (S/M/L criteria — "any one means at least this tier"; the four hard rules; the always-L mount point), `book/docs/decisions/ADR-008-grade-tasks-into-tiers-before-the-workflow.md`
+- Changed: `book/guidelines/workflow.md` (tier-first paragraph; no-skipping scoped to M/L), `AGENTS.md` (hard constraints scoped to M/L; tier recorded in the first commit's motive), `skills/boscope/SKILL.md` (tier-first gate before Step 0, description, constraints), `book/guidelines/review-checklist.md` (eleventh check: task tier too low → issue, never backfill), `book/guidelines/README.md` (routing rows), `UPGRADE.md` and `ADOPT.md` (task-tiers in the template-owned lists)
+
+**Adopter action:** copy the changed files (Lighthouse3.0 already runs a local task-tiers.md — diff and merge, then declare your always-L list in it); sync translated variants of boscope (e.g. structured-feature-implementation) with the tier-first insertion; run `cd code && npm run book:index`.
+
 ## 2026-11-05 — template updates reach adopters (ADR-007)
 
 The upgrade mechanism itself, plus a link-integrity fix.

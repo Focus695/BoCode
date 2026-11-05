@@ -27,7 +27,7 @@ This project runs on the **BoCode workflow**: `code/` holds the source, `book/` 
 
 ## Workflow
 
-Feature development strictly follows the six-phase gate workflow — see `book/guidelines/workflow.md`.
+Feature development is graded first: every task is tiered S/M/L per `book/guidelines/task-tiers.md` (the tier lands in the first commit's motive); M/L tasks then strictly follow the six-phase gate workflow — see `book/guidelines/workflow.md`.
 
 Git commits and branching strictly follow `book/guidelines/git-workflow.md`: every non-merge commit uses the Clean Commit format; independent big features branch from `dev`; small verified fixes may commit to `dev` directly; PRs serve multi-contributor work and the `dev → main` release, which only ever merges. Never commit or push directly to `main`.
 
@@ -67,8 +67,9 @@ Local commands are disposable and have no production access — npm scripts, tes
 
 ## Hard constraints
 
-- Step 0 (the structured requirements brief) is required before any code
-- No skipping between phases
+- The task tier (S/M/L, `book/guidelines/task-tiers.md`) is decided before any code and recorded in the first commit's motive; S runs the light channel, M/L owe the full pipeline
+- Step 0 (the structured requirements brief) is required before any M/L code
+- No skipping between phases (M/L)
 - Phase 2 stops for the user only on real gaps — scope conflict, undetermined data shape, unclear external dependency — never just for confirmation
 - Problems found in Phase 5 / Phase 6 are **recorded, never fixed**
 - Feature work touches no code outside its scope: no opportunistic refactors, no new abstractions
