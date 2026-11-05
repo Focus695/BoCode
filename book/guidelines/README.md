@@ -1,5 +1,5 @@
 ---
-description: Index of the five guidelines and the input pointer table — which guideline to read for which kind of task, with no blanket pre-reading
+description: Index of the guidelines and the input pointer table — which guideline to read for which kind of task, with no blanket pre-reading
 ---
 
 # Guidelines
@@ -9,9 +9,10 @@ The project's development rules. Every contributor — including AI agents — f
 | File | Content |
 |------|---------|
 | `workflow.md` | Six-phase gate workflow and the code↔book interaction rules |
+| `task-tiers.md` | S/M/L grading — which channel a change runs and what each tier owes |
 | `writing-style.md` | Plain-language standard for every book document |
 | `git-workflow.md` | Clean Commit format and Clean Flow branch/PR/merge rules |
-| `review-checklist.md` | The ten code-review checks |
+| `review-checklist.md` | The eleven code-review checks |
 | `architecture.md` | Long-term architecture rules (template — replace per project) |
 | `coding-style.md` | Language-specific coding baseline (template — replace per project) |
 
@@ -20,6 +21,7 @@ The project's development rules. Every contributor — including AI agents — f
 | When the task touches… | Read first |
 |--------|-----------|
 | Phases, gates, book sync | `workflow.md` |
+| Grading a task, which channel it runs | `task-tiers.md` |
 | Module boundaries, data ownership, tech swaps | `architecture.md` |
 | The current shape of modules and data flow | `../docs/architecture/` snapshots |
 | Interface contracts | `../docs/api/` |

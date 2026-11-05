@@ -15,6 +15,7 @@ No rewrite may add facts, drop core facts, or change who is responsible. The fol
 - Numbers, versions, dates, commands, API names, parameter names, field names, config keys, logs, error messages
 - Code blocks, table data, directory structures
 - System-behavior subjects, domain terms, ADR conclusions, responsibility attribution (who did what, in what state)
+- Conditions, prerequisites, exceptions, and scope of application（仅当、除非、不适用于）— cutting one doesn't remove a fact, it removes the fact's boundary
 - When a quantitative claim is ambiguous, keep the original relationship and flag it for confirmation — never add counts, years, or measurements the source doesn't have
 - Predicate strength must not drift: "improved performance" must not soften into "touches performance"; "saves time" must not grow into "saves time and money"
 

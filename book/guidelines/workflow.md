@@ -6,7 +6,7 @@ description: Six-phase gate workflow with the eight code↔book interaction rule
 
 ## Development process — six phases, hard gates
 
-Every feature moves through these phases in order. **No skipping.**
+Grade the task first — S, M, or L per `task-tiers.md`; the tier is decided before any work and lands in the first commit's motive. S runs the light channel and never enters this table. Every M/L feature moves through these phases in order. **No skipping.**
 
 | Phase | Name | Output | Gate |
 |------|------|--------|------|
@@ -18,7 +18,7 @@ Every feature moves through these phases in order. **No skipping.**
 | Phase 5 | Code review | Review findings | Record only — no fixes |
 | Phase 6 | Wrap-up | Docs, learnings, issues | Record only — no fixes |
 
-Step 0 comes before any code. Fill the brief: background, scope (what it affects, what it explicitly does **not** affect, and the boundaries), and the requirement itself. An empty "does not affect" list is the number-one cause of out-of-scope changes in Phase 3 — the exclusions slot is required. Requirements arrive as suggestions; physics is the only law — correctness, data integrity, and the user's explicit hard constraints don't negotiate, while convention, past practice, and "how it's done" do. Question the inherited HOW; the user's WHAT holds (reasoning and sources in ADR-005, in the BoCode repository's `book/docs/decisions/`). The stated request is a proxy — the experience behind it is the requirement: capture what the user will see, do, and get. Focus is saying no; the exclusions slot gives the feature its shape (ADR-006).
+Step 0 comes before any code (M and L). Fill the brief: background, scope (what it affects, what it explicitly does **not** affect, and the boundaries), and the requirement itself. An empty "does not affect" list is the number-one cause of out-of-scope changes in Phase 3 — the exclusions slot is required. Requirements arrive as suggestions; physics is the only law — correctness, data integrity, and the user's explicit hard constraints don't negotiate, while convention, past practice, and "how it's done" do. Question the inherited HOW; the user's WHAT holds (reasoning and sources in ADR-005, in the BoCode repository's `book/docs/decisions/`). The stated request is a proxy — the experience behind it is the requirement: capture what the user will see, do, and get. Focus is saying no; the exclusions slot gives the feature its shape (ADR-006).
 
 Phase 2 produces the full design — data flow, file list, interfaces — and proceeds; it stops for the user only when a real gap appears (scope conflict, undetermined data shape, unclear external dependency), never just for confirmation. Designs and estimates derive bottom-up from primitives — what the data and code actually are — never by analogy to last time; delete what no requirement calls for before optimizing anything that remains. Design is how it works — the surfaces the user touches (defaults, empty states, error messages) are designed with the data flow, never decorated after it (ADR-006).
 

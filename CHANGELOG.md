@@ -2,6 +2,43 @@
 
 Releases of the BoCode template itself. Adopting projects upgrade by handing [UPGRADE.md](UPGRADE.md) to an agent; each entry lists what changed and what an adopting project must do. History before 2026-11-05 lives in git log and [book/docs/decisions/](book/docs/decisions/) (ADR-001..ADR-004).
 
+When adding an entry, also refresh the collapsed What's-new block near the top of the three READMEs (`README.md`, `README.zh-CN.md`, `README.ja.md`): newest title in the summary line, latest three titles as bullets.
+
+## 2026-11-06 — phase-2 stop rule aligned, L-tier ADR trigger decidable
+
+The task-tiers replay (ADR-008) caught two leftovers: boscope still required Phase-2 approval while workflow.md, AGENTS.md, and the newer skill variants stop only on real gaps; and the L row's "an ADR when impact warrants" carried no criterion.
+
+- Changed: `skills/boscope/SKILL.md` (Phase 2 stops only on a real gap — scope conflict, undetermined data shape, unclear external dependency — and goes straight to Phase 3 otherwise; the plan step no longer hangs on approval; Phase 3 builds "per the design"; the constraints bullet splits the two rules it used to merge); `book/guidelines/task-tiers.md` (the L row's ADR gate defers to the triggers in `book/docs/decisions/README.md`: expensive to reverse · a reasonable person could have made differently · an architecture boundary rule)
+
+**Adopter action:** copy the two changed files; in translated boscope variants, replace the "stop and wait for approval" block with the real-gaps rule and drop it from any companion README's flow; regenerate the index.
+
+## 2026-11-06 — tasks and issues archive by status (ADR-010)
+
+Handled and unhandled entries were indistinguishable from the outside; the tempting fix — a folder files move into — breaks the book's relative links. Archiving is now a status flip.
+
+- Added: `book/docs/decisions/ADR-010-archive-by-status-flip-not-by-moving-files.md`
+- Changed: `code/tools/gen-book-index.mjs` (parses a frontmatter `status` in `notes/task/` and `notes/issue/`, validates `open|done` / `open|resolved`, lists open entries first; missing or unknown status warns and exits 1); `book/notes/README.md` (status convention, wrap-up step flips statuses, `status: open` in the task and issue templates)
+
+**Adopter action:** copy the two changed files; add a `status` line (`open`, `done`, or `resolved`) to every existing task and issue entry — the index build fails without it; rerun `cd code && npm run book:index`.
+
+## 2026-11-06 — bowrite's voice rules on every write (ADR-009)
+
+The skill could de-water a text but rarely made it human: voice rules were scoped to from-scratch drafts while most project writing is revision, and thinning could silently cut conditions（仅当/除非/不适用于）— facts survived, their boundaries didn't.
+
+- Added: `book/docs/decisions/ADR-009-bowrite-voice-on-every-write.md`
+- Changed: `skills/bowrite/SKILL.md` (voice rules universal; conditions join the fidelity contract; read-back gains a regular voice pass; the skill thinned by its own rules — the 把书读薄 story once, the duplicated rule merged into the ledger); `book/guidelines/writing-style.md` (same conditions clause, keeping the fallback in sync); `skills/book-writeback/SKILL.md` (names bowrite, writing-style.md as fallback); `book/notes/README.md` and `book/docs/decisions/README.md` (style stated at the templates)
+
+**Adopter action:** copy the five changed files; if you localized bowrite, port the same four changes (voice scope, conditions clause, voice read-back pass, self-thinning); regenerate the index.
+
+## 2026-11-05 — task tiers before the gates (ADR-008)
+
+Small tasks were paying the full six-gate tax — agents packaged ten-minute fixes as "feature development". Grading is now explicit and comes first, before Step 0. Distilled from adopter feedback (Lighthouse3.0, verified in their repo).
+
+- Added: `book/guidelines/task-tiers.md` (S/M/L criteria — "any one means at least this tier"; the four hard rules; the always-L mount point), `book/docs/decisions/ADR-008-grade-tasks-into-tiers-before-the-workflow.md`
+- Changed: `book/guidelines/workflow.md` (tier-first paragraph; no-skipping scoped to M/L), `AGENTS.md` (hard constraints scoped to M/L; tier recorded in the first commit's motive), `skills/boscope/SKILL.md` (tier-first gate before Step 0, description, constraints), `book/guidelines/review-checklist.md` (eleventh check: task tier too low → issue, never backfill), `book/guidelines/README.md` (routing rows), `UPGRADE.md` and `ADOPT.md` (task-tiers in the template-owned lists)
+
+**Adopter action:** copy the changed files (Lighthouse3.0 already runs a local task-tiers.md — diff and merge, then declare your always-L list in it); sync translated variants of boscope (e.g. structured-feature-implementation) with the tier-first insertion; run `cd code && npm run book:index`.
+
 ## 2026-11-05 — template updates reach adopters (ADR-007)
 
 The upgrade mechanism itself, plus a link-integrity fix.
