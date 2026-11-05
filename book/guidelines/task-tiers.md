@@ -12,7 +12,7 @@ S is not "an M with gates skipped" — it is a separate channel with no gates; i
 |------|---------------------------------------------|----------------|------------|
 | **S** small | single file or surface-only change; touches no contract, permission, or funds; no data migration; regression surface visible at a glance | one-sentence motive (why + how verified) → change → self-test green → single commit | none beyond a changelog line |
 | **M** medium | a feature or defect inside one functional area; adds or changes API behavior; touches a UI flow; needs new tests | Step 0 brief (half a page is fine) → all six phases | brief + summary, half a page to one page |
-| **L** large | crosses functional areas or changes architecture; hits anything on the always-L list below; changes a shared contract; deletes a whole feature area | Step 0 brief, every slot filled in full → all six phases + review checklist + an ADR when impact warrants | full; execution plan into `plans/` |
+| **L** large | crosses functional areas or changes architecture; hits anything on the always-L list below; changes a shared contract; deletes a whole feature area | Step 0 brief, every slot filled in full → all six phases + review checklist + an ADR when the change trips the triggers in `../docs/decisions/README.md` (expensive to reverse · a reasonable person could have made differently · an architecture boundary rule) | full; execution plan into `plans/` |
 
 ## Hard rules
 

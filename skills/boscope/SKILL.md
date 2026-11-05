@@ -75,15 +75,15 @@ Understand the requirement → find the relevant code → trace the call chain �
 
 **Design is how it works.** The surfaces the user touches — defaults, empty states, error messages — are the design itself, not decoration on the data flow. A design that needs explaining before it works gets simplified, not documented.
 
-**Stop and wait for approval.** Do not enter Phase 3 until the user explicitly approves. (A kickoff message that clearly orders implementation and sets the technical context counts as approval — record that basis in the plan.)
+**Real gaps stop this phase; nothing else does.** With the outputs above complete, go straight to Phase 3 and deliver the design with the implementation — stop for the user only on a real gap (scope conflict, undetermined data shape, unclear external dependency), never just for confirmation.
 
 > **Permissions + notifications** are the two slots agents forget most. Even when the answer is "not needed this time", state it explicitly.
 
-**On approval:** write the plan into `book/plans/YYYY-MM-DD-<feature>.md` (template in that directory's README). The plan is the construction blueprint — this file, not memory, is what Phase 3 builds from.
+**Then the plan:** write it into `book/plans/YYYY-MM-DD-<feature>.md` (template in that directory's README). The plan is the construction blueprint — this file, not memory, is what Phase 3 builds from.
 
 ### Phase 3: Implementation
 
-Strictly per the approved design. **No changes outside scope, no refactors, no new abstractions.** Match the existing code's style.
+Strictly per the design. **No changes outside scope, no refactors, no new abstractions.** Match the existing code's style.
 
 ### Phase 4: Testing (test-first)
 
@@ -112,6 +112,6 @@ Write back to the book: plan status, summary, learn entries, new issues, changel
 - Tier before Step 0, the tier riding in the first commit's motive — S runs the light channel and never enters the phases; M/L skip none
 - Step 0 before any code, every brief slot filled
 - No skipping phases; every REQUIRED gate met before the next
-- Phase 2 design and Phase 3 scope boundaries advance only with explicit user approval
+- Phase 2 stops only on a real gap (scope conflict, undetermined data shape, unclear external dependency); Phase 3 scope boundaries move only with explicit user approval
 - Phase 5 records without fixing; Phase 6 records without fixing
 - The writeback target is this project's `book/` — never bypass the project's own document conventions
