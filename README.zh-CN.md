@@ -17,11 +17,11 @@
 BoCode 把仓库分成两半：`code/` 放源代码，`book/` 放文档和知识库，两边互相驱动。它是为现在最常见的开发方式设计的：人和 AI agent 一起写代码。agent 快，也有记忆，可记忆只归它自己：人读不懂、管不了。项目知识放在哪里、给谁读，决定了开发是又快又稳，还是快得让人心里没底。
 
 <details>
-<summary><b>最近更新</b> · 2026-11-06 — task/issue 按 status 归档（ADR-010）</summary>
+<summary><b>最近更新</b> · 2026-11-06 — Phase-2 停止规则对齐，L 级 ADR 触发判据化</summary>
 
+- **2026-11-06** — Phase-2 停止规则对齐，L 级 ADR 触发判据化
 - **2026-11-06** — task/issue 按 status 归档（ADR-010）
 - **2026-11-06** — bowrite 的 voice 规则覆盖每一次书写（ADR-009）
-- **2026-11-05** — 关卡之前先给任务分级（ADR-008）
 
 完整历史与采用方操作见 [CHANGELOG.md](CHANGELOG.md)
 

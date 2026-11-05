@@ -17,11 +17,11 @@
 BoCode gives a repository two halves — `code/` for the source, `book/` for the documentation stream and knowledge base — wired together in both directions. It is built for the way software is written now: a human and AI coding agents together. Agents are fast and have memory now — but that memory serves the agent alone: unreadable to humans, unmanageable. Where a project's knowledge lives, and who can read it, decides whether speed comes with control or without it.
 
 <details>
-<summary><b>What's new</b> · 2026-11-06 — tasks and issues archive by status (ADR-010)</summary>
+<summary><b>What's new</b> · 2026-11-06 — phase-2 stop rule aligned, L-tier ADR trigger decidable</summary>
 
+- **2026-11-06** — phase-2 stop rule aligned, L-tier ADR trigger decidable
 - **2026-11-06** — tasks and issues archive by status (ADR-010)
 - **2026-11-06** — bowrite's voice rules on every write (ADR-009)
-- **2026-11-05** — task tiers before the gates (ADR-008)
 
 Full history and adopter actions: [CHANGELOG.md](CHANGELOG.md)
 
