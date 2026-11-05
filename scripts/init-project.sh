@@ -12,7 +12,8 @@
 #   4. Clears any dated living records (defensive: the template ships clean;
 #      this covers clones that carry records, e.g. from the BoCode origin)
 #   5. Regenerates the book index
-#   6. Optionally resets git history for a clean start
+#   6. Stamps .bocode-version with the BoCode commit (upgrades diff against it)
+#   7. Optionally resets git history for a clean start
 #
 # Requires: bash, node (any version from the last few years).
 
@@ -77,7 +78,7 @@ ${DESC}
 
 This project runs on the BoCode workflow.
 EOF
-rm -f README.zh-CN.md README.ja.md ADOPT.md
+rm -f README.zh-CN.md README.ja.md ADOPT.md CHANGELOG.md UPGRADE.md
 
 # 4. Clear BoCode's own living records
 for kind in learn summary issue; do
@@ -98,7 +99,12 @@ fi
 # 5. Regenerate the book index
 (cd code && node tools/gen-book-index.mjs)
 
-# 6. Optional: fresh git history
+# 6. Stamp the BoCode version (upgrades diff against it — see UPGRADE.md upstream)
+if git rev-parse --git-dir >/dev/null 2>&1; then
+  git rev-parse HEAD > .bocode-version
+fi
+
+# 7. Optional: fresh git history
 if [ -t 0 ]; then
   printf "Reset git history and start fresh? [y/N] "
   read -r RESET
@@ -120,3 +126,5 @@ echo "  2. Point your AI agent at AGENTS.md (most tools pick it up automatically
 echo "  3. Fill in book/guidelines/architecture.md and coding-style.md for your project."
 echo "  4. Set your remote:"
 echo "       git remote add origin <url>"
+echo "  5. To upgrade later: an agent reads UPGRADE.md + CHANGELOG.md at"
+echo "       https://github.com/Focus695/BoCode (your .bocode-version pins the baseline)."

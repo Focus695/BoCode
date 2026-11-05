@@ -187,11 +187,15 @@ cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-sk
 | `code/tools/gen-book-index.mjs` | インデックスジェネレータ |
 | `scripts/init-project.sh` | テンプレート → あなたのプロジェクト |
 | `scripts/check-commit-message.mjs` | Clean Commit バリデータ（`.githooks/` 付き） |
+| `scripts/check-release-changelog.mjs` | リリースゲート：テンプレート変更には CHANGELOG 記載が必須 |
 
 ## FAQ
 
 **すでに存在するプロジェクトに BoCode を導入できますか？**
 はい——[ADOPT.md](ADOPT.md) を AI エージェントに渡してください。エージェント向けに書かれた段階的な移行プレイブックです：棚卸し、book スケルトン、レイアウト決定、ドキュメント移行、ツールチェーン、スキル、最初の書き戻し。手動の道もあります：`book/`、`skills/`、`scripts/`、`.githooks/`、`AGENTS.md`、`code/tools/` をコピーし、既存ドキュメントを book に統合し、インデックスジェネレータを実行するだけです。
+
+**プロジェクトが古い BoCode を使っていますが、アップグレードは？**
+[UPGRADE.md](UPGRADE.md) を AI エージェントに渡してください。プロジェクトの `.bocode-version` スタンプと現在のテンプレートを diff し、テンプレート所有のファイル（guidelines、スキル、ツール）だけを更新し、あなた自身の記録には触れません。[CHANGELOG.md](CHANGELOG.md) にスタンプ以降のすべての変更が並んでいます。
 
 **言語やスタックに縛られますか？**
 いいえ。book は Markdown、二つのスクリプトは依存ゼロのプレーン Node です。`code/` には何を置いても構いません——テンプレート自身の `code/` にはツールしか入っていません。
