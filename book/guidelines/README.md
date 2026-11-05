@@ -11,7 +11,7 @@ The project's development rules. Every contributor — including AI agents — f
 | `workflow.md` | Six-phase gate workflow and the code↔book interaction rules |
 | `writing-style.md` | Plain-language standard for every book document |
 | `git-workflow.md` | Clean Commit format and Clean Flow branch/PR/merge rules |
-| `review-checklist.md` | The nine code-review checks |
+| `review-checklist.md` | The ten code-review checks |
 | `architecture.md` | Long-term architecture rules (template — replace per project) |
 | `coding-style.md` | Language-specific coding baseline (template — replace per project) |
 

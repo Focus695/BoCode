@@ -1,5 +1,5 @@
 ---
-description: The nine code-review checks every change must pass — findings are recorded, never fixed in passing
+description: The ten code-review checks every change must pass — findings are recorded, never fixed in passing
 ---
 
 # Code review checklist
@@ -14,6 +14,7 @@ description: The nine code-review checks every change must pass — findings are
 - [ ] Missed boundaries (input ranges / empty values / extremes)
 - [ ] Complexity added
 - [ ] Parts that trace to no requirement (delete before optimize)
+- [ ] Experience seams treated as design (defaults, empty states, error messages)
 - [ ] Changes outside the approved scope
 
 ## Principle

@@ -53,6 +53,7 @@ description: Master index of the book — the map of every document. Regenerate 
 - [ADR-003-intent-gates-vs-distrust-gates.md](docs/decisions/ADR-003-intent-gates-vs-distrust-gates.md) — We classify workflow gates by justification — intent gates stay hard, distrust gates soften as models improve; Phase 2 approval becomes gap-based stopping
 - [ADR-004-template-free-of-instance-records.md](docs/decisions/ADR-004-template-free-of-instance-records.md) — This repository ships template content only — instance working records (notes entries, plans, changelog months) never enter it; a release check enforces the boundary
 - [ADR-005-distill-first-principles-into-design-phases.md](docs/decisions/ADR-005-distill-first-principles-into-design-phases.md) — Musk's first-principles engineering method is woven into the design phases — requirements face a physics test, estimates derive bottom-up, deletion precedes optimization
+- [ADR-006-distill-experience-first-design-into-phases.md](docs/decisions/ADR-006-distill-experience-first-design-into-phases.md) — Jobs's experience-first craft is woven in beside ADR-005 — the request is a proxy for an experience, design is how it works, focus is saying no, and gates are the polish point
 - [README.md](docs/decisions/README.md) — How to write an ADR here — sections, naming, numbering, and when a decision needs a record
 
 ### guidelines/
@@ -61,7 +62,7 @@ description: Master index of the book — the map of every document. Regenerate 
 - [architecture.md](guidelines/architecture.md) — Template for your project's long-term architecture rules — boundary invariants, module map, tech baseline, with a worked example of boundary-style rules
 - [coding-style.md](guidelines/coding-style.md) — Template for your project's coding baseline — the language-specific rules any contributor or agent must follow
 - [git-workflow.md](guidelines/git-workflow.md) — Clean Commit message format and Clean Flow branch, PR, and merge rules for solo and team development
-- [review-checklist.md](guidelines/review-checklist.md) — The nine code-review checks every change must pass — findings are recorded, never fixed in passing
+- [review-checklist.md](guidelines/review-checklist.md) — The ten code-review checks every change must pass — findings are recorded, never fixed in passing
 - [workflow.md](guidelines/workflow.md) — Six-phase gate workflow with the eight code↔book interaction rules and the document routing table
 - [writing-style.md](guidelines/writing-style.md) — Plain-language writing standard for every book document — fidelity contract first, then minimal style rules, intensity levels, and a read-back check
 
@@ -73,4 +74,4 @@ description: Master index of the book — the map of every document. Regenerate 
 
 - [README.md](plans/README.md) — Plans directory usage — implementation plans land here after Phase 2 approval, with naming and the plan template
 
-<!-- 19 documents -->
+<!-- 20 documents -->
