@@ -8,6 +8,8 @@ All running records of the project. Each subfolder has one purpose, and everythi
 
 `summary/`, `learn/`, and `issue/` archive under `YYYY-MM/`. The month is a stable, low-maintenance physical grouping; feature relationships live in filenames, frontmatter, and links in the text — never in deeper directory nesting.
 
+Tasks and issues archive **by status, not by moving files** (ADR-010). Both carry a frontmatter `status` — `open` when created, `done` (task) or `resolved` (issue) when handled. Flipping the field and rerunning the index is the whole archive step: `book/README.md` regroups with open entries first; files never move, so links never break.
+
 | Folder | Use | Written when |
 |--------|-----|--------------|
 | `learn/` | Experience and lessons | During coding, and at Phase 6 wrap-up |
@@ -19,7 +21,7 @@ All running records of the project. Each subfolder has one purpose, and everythi
 
 1. Read `book/README.md` first; locate documents by feature name, keyword, or summary.
 2. Then read the specific type and month.
-3. Before coding, search `learn` first; at wrap-up, write the feature's outcome, experience, and open problems to `summary`, `learn`, and `issue` respectively.
+3. Before coding, search `learn` first; at wrap-up, write the feature's outcome, experience, and open problems to `summary`, `learn`, and `issue` respectively — and flip the `status` of whatever it closes (`done` / `resolved`).
 
 Obsidian can open `book/` directly as a vault; existing links are plain relative Markdown.
 
@@ -63,6 +65,7 @@ Tags drive retrieval — write the words you'd search for later, including sympt
 ```markdown
 ---
 description: <one plain-language line about the content>
+status: open
 ---
 # <the problem in one line>
 
@@ -71,14 +74,19 @@ description: <one plain-language line about the content>
 - **Suggested direction**: what a fix would probably touch — recorded only
 ```
 
+Flip `status` to `resolved` only when the fix has landed; the index then moves the entry out of Open.
+
 ### task — a checklist that tracks a piece of work
 
 ```markdown
 ---
 description: <one plain-language line about the content>
+status: open
 ---
 # <task>
 
 - [ ] <step>
 - [x] <completed step, with a one-line result>
 ```
+
+Flip `status` to `done` when the last box is checked; the index then moves the entry out of Open.

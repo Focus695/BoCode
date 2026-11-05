@@ -2,6 +2,15 @@
 
 Releases of the BoCode template itself. Adopting projects upgrade by handing [UPGRADE.md](UPGRADE.md) to an agent; each entry lists what changed and what an adopting project must do. History before 2026-11-05 lives in git log and [book/docs/decisions/](book/docs/decisions/) (ADR-001..ADR-004).
 
+## 2026-11-06 — tasks and issues archive by status (ADR-010)
+
+Handled and unhandled entries were indistinguishable from the outside; the tempting fix — a folder files move into — breaks the book's relative links. Archiving is now a status flip.
+
+- Added: `book/docs/decisions/ADR-010-archive-by-status-flip-not-by-moving-files.md`
+- Changed: `code/tools/gen-book-index.mjs` (parses a frontmatter `status` in `notes/task/` and `notes/issue/`, validates `open|done` / `open|resolved`, lists open entries first; missing or unknown status warns and exits 1); `book/notes/README.md` (status convention, wrap-up step flips statuses, `status: open` in the task and issue templates)
+
+**Adopter action:** copy the two changed files; add a `status` line (`open`, `done`, or `resolved`) to every existing task and issue entry — the index build fails without it; rerun `cd code && npm run book:index`.
+
 ## 2026-11-06 — bowrite's voice rules on every write (ADR-009)
 
 The skill could de-water a text but rarely made it human: voice rules were scoped to from-scratch drafts while most project writing is revision, and thinning could silently cut conditions（仅当/除非/不适用于）— facts survived, their boundaries didn't.
