@@ -59,6 +59,7 @@ description: Master index of the book — the map of every document. Regenerate 
 - [ADR-008-grade-tasks-into-tiers-before-the-workflow.md](docs/decisions/ADR-008-grade-tasks-into-tiers-before-the-workflow.md) — Tasks are graded S/M/L before any work — S runs a light channel whose only gate is a one-sentence motive, M/L run Step 0 and all six phases; the tier is decided before Step 0 and recorded in the first commit's motive
 - [ADR-009-bowrite-voice-on-every-write.md](docs/decisions/ADR-009-bowrite-voice-on-every-write.md) — bowrite's voice rules now run on every write, not just from-scratch drafts; conditions and exceptions join the fidelity contract's never-move list; the writeback path names bowrite explicitly
 - [ADR-010-archive-by-status-flip-not-by-moving-files.md](docs/decisions/ADR-010-archive-by-status-flip-not-by-moving-files.md) — task and issue entries archive by flipping a frontmatter status and regenerating the index — files never move, the index regroups with open entries first
+- [ADR-011-distill-selected-ub-mode-practices.md](docs/decisions/ADR-011-distill-selected-ub-mode-practices.md) — Selected ub-mode practices supplement project rules for modeling, calculations, testing, defects, terminology, and optional automation
 - [README.md](docs/decisions/README.md) — How to write an ADR here — sections, naming, numbering, and when a decision needs a record
 
 ### guidelines/
@@ -80,4 +81,4 @@ description: Master index of the book — the map of every document. Regenerate 
 
 - [README.md](plans/README.md) — Plans directory usage — implementation plans land here after Phase 2 approval, with naming and the plan template
 
-<!-- 25 documents -->
+<!-- 26 documents -->
