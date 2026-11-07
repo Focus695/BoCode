@@ -11,7 +11,7 @@
 import { execSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { DEFAULT_REMOTE, adopterRoot, skillsStates } from "./bocode-upgrade.mjs";
+import { DEFAULT_REMOTE, adopterRoot, readConfig, skillsStates } from "./bocode-upgrade.mjs";
 
 function parseArgs(argv) {
   const flags = {};
@@ -28,6 +28,8 @@ function parseArgs(argv) {
 const flags = parseArgs(process.argv.slice(2));
 const root = adopterRoot();
 const remote = flags.remote || DEFAULT_REMOTE;
+const cfg = readConfig(root);
+const skillsDir = flags.skillsDir || cfg.skillsDir; // explicit flag beats .bocode.json
 let hardFail = false;
 
 // 1. the upgrade tool itself (pre-ADR-012 adopters lack it)
@@ -64,7 +66,7 @@ if (stamp) {
       console.log("ok   up to date with upstream HEAD");
     } else {
       console.log(`FAIL behind upstream: local ${stamp.slice(0, 7)}, upstream ${upstream.slice(0, 7)}`);
-      console.log("     run: cd code && npm run bocode:upgrade -- --check");
+      console.log(`     run: cd code && npm run bocode:upgrade -- --check (autoSync=${cfg.autoSync}${cfg.autoSync === "auto" ? " — the agent may apply the conflict-free sync via --apply --ff-only" : " — ask the user before syncing"})`);
       hardFail = true;
     }
   } catch {
@@ -73,21 +75,21 @@ if (stamp) {
 }
 
 // 4. skills freshness in the agent's directory
-if (flags.skillsDir) {
-  const states = skillsStates(root, flags.skillsDir);
+if (skillsDir) {
+  const states = skillsStates(root, skillsDir);
   for (const [name, state] of Object.entries(states)) {
     if (state === "current") {
       console.log(`ok   skills/${name} current`);
     } else if (state === "no-source") {
       console.log(`WARN skills/${name} missing in this repo — nothing to install from`);
     } else {
-      console.log(`FAIL skills/${name} ${state} in ${flags.skillsDir}`);
+      console.log(`FAIL skills/${name} ${state} in ${skillsDir}`);
       console.log("     run: cd code && npm run bocode:upgrade -- --apply --skills-dir <dir>");
       hardFail = true;
     }
   }
 } else {
-  console.log("WARN skills not checked — pass --skills-dir <dir> to compare the four installed skills");
+  console.log("WARN skills not checked — pass --skills-dir <dir>, or set skillsDir / skillsTool in .bocode.json");
 }
 
 if (hardFail) {

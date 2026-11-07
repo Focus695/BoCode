@@ -17,11 +17,11 @@
 BoCode gives a repository two halves — `code/` for the source, `book/` for the documentation stream and knowledge base — wired together in both directions. It is built for the way software is written now: a human and AI coding agents together. Agents are fast and have memory now — but that memory serves the agent alone: unreadable to humans, unmanageable. Where a project's knowledge lives, and who can read it, decides whether speed comes with control or without it.
 
 <details>
-<summary><b>What's new</b> · 2026-11-07 — upgrades become a tool-gated sync (ADR-012)</summary>
+<summary><b>What's new</b> · 2026-11-07 — session-start sync check, consent-gated auto-sync (ADR-013)</summary>
 
+- **2026-11-07** — session-start sync check, consent-gated auto-sync (ADR-013)
 - **2026-11-07** — upgrades become a tool-gated sync (ADR-012)
 - **2026-11-07** — trilingual readmes aligned with the current gates
-- **2026-11-06** — selected ub-mode practices (ADR-011)
 
 Full history and adopter actions: [CHANGELOG.md](CHANGELOG.md)
 
@@ -208,7 +208,7 @@ Requirements: `bash` and `node` for the scripts. No packages, no install step, n
 Yes — hand [ADOPT.md](ADOPT.md) to your AI agent. It's a step-by-step retrofit playbook written for agents: inventory, book skeleton, layout decision, doc migration, tooling, skills, and the first writeback. The manual path also works: copy `book/`, `skills/`, `scripts/`, `.githooks/`, `AGENTS.md`, and `code/tools/` in, merge your existing docs into the book, and run the index generator.
 
 **My project adopted an older BoCode — how do we upgrade?**
-The sync tooling ships with your project: `cd code && npm run bocode:doctor` reports staleness, `npm run bocode:upgrade -- --check` lists every template-owned change with its disposition, and `--apply` refreshes pristine files, verifies from disk, and writes a report into your `book/changelogs/`. The sync is done when `--verify` exits 0 — not when the agent says so. [UPGRADE.md](UPGRADE.md) is the playbook; [CHANGELOG.md](CHANGELOG.md) lists every change since your stamp.
+The sync tooling ships with your project: `cd code && npm run bocode:doctor` reports staleness, `npm run bocode:upgrade -- --check` lists every template-owned change with its disposition, and `--apply` refreshes pristine files, verifies from disk, and writes a report into your `book/changelogs/`. The sync is done when `--verify` exits 0 — not when the agent says so. Sessions check staleness automatically; an optional `.bocode.json` (`autoSync`, `skillsTool`) tunes how much syncs themselves. [UPGRADE.md](UPGRADE.md) is the playbook; [CHANGELOG.md](CHANGELOG.md) lists every change since your stamp.
 
 **Does it lock me into a language or stack?**
 No. The book is Markdown; the scripts are plain Node with zero dependencies. Your `code/` can hold anything — the template's own `code/` contains only the tooling.

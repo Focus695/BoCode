@@ -98,6 +98,7 @@ function parseArgs(argv) {
     else if (a === "--skills-dir") flags.skillsDir = argv[++i];
     else if (a === "--stamp") flags.stamp = argv[++i];
     else if (a === "--keep") flags.keep.push(argv[++i]);
+    else if (a === "--ff-only") flags.ffOnly = true;
     else { console.error(`Unknown argument: ${a}`); usage(2); }
   }
   if (!flags.mode) usage(2);
@@ -106,7 +107,9 @@ function parseArgs(argv) {
 
 function usage(code) {
   console.error("Usage: bocode-upgrade.mjs --check|--apply|--verify [--repo <path>] [--remote <url>]");
-  console.error("                    [--skills-dir <dir>] [--stamp <sha>] [--keep <path>] [--keep <path> ...]");
+  console.error("                    [--skills-dir <dir>] [--stamp <sha>] [--ff-only] [--keep <path> ...]");
+  console.error("  --ff-only: refuse the sync BEFORE touching anything when any file needs a human");
+  console.error("             decision (merged / diverged-delete / missing) — the automation-safe subset.");
   process.exit(code);
 }
 
@@ -271,6 +274,41 @@ function treeEq(a, b) {
   return filesA.every((f) => bufEq(readFileSync(path.join(a, f)), readFileSync(path.join(b, f))));
 }
 
+// ---------- project config (.bocode.json, optional, project-owned) ----------
+
+// Known agent tools → default skills directory. A project declares one of
+// these instead of a machine-specific absolute path.
+const SKILL_TOOL_DIRS = {
+  zcode: () => path.join(os.homedir(), ".zcode", "skills"),
+  claude: () => path.join(os.homedir(), ".claude", "skills"),
+};
+
+export function readConfig(root) {
+  const file = path.join(root, ".bocode.json");
+  const cfg = { skillsDir: null, autoSync: "ask" };
+  if (!existsSync(file)) return cfg;
+  let parsed;
+  try {
+    parsed = JSON.parse(readFileSync(file, "utf8"));
+  } catch (e) {
+    console.warn(`.bocode.json is not valid JSON (${e.message}) — ignored, defaults apply`);
+    return cfg;
+  }
+  if (parsed.autoSync === "ask" || parsed.autoSync === "auto") cfg.autoSync = parsed.autoSync;
+  else if (parsed.autoSync !== undefined) console.warn(`.bocode.json: unknown autoSync "${parsed.autoSync}" — using "ask"`);
+  if (typeof parsed.skillsDir === "string" && parsed.skillsDir.length) {
+    const dir = parsed.skillsDir.startsWith("~/")
+      ? path.join(os.homedir(), parsed.skillsDir.slice(2))
+      : path.resolve(root, parsed.skillsDir);
+    cfg.skillsDir = dir;
+  } else if (typeof parsed.skillsTool === "string" && SKILL_TOOL_DIRS[parsed.skillsTool]) {
+    cfg.skillsDir = SKILL_TOOL_DIRS[parsed.skillsTool]();
+  } else if (parsed.skillsTool !== undefined) {
+    console.warn(`.bocode.json: unknown skillsTool "${parsed.skillsTool}" — skills not configured`);
+  }
+  return cfg;
+}
+
 export function skillsStates(root, skillsDir) {
   const states = {};
   for (const s of SKILL_DIRS) {
@@ -350,6 +388,8 @@ function main() {
 const flags = parseArgs(process.argv.slice(2));
 const root = adopterRoot();
 const remote = flags.remote || DEFAULT_REMOTE;
+const cfg = readConfig(root);
+const skillsDir = flags.skillsDir || cfg.skillsDir; // explicit flag beats .bocode.json
 
 let tmpDir = null;
 let repo = flags.repo;
@@ -375,7 +415,7 @@ try {
     process.exit(1);
   }
 
-  const doSkills = () => (flags.skillsDir ? skillsStates(root, flags.skillsDir) : null);
+  const doSkills = () => (skillsDir ? skillsStates(root, skillsDir) : null);
   const printSkills = (states) => {
     if (!states) return;
     for (const [name, state] of Object.entries(states)) console.log(`  skills/${name}: ${state}`);
@@ -383,12 +423,12 @@ try {
 
   if (stamp === head) {
     console.log(`Up to date: .bocode-version == upstream HEAD (${head.slice(0, 7)}). Nothing to do.`);
-    if (flags.skillsDir) {
+    if (skillsDir) {
       const states = doSkills();
       printSkills(states);
       if (Object.values(states).some((s) => s === "stale" || s === "missing")) {
         if (flags.mode === "apply") {
-          installSkills(root, flags.skillsDir);
+          installSkills(root, skillsDir);
           console.log("Skills re-installed into the agent skills directory.");
         } else {
           console.error("Skills are stale — rerun with --apply (or copy the four skills by hand).");
@@ -419,8 +459,17 @@ try {
   }
 
   if (flags.mode === "apply") {
+    if (flags.ffOnly) {
+      const human = items.filter((it) => ["merged", "diverged-delete", "missing"].includes(it.state));
+      if (human.length) {
+        console.error(`--ff-only: not fast-forwardable — ${human.length} item(s) need a human decision:`);
+        human.forEach((it) => console.error(`  ${it.state.padEnd(15)} ${it.path}`));
+        console.error("Nothing was touched. Merge or --keep per UPGRADE.md, then rerun.");
+        process.exit(1);
+      }
+    }
     const actions = applyItems(items, root);
-    if (flags.skillsDir) installSkills(root, flags.skillsDir);
+    if (skillsDir) installSkills(root, skillsDir);
     actions.forEach((a) => console.log(a));
 
     // Recompute from disk: the gate trusts the tree, not the plan.
@@ -434,7 +483,7 @@ try {
     }
 
     writeFileSync(path.join(root, ".bocode-version"), head + "\n");
-    const report = writeReport(root, stamp, head, items2, flags.skillsDir ? "re-installed via --skills-dir" : "not checked (no --skills-dir given)");
+    const report = writeReport(root, stamp, head, items2, skillsDir ? `re-installed into ${skillsDir}` : "not checked (no --skills-dir given, none configured)");
     console.log(`Verify green. Stamp → ${head.slice(0, 7)}. Report: ${path.relative(root, report)}`);
 
     const index = runIndex(root);

@@ -17,11 +17,11 @@
 BoCode 把仓库分成两半：`code/` 放源代码，`book/` 放文档和知识库，两边互相驱动。它是为现在最常见的开发方式设计的：人和 AI agent 一起写代码。agent 快，也有记忆，可记忆只归它自己：人读不懂、管不了。项目知识放在哪里、给谁读，决定了开发是又快又稳，还是快得让人心里没底。
 
 <details>
-<summary><b>最近更新</b> · 2026-11-07 — 升级链路变成工具把关的同步（ADR-012）</summary>
+<summary><b>最近更新</b> · 2026-11-07 — 会话开场检测更新，自动同步需授权（ADR-013）</summary>
 
+- **2026-11-07** — 会话开场检测更新，自动同步需授权（ADR-013）
 - **2026-11-07** — 升级链路变成工具把关的同步（ADR-012）
 - **2026-11-07** — 三语 README 与现行关卡对齐
-- **2026-11-06** — 精选 ub-mode 实践（ADR-011）
 
 完整历史与采用方操作见 [CHANGELOG.md](CHANGELOG.md)
 
@@ -208,7 +208,7 @@ cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-sk
 能。把 [ADOPT.md](ADOPT.md) 交给你的 AI agent——这是写给 agent 的分步改造手册：盘点项目、搭 book 骨架、定布局、迁文档、装工具链和 skills、写第一笔回写。想手工来也行：把 `book/`、`skills/`、`scripts/`、`.githooks/`、`AGENTS.md`、`code/tools/` 拷过去，已有文档并进 book，跑一次索引生成。
 
 **我的项目装的是老版 BoCode，怎么升级？**
-同步工具随项目自带：`cd code && npm run bocode:doctor` 查落后，`npm run bocode:upgrade -- --check` 逐文件列出每个模板属主变更的处置，`--apply` 刷新无改动文件、从盘上复核、往你的 `book/changelogs/` 落一份报告。`--verify` 退出 0 才算同步完成——不是 agent 说完成就算。[UPGRADE.md](UPGRADE.md) 是手册，[CHANGELOG.md](CHANGELOG.md) 列着戳之后的所有变更。
+同步工具随项目自带：`cd code && npm run bocode:doctor` 查落后，`npm run bocode:upgrade -- --check` 逐文件列出每个模板属主变更的处置，`--apply` 刷新无改动文件、从盘上复核、往你的 `book/changelogs/` 落一份报告。`--verify` 退出 0 才算同步完成——不是 agent 说完成就算。会话开场自动查落后；可选的 `.bocode.json`（`autoSync`、`skillsTool`）决定同步自动到什么程度。[UPGRADE.md](UPGRADE.md) 是手册，[CHANGELOG.md](CHANGELOG.md) 列着戳之后的所有变更。
 
 **会绑死语言或技术栈吗？**
 不会。book 全是 Markdown，脚本是零依赖纯 Node。`code/` 里放什么随意——模板自己的 `code/` 也只放了工具。

@@ -26,6 +26,7 @@ book/
 ## Session discipline
 
 **Starting work:**
+0. Sync check: `cd code && npm run bocode:doctor -- --strict` — clean or offline → continue; behind upstream → the upgrade contract below says what to do (ask the user, or run the conflict-free sync yourself when `.bocode.json` opts in). Never interrupt a task in progress for it.
 1. Read `book/README.md` for the full map.
 2. Read `AGENTS.md` for the repository's rules and hard constraints.
 3. Before coding anything: check `book/guidelines/` for the baseline, and search `book/notes/learn/` for related experience.
@@ -38,7 +39,7 @@ book/
 
 1. **Index contract**: every new book document starts with frontmatter `description` — one plain-language line about the *content* (not the genre). After any book change, run `cd code && npm run book:index`; the build fails on a missing description, and that's the point.
 2. **Record-only contract**: problems found during review or wrap-up are recorded to `notes/issue/`, never fixed in passing. A recorded problem becomes a task; fixing is separate work.
-3. **Upgrade contract**: the template evolves — run `cd code && npm run bocode:doctor` when staleness matters (it compares the `.bocode-version` stamp with the BoCode repository, https://github.com/Focus695/BoCode). A sync follows `UPGRADE.md` at the project root: `npm run bocode:upgrade -- --check` → merge what's flagged → `--apply` (pass `--skills-dir` so the agent skills re-install too). The sync is done only when `--verify` exits green — never when you feel done.
+3. **Upgrade contract**: the template evolves — run `cd code && npm run bocode:doctor -- --strict` at session start (it compares the `.bocode-version` stamp with the BoCode repository, https://github.com/Focus695/BoCode). Behind → sync per `UPGRADE.md`: `--check` → merge what's flagged → `--apply` (pass `--skills-dir`, or declare it once in `.bocode.json` so skills re-install automatically) → done only when `--verify` exits green, never when you feel done. `.bocode.json`'s `autoSync` sets who pulls the trigger: `ask` (default) — offer, the user decides; `auto` — you run the conflict-free subset yourself (`--apply --ff-only`, which refuses before touching anything if any file needs a human decision) and report the result. Human-decision conflicts (`merged` / `diverged-delete` / `missing`) always go to the user.
 
 ## What not to do
 

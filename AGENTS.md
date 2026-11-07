@@ -33,7 +33,7 @@ Git commits and branching strictly follow `book/guidelines/git-workflow.md`: eve
 
 ## Staying current
 
-This workflow's template evolves, and the sync tooling ships with the project (template-owned, refreshes itself on every sync): `cd code && npm run bocode:doctor` reports staleness against the BoCode repository (https://github.com/Focus695/BoCode), and `npm run bocode:upgrade -- --check` lists every template-owned delta since the `.bocode-version` stamp. `UPGRADE.md` at the root is the playbook. **A sync is done when `--verify` exits 0 — never when an agent says so** — and the agent-side skills must be re-installed with it (`--skills-dir`).
+This workflow's template evolves, and the sync tooling ships with the project (template-owned, refreshes itself on every sync): `cd code && npm run bocode:doctor` reports staleness against the BoCode repository (https://github.com/Focus695/BoCode), and `npm run bocode:upgrade -- --check` lists every template-owned delta since the `.bocode-version` stamp. `UPGRADE.md` at the root is the playbook. **A sync is done when `--verify` exits 0 — never when an agent says so** — and the agent-side skills must be re-installed with it (`--skills-dir`). Sessions open with a doctor check; an optional `.bocode.json` at the root tunes automation — `autoSync: "ask"` (default) offers the sync, `"auto"` lets the agent run the conflict-free subset via `--apply --ff-only`, and `skillsDir` / `skillsTool` declare where skills install.
 
 ## Document routing
 

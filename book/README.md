@@ -61,6 +61,7 @@ description: Master index of the book — the map of every document. Regenerate 
 - [ADR-010-archive-by-status-flip-not-by-moving-files.md](docs/decisions/ADR-010-archive-by-status-flip-not-by-moving-files.md) — task and issue entries archive by flipping a frontmatter status and regenerating the index — files never move, the index regroups with open entries first
 - [ADR-011-distill-selected-ub-mode-practices.md](docs/decisions/ADR-011-distill-selected-ub-mode-practices.md) — Selected ub-mode practices supplement project rules for modeling, calculations, testing, defects, terminology, and optional automation
 - [ADR-012-upgrade-sync-becomes-a-tool-gate.md](docs/decisions/ADR-012-upgrade-sync-becomes-a-tool-gate.md) — The upgrade path ships as tooling — bocode-upgrade check/apply/verify diffs the stamp mechanically, a single manifest owns template-vs-project paths, doctor reports staleness, and UPGRADE.md self-refreshes; prose-only guidance is rejected
+- [ADR-013-consent-gated-auto-sync.md](docs/decisions/ADR-013-consent-gated-auto-sync.md) — Sessions open with a doctor staleness check; syncs stay consent-gated — ask by default, auto only for the conflict-free --ff-only subset and only via explicit project opt-in; skills paths are declared, never guessed
 - [README.md](docs/decisions/README.md) — How to write an ADR here — sections, naming, numbering, and when a decision needs a record
 
 ### guidelines/
@@ -82,4 +83,4 @@ description: Master index of the book — the map of every document. Regenerate 
 
 - [README.md](plans/README.md) — Plans directory usage — implementation plans land here after Phase 2 approval, with naming and the plan template
 
-<!-- 27 documents -->
+<!-- 28 documents -->

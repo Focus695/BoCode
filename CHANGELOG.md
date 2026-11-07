@@ -4,6 +4,15 @@ Releases of the BoCode template itself. Adopting projects upgrade with the sync 
 
 When adding an entry, also refresh the collapsed What's-new block near the top of the three READMEs (`README.md`, `README.zh-CN.md`, `README.ja.md`): newest title in the summary line, latest three titles as bullets.
 
+## 2026-11-07 — session-start sync check, consent-gated auto-sync (ADR-013)
+
+Staleness detection was still a manual step. The `bocode` skill now opens every session with `bocode:doctor -- --strict`; an optional project-owned `.bocode.json` tunes automation — `skillsDir` / `skillsTool` declare where skills install (no more per-run flags), and `autoSync` sets who pulls the trigger: `ask` (default) offers the sync, `auto` lets the agent run the conflict-free subset itself. The new `--apply --ff-only` gate refuses **before touching anything** when any file needs a human decision (`merged` / `diverged-delete` / `missing`), so automation can never land half a sync; syncs never interrupt a task in progress.
+
+- Added: `book/docs/decisions/ADR-013-consent-gated-auto-sync.md`
+- Changed: `code/tools/bocode-upgrade.mjs` (`--ff-only`; `.bocode.json` reading — skillsDir/skillsTool/autoSync, flag beats config, unknown values warn and degrade), `code/tools/bocode-doctor.mjs` (config wiring; behind-message names the autoSync policy), `code/tools/bocode-upgrade.test.mjs` (ff-only refusal leaves the tree untouched; ff-only pristine sync; config-driven skills re-install; malformed config degrades — 50 assertions), `skills/bocode/SKILL.md` (session-start step 0 + consent policy in the upgrade contract), `AGENTS.md` (Staying current gains the automation sentence), `UPGRADE.md` (`--ff-only` flag + Automation section), `README.md` / `README.zh-CN.md` / `README.ja.md` (FAQ sentence, What's-new)
+
+**Adopter action:** run your next sync as usual (`bocode:upgrade` picks all of this up itself — the tool upgrades the tool). Optionally create `.bocode.json` at your root (`{"skillsTool": "zcode", "autoSync": "ask"}` — or `"auto"` to let session agents run conflict-free syncs unattended) and re-copy the four skills so the session-start check text lands. Human-decision conflicts keep going to you either way; nothing about ADR-012's verify gate changes.
+
 ## 2026-11-07 — upgrades become a tool-gated sync (ADR-012)
 
 The upgrade path was prose an agent could skim and overclaim (an adopter's agent declared ADR-011 "incorporated" while its new reference file was missing); the playbook was deleted on install; the agent-side skills never re-installed; the stamp was compared against nothing. Syncing is now tool-gated: `bocode-upgrade` diffs the stamp mechanically, `--verify` exits 0 only when every template-owned delta is applied, merged, or consciously kept, `bocode:doctor` reports staleness, and a single `MANIFEST` owns template-vs-project paths for both the sync and the release gate.

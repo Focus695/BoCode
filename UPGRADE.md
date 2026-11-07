@@ -14,7 +14,18 @@ npm run bocode:upgrade -- --apply              # copy pristine/new files, then v
 npm run bocode:upgrade -- --verify             # the gate — exit 0 or the sync is not done
 ```
 
-All three take `--repo <path>` (a local BoCode clone instead of cloning GitHub), `--skills-dir <dir>` (check or re-install the four skills), `--stamp <sha>` (set the baseline by hand), and `--keep <path>` (declare a template path consciously kept local).
+All three take `--repo <path>` (a local BoCode clone instead of cloning GitHub), `--skills-dir <dir>` (check or re-install the four skills), `--stamp <sha>` (set the baseline by hand), `--keep <path>` (declare a template path consciously kept local), and `--apply --ff-only` (the automation-safe subset: refuse **before touching anything** when any file needs a human decision — `merged`, `diverged-delete`, `missing`).
+
+## Automation (session-start check)
+
+The `bocode` skill runs `bocode:doctor -- --strict` when a session opens. An optional `.bocode.json` at the project root (project-owned, never touched by syncs) tunes it:
+
+```json
+{ "skillsTool": "zcode", "autoSync": "ask" }
+```
+
+- `skillsDir` (relative or `~/...`) or `skillsTool` (`zcode` | `claude`) — where the four skills install, so re-install needs no flag
+- `autoSync` — `"ask"` (default): the agent offers the sync, the user decides; `"auto"`: the agent runs the conflict-free sync itself (`--apply --ff-only`) and reports. Human-decision conflicts always surface to the user, and a sync never interrupts a task in progress.
 
 ## What is template-owned vs project-owned
 

@@ -230,6 +230,57 @@ try {
     ok(!/\n\s+at /.test(out), "no raw stack trace in the output");
   }
 
+  // 8d. --ff-only refuses before touching anything when a human decision is pending
+  {
+    const ff = path.join(tmp, "adopter-ff");
+    gitInit(ff);
+    checkoutTree(upstream, STAMP, ff);
+    writeFileSync(path.join(ff, ".bocode-version"), STAMP + "\n");
+    write(ff, "book/guidelines/writing-style.md", "style v1 + local edit\n"); // forces a merged state
+    const r = run(TOOL, ["--apply", "--repo", upstream, "--ff-only"], ff);
+    const out = r.stdout + r.stderr;
+    ok(r.status === 1 && out.includes("not fast-forwardable"), "ff-only refuses when a merge is pending");
+    ok(out.includes("writing-style.md"), "ff-only names the blocking file");
+    ok(readFileSync(path.join(ff, "book/guidelines/workflow.md"), "utf8") === "workflow v1\n", "ff-only refusal left the tree untouched");
+    ok(!existsSync(path.join(ff, "skills/boscope/references/automation-tools.md")), "ff-only refusal installed nothing");
+    ok(readFileSync(path.join(ff, ".bocode-version"), "utf8").trim() === STAMP, "ff-only refusal left the stamp unchanged");
+  }
+
+  // 8e. --ff-only sails through a pristine adopter
+  {
+    const ff = path.join(tmp, "adopter-ff2");
+    gitInit(ff);
+    checkoutTree(upstream, STAMP, ff);
+    writeFileSync(path.join(ff, ".bocode-version"), STAMP + "\n");
+    const r = run(TOOL, ["--apply", "--repo", upstream, "--ff-only"], ff);
+    ok(r.status === 0, "ff-only apply exits 0 on a pristine adopter");
+    ok(readFileSync(path.join(ff, "book/guidelines/workflow.md"), "utf8") === "workflow v2\n", "ff-only apply copied the delta");
+    ok(readFileSync(path.join(ff, ".bocode-version"), "utf8").trim() === HEAD, "ff-only apply advanced the stamp");
+  }
+
+  // 8f. .bocode.json drives skills re-install without a --skills-dir flag
+  {
+    const c = path.join(tmp, "adopter-cfg");
+    gitInit(c);
+    checkoutTree(upstream, HEAD, c);
+    writeFileSync(path.join(c, ".bocode-version"), HEAD + "\n");
+    write(c, ".bocode.json", JSON.stringify({ skillsDir: "local-skills", autoSync: "auto" }, null, 2) + "\n");
+    write(c, "local-skills/boscope/SKILL.md", "boscope v1\n"); // stale on purpose
+    const r = run(TOOL, ["--apply", "--repo", upstream], c);
+    ok(r.status === 0, "config-only apply exits 0");
+    ok(readFileSync(path.join(c, "local-skills/boscope/SKILL.md"), "utf8") === "boscope v2\n", "skillsDir from .bocode.json was used for re-install");
+  }
+
+  // 8g. malformed config values degrade with a warning, never crash
+  {
+    const c = path.join(tmp, "adopter-cfg");
+    write(c, ".bocode.json", '{"autoSync": "yolo", "skillsTool": "unknown-tool"}\n');
+    const d = run(DOCTOR, ["--remote", upstream], c);
+    const out = d.stdout + d.stderr;
+    ok(d.status === 0 && out.includes('unknown autoSync "yolo"'), "unknown autoSync warns and falls back to ask");
+    ok(out.includes('unknown skillsTool "unknown-tool"'), "unknown skillsTool warns and is ignored");
+  }
+
   // 9. doctor: behind / current / stale skills, --remote against the local fixture
   {
     writeFileSync(path.join(adopter, ".bocode-version"), STAMP + "\n"); // temporarily behind
