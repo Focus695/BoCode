@@ -4,6 +4,14 @@ Releases of the BoCode template itself. Adopting projects upgrade by handing [UP
 
 When adding an entry, also refresh the collapsed What's-new block near the top of the three READMEs (`README.md`, `README.zh-CN.md`, `README.ja.md`): newest title in the summary line, latest three titles as bullets.
 
+## 2026-11-07 — trilingual readmes aligned with the current gates
+
+The readme bodies predated two shipped changes: they said every feature runs the six gates (task tiers landed with ADR-008 — S runs a light channel), and they said Phase 2 waits for user approval (the stop rule has fired only on real gaps since the phase-2 alignment). The zh-CN and ja bodies also missed the what-you-gain sentence under the adoption line.
+
+- Changed: `README.md`, `README.zh-CN.md`, `README.ja.md` (tier-first sentence before the phase table; Phase-2 gate and design-intent paragraph state the real-gaps rule with its three examples; Phase-3 gate reads per design, not approved; zh/ja gain the what-you-gain paragraph; What's-new refreshed)
+
+**Adopter action:** none — the readmes are the template's own front page; your project's readme stays yours.
+
 ## 2026-11-06 — selected ub-mode practices (ADR-011)
 
 Selected practices from Robert C. Martin's [ub-mode](https://github.com/unclebob/ub-mode/blob/master/SKILL.md) supplement the existing phases where useful: valid state modeling, pure business calculations, behavior-focused tests, evidence-based defect repairs, shared domain terms, and complexity review. Automation samples remain an optional boscope reference, outside the general workflow and review checklist. Project rules and user requirements take precedence over this supplementary guidance. No phases, approval gates, required review items, mandatory tools, or fixed thresholds are added. Context-management, action logs, metrics-tool dependencies, and worktree cleanup are excluded; existing validation and data-ownership rules remain.
