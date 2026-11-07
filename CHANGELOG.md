@@ -4,6 +4,23 @@ Releases of the BoCode template itself. Adopting projects upgrade by handing [UP
 
 When adding an entry, also refresh the collapsed What's-new block near the top of the three READMEs (`README.md`, `README.zh-CN.md`, `README.ja.md`): newest title in the summary line, latest three titles as bullets.
 
+## 2026-11-07 — trilingual readmes aligned with the current gates
+
+The readme bodies predated two shipped changes: they said every feature runs the six gates (task tiers landed with ADR-008 — S runs a light channel), and they said Phase 2 waits for user approval (the stop rule has fired only on real gaps since the phase-2 alignment). The zh-CN and ja bodies also missed the what-you-gain sentence under the adoption line.
+
+- Changed: `README.md`, `README.zh-CN.md`, `README.ja.md` (tier-first sentence before the phase table; Phase-2 gate and design-intent paragraph state the real-gaps rule with its three examples; Phase-3 gate reads per design, not approved; zh/ja gain the what-you-gain paragraph; What's-new refreshed)
+
+**Adopter action:** none — the readmes are the template's own front page; your project's readme stays yours.
+
+## 2026-11-06 — selected ub-mode practices (ADR-011)
+
+Selected practices from Robert C. Martin's [ub-mode](https://github.com/unclebob/ub-mode/blob/master/SKILL.md) supplement the existing phases where useful: valid state modeling, pure business calculations, behavior-focused tests, evidence-based defect repairs, shared domain terms, and complexity review. Automation samples remain an optional boscope reference, outside the general workflow and review checklist. Project rules and user requirements take precedence over this supplementary guidance. No phases, approval gates, required review items, mandatory tools, or fixed thresholds are added. Context-management, action logs, metrics-tool dependencies, and worktree cleanup are excluded; existing validation and data-ownership rules remain.
+
+- Added: `book/docs/decisions/ADR-011-distill-selected-ub-mode-practices.md` — the selection, adaptations, and scope boundaries; `skills/boscope/references/automation-tools.md` — the optional method and sample-storage guidance
+- Changed: `skills/boscope/SKILL.md` (defect evidence and premise checks in Phase 1, state modeling, terminology and an optional reading pointer in Phase 2, calculation boundaries in Phase 3, behavior tests and repair verification in Phase 4); `skills/README.md` (entry points and reference installation); `book/guidelines/workflow.md` (matching principles); `book/guidelines/README.md` (check count and terminology pointer); `book/guidelines/writing-style.md` (use the existing domain glossary); `book/guidelines/architecture.md` (optional inline glossary guidance); `book/guidelines/coding-style.md` (optional complexity-check configuration)
+
+**Adopter action:** sync the entire `skills/boscope/` directory, `skills/README.md`, and `book/guidelines/{workflow,README,writing-style}.md` per UPGRADE.md, preserving project edits; sync any translated boscope variants and their reference pointers. Do not copy only `SKILL.md` and leave its reference behind. `architecture.md` and `coding-style.md` are project-owned after adoption: do not overwrite them. When useful, offer the glossary and optional complexity-check guidance for manual incorporation into those documents. No new sample directory or mandatory glossary file is required; retained samples follow existing test/fixture conventions.
+
 ## 2026-11-06 — phase-2 stop rule aligned, L-tier ADR trigger decidable
 
 The task-tiers replay (ADR-008) caught two leftovers: boscope still required Phase-2 approval while workflow.md, AGENTS.md, and the newer skill variants stop only on real gaps; and the L row's "an ADR when impact warrants" carried no criterion.

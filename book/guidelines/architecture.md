@@ -12,6 +12,7 @@ description: Template for your project's long-term architecture rules — bounda
 2. **Module map** — the top-level modules/processes, their responsibilities, and who talks to whom. One sentence per module is enough; details live in snapshots.
 3. **Technology baseline** — languages, frameworks, storage, and the rule for swapping any of them (usually: via an adapter, never via a rewrite).
 4. **Data ownership** — for each store or dataset, the single module allowed to write it.
+5. **Domain terms (when needed)** — when concepts need clarification or terms are used inconsistently, keep a short glossary here: each term's meaning, code name, and distinction from similar concepts. Reuse existing definitions across docs, interfaces, and code; split the glossary into a linked document only when it grows. Terminology work stays within the task's scope.
 
 ## Worked example: boundary invariants
 

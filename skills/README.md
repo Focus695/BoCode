@@ -1,6 +1,6 @@
 # Skills
 
-Four self-contained skills implement the BoCode workflow for AI agents. Each is a single `SKILL.md` in the standard format (frontmatter with `name` and `description`, then the body) — no code, no dependencies.
+Four skills implement the BoCode workflow for AI agents. Each has a `SKILL.md` entry point in the standard format (frontmatter with `name` and `description`, then the body) — no code, no dependencies. A skill can include optional references: boscope's [automation tools guide](boscope/references/automation-tools.md) is read only when relevant, not as a separate skill.
 
 | Skill | Does | Triggers |
 |-------|------|----------|
@@ -13,7 +13,7 @@ Division of labor: **skills say when and how** (executable behavior for the agen
 
 ## Installation
 
-Copy the four skill directories into your agent's skills folder:
+Copy the four skill directories, including any `references/` subdirectories, into your agent's skills folder:
 
 - **ZCode**: `~/.zcode/skills/` (user-wide) or `<project>/.zcode/skills/` (per project)
 - **Claude Code**: `~/.claude/skills/` or `<project>/.claude/skills/`

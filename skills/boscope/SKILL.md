@@ -15,6 +15,8 @@ Grade the task first (tier first, below). An M/L feature then splits into **brie
 
 **Core principle:** a request that says *what* but not *why / scope / boundaries* is not ready for code. Fill the gaps first; then surface the axes the user didn't know were missing.
 
+The ub-mode-derived practices below are supplementary and apply only where useful within the current task. The user's requirements and the project's workflow, task tiers, architecture, and coding conventions take precedence; skip or adapt any conflicting practice. These practices add no phase, approval gate, or required review item.
+
 ## Tier first — grade before anything (REQUIRED — before Step 0)
 
 Grade the task against the tier table in `book/guidelines/task-tiers.md` (the criteria live there, not here — this project's copy, with its always-L list). The tier is a fact about the change, not a preference; it lands in the first commit's motive.
@@ -63,15 +65,23 @@ Render the brief below and fill every slot. For empty slots you have two duties:
 
 Understand the requirement → find the relevant code → trace the call chain → map the impact → flag risks. **No code changes.**
 
+**For defects, establish the cause.** Reproduce the failure or collect checkable failure evidence, then locate its cause before editing. If reproduction is unavailable, separate confirmed evidence from hypotheses and state how the fix will be verified. A guard that merely hides the failure is not a fix. If two fixes sharing a premise fail the same verification, state that premise and recheck it against evidence before trying another fix.
+
 **Output:** impact map + risk list.
 
 ### Phase 2: Design
 
 **Output:** data flow, sequence diagram (optional), file change list, new interfaces, permission design, notification design, experience surfaces (defaults, empty states, error messages), test points.
 
+Where practical, represent valid state combinations in types or data structures so invalid combinations cannot be constructed.
+
 **Derive, don't analogize.** Design and estimate bottom-up: decompose to primitives — what the data actually is, what the code actually does, measured costs — and reason up from there. An analogy ("the last similar feature took three days") is a data point, not an estimate. A gap between the bottom-up answer and the received number marks the real problem.
 
 **Delete before you optimize.** Question every part against its requirement: delete what nothing calls for, simplify what remains, and only then optimize or speed up. If nothing ever gets added back, you're deleting too little; optimizing a part that shouldn't exist is waste, faster.
+
+When developing batch or repetitive-task tools, consult the optional [automation tools guide](references/automation-tools.md) as needed.
+
+**Use the domain's terms.** Reuse existing definitions across the design, interfaces, and code. When concepts need clarification or terms are used inconsistently, add or update a short glossary with each term's meaning, code name, and distinction from similar concepts. Keep it in the existing architecture document; split it only when it grows. Do not rename unrelated code to enforce terminology.
 
 **Design is how it works.** The surfaces the user touches — defaults, empty states, error messages — are the design itself, not decoration on the data flow. A design that needs explaining before it works gets simplified, not documented.
 
@@ -85,11 +95,17 @@ Understand the requirement → find the relevant code → trace the call chain �
 
 Strictly per the design. **No changes outside scope, no refactors, no new abstractions.** Match the existing code's style.
 
+Where practical, keep business calculations as pure functions with explicit inputs and outputs, separate from database, file, and network operations.
+
 ### Phase 4: Testing (test-first)
 
 Write a failing test → write the minimal implementation that passes → refactor with tests green. This loop is the iteration engine — run it fast and let it fail: a red test is data, not a setback. Iterate freely inside the phase, never past the gate. What crosses the gate crosses it polished — defaults chosen, errors worded, edges handled.
 
 **Coverage (all required):** normal path · permission checks · boundaries (input ranges / empty / extremes) · error paths · regression (existing behavior intact).
+
+Test through the caller's interface and assert observable results and required side effects; avoid coupling tests to private call sequences.
+
+For defects, verify the original failure is resolved and existing behavior holds; distinguish verified results from remaining uncertainty.
 
 **Gate:** all relevant tests pass, and no assertion was weakened to make them pass.
 
