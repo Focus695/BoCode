@@ -8,6 +8,8 @@ description: Six-phase gate workflow with the eight code↔book interaction rule
 
 Grade the task first — S, M, or L per `task-tiers.md`; the tier is decided before any work and lands in the first commit's motive. S runs the light channel and never enters this table. Every M/L feature moves through these phases in order. **No skipping.**
 
+The ub-mode-derived practices below are supplementary and apply only where useful within the current task. The user's requirements and the project's workflow, task tiers, architecture, and coding conventions take precedence; skip or adapt any conflicting practice. These practices add no phase, approval gate, or required review item.
+
 | Phase | Name | Output | Gate |
 |------|------|--------|------|
 | Step 0 | Structured requirements brief | Requirements brief | Every slot filled |
@@ -20,9 +22,17 @@ Grade the task first — S, M, or L per `task-tiers.md`; the tier is decided bef
 
 Step 0 comes before any code (M and L). Fill the brief: background, scope (what it affects, what it explicitly does **not** affect, and the boundaries), and the requirement itself. An empty "does not affect" list is the number-one cause of out-of-scope changes in Phase 3 — the exclusions slot is required. Requirements arrive as suggestions; physics is the only law — correctness, data integrity, and the user's explicit hard constraints don't negotiate, while convention, past practice, and "how it's done" do. Question the inherited HOW; the user's WHAT holds (reasoning and sources in ADR-005, in the BoCode repository's `book/docs/decisions/`). The stated request is a proxy — the experience behind it is the requirement: capture what the user will see, do, and get. Focus is saying no; the exclusions slot gives the feature its shape (ADR-006).
 
+For defect work, Phase 1 reproduces the failure or gathers checkable failure evidence and locates the cause before code changes. If reproduction is unavailable, distinguish facts from hypotheses and state how the fix will be verified. Suppressing an error alone does not establish a repair. If two fixes sharing a premise fail the same verification, state and recheck that premise before trying another fix (ADR-011).
+
 Phase 2 produces the full design — data flow, file list, interfaces — and proceeds; it stops for the user only when a real gap appears (scope conflict, undetermined data shape, unclear external dependency), never just for confirmation. Designs and estimates derive bottom-up from primitives — what the data and code actually are — never by analogy to last time; delete what no requirement calls for before optimizing anything that remains. Design is how it works — the surfaces the user touches (defaults, empty states, error messages) are designed with the data flow, never decorated after it (ADR-006).
 
+When domain concepts need clarification or terms are used inconsistently, maintain a short glossary in the existing architecture document, with meanings, code names, and distinctions; split it only when it grows. Use those terms consistently across docs, interfaces, and code (ADR-011).
+
+Where practical, Phase 2 uses types or data structures to exclude invalid state combinations. Phase 3 keeps business calculations as pure functions with explicit inputs and outputs, separate from database, file, and network operations (ADR-011).
+
 Phase 4's hard part is the gate, not the sequence: all relevant tests green, no assertion weakened to get there, coverage of the normal path, boundary inputs (ranges, empty, extremes), error paths, and a regression check that existing behavior didn't break. Test-first (write a failing test → minimum implementation → refactor staying green) is the default loop — sequence the work however keeps the gate honest. Iterate fast inside the phase; polish at the gate — what crosses a gate is finished: defaults chosen, errors worded, edges handled (ADR-006).
+
+Phase 4 tests observable results and required side effects through the caller's interface, avoiding dependence on private call sequences. For defects, it verifies that the original failure is resolved and existing behavior holds; unverified outcomes remain explicit (ADR-011).
 
 Phases 5 and 6 share one discipline: **record, never fix.** A problem found during review or wrap-up goes into `notes/issue/` — fixing it is a separate, later task. Fixing in passing feels efficient and destroys the gate: the review no longer reviews what was built.
 

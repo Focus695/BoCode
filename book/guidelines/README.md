@@ -22,7 +22,7 @@ The project's development rules. Every contributor — including AI agents — f
 |--------|-----------|
 | Phases, gates, book sync | `workflow.md` |
 | Grading a task, which channel it runs | `task-tiers.md` |
-| Module boundaries, data ownership, tech swaps | `architecture.md` |
+| Module boundaries, data ownership, tech swaps, domain terms | `architecture.md` |
 | The current shape of modules and data flow | `../docs/architecture/` snapshots |
 | Interface contracts | `../docs/api/` |
 | Writing any book document | `writing-style.md` |

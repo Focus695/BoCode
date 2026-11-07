@@ -31,6 +31,7 @@ Work by pattern, not word-for-word substitution. Rotating synonyms to dodge repe
 - Un-nominalize: "performed an optimization" → what changed, how much faster. "perform / implement / complete + gerund" is the tell
 - Shorten translationese: fewer long attributive chains, fewer passive piles, less "through X, by way of Y, to achieve Z"
 - Don't call the same thing by three different names in adjacent sentences
+- Use the project's domain glossary, when present, as the source for business terms; preserve the distinctions between similar concepts
 - Filler intensifiers ("important", "key", "critical", "core"): trim only when density is clearly too high, or replace with concrete information
 
 ## Intensity levels
