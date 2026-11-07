@@ -5,24 +5,15 @@
 //
 // Fails when the base...head diff touches template-owned content but
 // CHANGELOG.md is not part of the diff. Template-owned = what adopting
-// projects install (guidelines, skills, tooling, agent entry points).
-// The list mirrors the ownership table in UPGRADE.md — keep them in sync.
+// projects install (guidelines, skills, tooling, agent entry points) plus
+// the template's own front matter. The path list lives in MANIFEST — the
+// single source of truth exported by code/tools/bocode-upgrade.mjs
+// (ADR-012); UPGRADE.md restates it for humans.
 
 import { execSync } from "node:child_process";
+import { MANIFEST } from "../code/tools/bocode-upgrade.mjs";
 
-const TEMPLATE_PREFIXES = [
-  "AGENTS.md",
-  "ADOPT.md",
-  "UPGRADE.md",
-  "book/guidelines/",
-  "book/docs/decisions/",
-  "skills/",
-  "code/tools/",
-  "code/package.json",
-  "scripts/",
-  ".githooks/",
-  ".github/workflows/",
-];
+const TEMPLATE_PREFIXES = MANIFEST.releaseSignal;
 
 const CHANGELOG = "CHANGELOG.md";
 

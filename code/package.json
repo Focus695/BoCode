@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Project source tree. The only script here is the book index generator — this file has zero dependencies by design.",
+  "description": "Project source tree. Zero-dependency scripts by design: book index, template sync (bocode:*), and the release cleanliness check.",
   "scripts": {
     "book:index": "node tools/gen-book-index.mjs",
-    "book:release-check": "node tools/check-template-clean.mjs"
+    "book:release-check": "node tools/check-template-clean.mjs",
+    "bocode:upgrade": "node tools/bocode-upgrade.mjs",
+    "bocode:doctor": "node tools/bocode-doctor.mjs",
+    "bocode:selftest": "node tools/bocode-upgrade.test.mjs"
   }
 }

@@ -38,7 +38,7 @@ book/
 
 1. **Index contract**: every new book document starts with frontmatter `description` — one plain-language line about the *content* (not the genre). After any book change, run `cd code && npm run book:index`; the build fails on a missing description, and that's the point.
 2. **Record-only contract**: problems found during review or wrap-up are recorded to `notes/issue/`, never fixed in passing. A recorded problem becomes a task; fixing is separate work.
-3. **Upgrade contract**: the template evolves — when the user asks to sync BoCode or the workflow feels stale, read `UPGRADE.md` and `CHANGELOG.md` from the BoCode repository (https://github.com/Focus695/BoCode); the project's `.bocode-version` stamp is the baseline to diff against.
+3. **Upgrade contract**: the template evolves — run `cd code && npm run bocode:doctor` when staleness matters (it compares the `.bocode-version` stamp with the BoCode repository, https://github.com/Focus695/BoCode). A sync follows `UPGRADE.md` at the project root: `npm run bocode:upgrade -- --check` → merge what's flagged → `--apply` (pass `--skills-dir` so the agent skills re-install too). The sync is done only when `--verify` exits green — never when you feel done.
 
 ## What not to do
 

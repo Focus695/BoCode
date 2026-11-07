@@ -78,7 +78,7 @@ ${DESC}
 
 This project runs on the BoCode workflow.
 EOF
-rm -f README.zh-CN.md README.ja.md ADOPT.md CHANGELOG.md UPGRADE.md
+rm -f README.zh-CN.md README.ja.md ADOPT.md CHANGELOG.md
 
 # 4. Clear BoCode's own living records
 for kind in learn summary issue; do
@@ -126,5 +126,7 @@ echo "  2. Point your AI agent at AGENTS.md (most tools pick it up automatically
 echo "  3. Fill in book/guidelines/architecture.md and coding-style.md for your project."
 echo "  4. Set your remote:"
 echo "       git remote add origin <url>"
-echo "  5. To upgrade later: an agent reads UPGRADE.md + CHANGELOG.md at"
-echo "       https://github.com/Focus695/BoCode (your .bocode-version pins the baseline)."
+echo "  5. To upgrade later (the tooling ships with the project):"
+echo "       cd code && npm run bocode:doctor        # am I behind upstream?"
+echo "       npm run bocode:upgrade -- --check       # per-file disposition list"
+echo "       UPGRADE.md at the root is the playbook; .bocode-version pins the baseline."

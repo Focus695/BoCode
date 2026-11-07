@@ -1,8 +1,17 @@
 # Changelog
 
-Releases of the BoCode template itself. Adopting projects upgrade by handing [UPGRADE.md](UPGRADE.md) to an agent; each entry lists what changed and what an adopting project must do. History before 2026-11-05 lives in git log and [book/docs/decisions/](book/docs/decisions/) (ADR-001..ADR-004).
+Releases of the BoCode template itself. Adopting projects upgrade with the sync tooling that ships with them — `cd code && npm run bocode:upgrade` per [UPGRADE.md](UPGRADE.md); each entry lists what changed and what an adopting project must do. History before 2026-11-05 lives in git log and [book/docs/decisions/](book/docs/decisions/) (ADR-001..ADR-004).
 
 When adding an entry, also refresh the collapsed What's-new block near the top of the three READMEs (`README.md`, `README.zh-CN.md`, `README.ja.md`): newest title in the summary line, latest three titles as bullets.
+
+## 2026-11-07 — upgrades become a tool-gated sync (ADR-012)
+
+The upgrade path was prose an agent could skim and overclaim (an adopter's agent declared ADR-011 "incorporated" while its new reference file was missing); the playbook was deleted on install; the agent-side skills never re-installed; the stamp was compared against nothing. Syncing is now tool-gated: `bocode-upgrade` diffs the stamp mechanically, `--verify` exits 0 only when every template-owned delta is applied, merged, or consciously kept, `bocode:doctor` reports staleness, and a single `MANIFEST` owns template-vs-project paths for both the sync and the release gate.
+
+- Added: `code/tools/bocode-upgrade.mjs` (check/apply/verify, the MANIFEST single source, `--skills-dir` skill re-install, sync report into the adopter's `book/changelogs/`), `code/tools/bocode-doctor.mjs` (staleness checkup), `code/tools/bocode-upgrade.test.mjs` (no-network selftest), `book/docs/decisions/ADR-012-upgrade-sync-becomes-a-tool-gate.md`
+- Changed: `code/package.json` (`bocode:upgrade` / `bocode:doctor` / `bocode:selftest` scripts), `UPGRADE.md` (rewritten around the tool; now template-owned and self-refreshing), `ADOPT.md` (installs all of `code/tools/` + `UPGRADE.md`, skills re-install obligation, doctor + selftest in verification), `scripts/init-project.sh` (keeps `UPGRADE.md`; next-steps point at the local tooling), `scripts/check-release-changelog.mjs` (imports `MANIFEST.releaseSignal`; the signal now also covers the three READMEs), `AGENTS.md` (Staying current → local tooling, "done means `--verify` exits 0"), `skills/bocode/SKILL.md` (upgrade contract rewritten), `skills/README.md` (re-install on every upgrade), `README.md` / `README.zh-CN.md` / `README.ja.md` (FAQ, tour, What's-new)
+
+**Adopter action:** bootstrap once — copy `code/tools/bocode-upgrade.mjs`, `bocode-doctor.mjs`, and `bocode-upgrade.test.mjs` from the BoCode repository into your `code/tools/`, add the three `bocode:*` entries to your `code/package.json` scripts, copy `UPGRADE.md` to your root (it is template-owned from now on). Then run `npm run bocode:selftest` (green), `npm run bocode:upgrade -- --check`, `--apply` (pass `--skills-dir <dir>` so the four skills re-install — stale installed skills are the top reason an upgraded repo still behaves old), and rerun until `--verify` is green. If you kept `scripts/check-release-changelog.mjs`, re-copy it too — it now imports the manifest. Do not skip the skills re-install; do not declare the sync done from the CHANGELOG reading alone — the verify exit code is the only proof.
 
 ## 2026-11-07 — trilingual readmes aligned with the current gates
 
