@@ -207,6 +207,29 @@ try {
     ok(run(TOOL, ["--verify", "--repo", upstream, "--keep", "book/guidelines/review-checklist.md"], adopter3).status === 0, "--keep records the kept file and passes");
   }
 
+  // 8b. the skills-dir guard: a stray same-named directory is never deleted
+  {
+    const stray = path.join(tmp, "stray-skills");
+    write(stray, "bocode/important.txt", "not a skill\n");
+    const r = run(TOOL, ["--apply", "--repo", upstream, "--skills-dir", stray], adopter);
+    const out = r.stdout + r.stderr;
+    ok(r.status === 1 && out.includes("SKILL.md"), "guard refuses a --skills-dir holding a stray bocode/");
+    ok(existsSync(path.join(stray, "bocode", "important.txt")), "the stray directory is left intact");
+  }
+
+  // 8c. malformed local package.json: readable error, no raw stack
+  {
+    const broken = path.join(tmp, "adopter-broken-pkg");
+    gitInit(broken);
+    checkoutTree(upstream, HEAD, broken);
+    writeFileSync(path.join(broken, ".bocode-version"), STAMP + "\n");
+    writeFileSync(path.join(broken, "code/package.json"), "{ oops\n");
+    const r = run(TOOL, ["--check", "--repo", upstream], broken);
+    const out = r.stdout + r.stderr;
+    ok(r.status === 1 && out.includes("not valid JSON"), "malformed package.json fails with a readable error");
+    ok(!/\n\s+at /.test(out), "no raw stack trace in the output");
+  }
+
   // 9. doctor: behind / current / stale skills, --remote against the local fixture
   {
     writeFileSync(path.join(adopter, ".bocode-version"), STAMP + "\n"); // temporarily behind

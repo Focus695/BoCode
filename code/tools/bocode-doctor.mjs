@@ -11,8 +11,7 @@
 import { execSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-import { DEFAULT_REMOTE, skillsStates } from "./bocode-upgrade.mjs";
+import { DEFAULT_REMOTE, adopterRoot, skillsStates } from "./bocode-upgrade.mjs";
 
 function parseArgs(argv) {
   const flags = {};
@@ -24,14 +23,6 @@ function parseArgs(argv) {
     else { console.error(`Unknown argument: ${a}`); process.exit(2); }
   }
   return flags;
-}
-
-function adopterRoot() {
-  try {
-    return execSync("git rev-parse --show-toplevel", { encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] }).trim();
-  } catch {
-    return path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
-  }
 }
 
 const flags = parseArgs(process.argv.slice(2));

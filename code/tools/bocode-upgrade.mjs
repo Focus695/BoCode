@@ -112,7 +112,7 @@ function usage(code) {
 
 // The adopting project's root. Git first (adopters are repos); fall back to
 // this script's location (code/tools/ -> root two levels up).
-function adopterRoot() {
+export function adopterRoot() {
   try {
     return execSync("git rev-parse --show-toplevel", { encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] }).trim();
   } catch {
@@ -191,10 +191,18 @@ function classify(entry, repo, stamp, head, root, keeps) {
 }
 
 function classifyPackage(repo, head, root) {
-  const upPkg = JSON.parse(gitBuf(repo, `show ${head}:code/package.json`).toString("utf8"));
+  const parseOrQuit = (text, what) => {
+    try {
+      return JSON.parse(text);
+    } catch (e) {
+      console.error(`${what} is not valid JSON: ${e.message}`);
+      process.exit(1);
+    }
+  };
+  const upPkg = parseOrQuit(gitBuf(repo, `show ${head}:code/package.json`).toString("utf8"), "upstream code/package.json");
   const localPath = path.join(root, "code/package.json");
   const local = existsSync(localPath)
-    ? JSON.parse(readFileSync(localPath, "utf8"))
+    ? parseOrQuit(readFileSync(localPath, "utf8"), `${localPath} (fix the JSON, or delete the file and rerun to regenerate the scripts block)`)
     : { scripts: {} };
   const upScripts = upPkg.scripts || {};
   const missing = Object.entries(upScripts).filter(([k, v]) => (local.scripts || {})[k] !== v).map(([k]) => k);
@@ -281,6 +289,13 @@ function installSkills(root, skillsDir) {
     const src = path.join(root, "skills", s);
     if (!existsSync(src)) continue;
     const dst = path.join(skillsDir, s);
+    // A mistyped --skills-dir must not delete unrelated same-named directories:
+    // only ever replace a directory that already looks like the skill.
+    if (existsSync(dst) && !existsSync(path.join(dst, "SKILL.md"))) {
+      console.error(`Refusing to overwrite ${dst}: it exists but holds no SKILL.md — that is not the skill directory.`);
+      console.error("Check --skills-dir; if the stray directory is yours, delete or rename it by hand, then rerun.");
+      process.exit(1);
+    }
     rmSync(dst, { recursive: true, force: true });
     cpSync(src, dst, { recursive: true });
   }
