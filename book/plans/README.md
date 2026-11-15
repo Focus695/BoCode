@@ -21,7 +21,7 @@ status: draft | approved | in_progress | completed
 # <feature> — plan
 
 ## Requirements brief
-<the essentials from Step 0 — background, scope, exclusions>
+<the essentials from Step 0 — background, scope, exclusions, acceptance scenarios>
 
 ## Impact range
 <Phase 1 output: files, modules, data flows affected>
@@ -41,3 +41,5 @@ status: draft | approved | in_progress | completed
 ```
 
 A plan is executable as written: each step small enough to verify on its own. The done-criteria slot is the finish line — agents stop where the text stops, so an explicit finish line prevents premature stops. When it reads true, flip `status` to `completed`; the plan then doubles as the record of what was intended, next to the summary of what happened.
+
+For L-tier plans, state acceptance as a behavior delta — which observable behaviors the system ADDED, MODIFIED, or REMOVED relative to today — so review sees what changes in behavior, not only what gets built (ADR-014, distilled from OpenSpec).

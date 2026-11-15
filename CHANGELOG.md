@@ -4,6 +4,15 @@ Releases of the BoCode template itself. Adopting projects upgrade with the sync 
 
 When adding an entry, also refresh the collapsed What's-new block near the top of the three READMEs (`README.md`, `README.zh-CN.md`, `README.ja.md`): newest title in the summary line, latest three titles as bullets.
 
+## 2026-11-15 — scenario acceptance criteria and plan behavior deltas (ADR-014)
+
+Distilled from [OpenSpec](https://github.com/Fission-AI/OpenSpec) (Fission-AI, MIT): acceptance criteria in the Step-0 brief are now written as one-line GIVEN/WHEN/THEN scenarios — observable outcomes, normal and error paths — and Phase 4's coverage starts by running down that list; L-tier plans state acceptance as a behavior delta (ADDED/MODIFIED/REMOVED relative to today), so review sees what changes in behavior, not only what gets built. The convergences (tiered rigor, behavior-first boundary, brownfield-first) are recorded in the ADR as validation of decisions the baseline had already made; the living-specs layer, mandatory proposal approval, and OpenSpec's tooling are deliberately not copied, with reasons in the ADR.
+
+- Added: `book/docs/decisions/ADR-014-distill-openspec-scenarios-and-deltas.md`
+- Changed: `book/guidelines/workflow.md` (Step-0 scenario sentence; Phase-4 coverage starts with the brief's scenarios), `book/plans/README.md` (acceptance scenarios in the brief slot; L-tier behavior-delta sentence), `skills/boscope/SKILL.md` (brief template and Phase-4 coverage wording), `README.md` / `README.zh-CN.md` / `README.ja.md` (What's-new)
+
+**Adopter action:** run your usual sync (`bocode:upgrade -- --apply`, then `--verify`). If you keep a session-side copy of the structured-feature-implementation skill, add the scenario line to its brief template yourself — session skills are yours, not template-owned.
+
 ## 2026-11-07 — session-start sync check, consent-gated auto-sync (ADR-013)
 
 Staleness detection was still a manual step. The `bocode` skill now opens every session with `bocode:doctor -- --strict`; an optional project-owned `.bocode.json` tunes automation — `skillsDir` / `skillsTool` declare where skills install (no more per-run flags), and `autoSync` sets who pulls the trigger: `ask` (default) offers the sync, `auto` lets the agent run the conflict-free subset itself. The new `--apply --ff-only` gate refuses **before touching anything** when any file needs a human decision (`merged` / `diverged-delete` / `missing`), so automation can never land half a sync; syncs never interrupt a task in progress.
