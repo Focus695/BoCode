@@ -14,14 +14,14 @@ Accepted — 2026-11-15. Ships with the template.
 
 Studying it against this workflow found more convergence than gap. Its progressive rigor (lightweight by default, rigor scaling with risk) is the S/M/L tiering (ADR-008). Its behavior-first boundary — specs capture observable behavior, implementation detail goes to design — is the Step-0 WHAT / Phase-2 HOW split (ADR-005, ADR-006). Its brownfield-first stance, specs written as you build rather than generated upfront, is how the book already compounds. Its explore phase is Phase 1's "no code changed" gate. The convergence validates the baseline; it is not something to copy.
 
-Two practices are worth distilling. First, OpenSpec writes acceptance as scenarios — a requirement with a SHALL line, scenario blocks in GIVEN/WHEN/THEN — so every criterion is checkable before code exists; our brief's requirement slot is free text, and Phase 4's gate has no explicit upstream list to run down. Second, OpenSpec's proposals store only deltas — ADDED/MODIFIED/REMOVED requirements against current behavior — which makes review sharp about what changes, not just what gets built; L-tier plans can state acceptance the same way without owning a permanent spec tree.
+Two practices are worth distilling. First, OpenSpec writes acceptance as scenarios — a requirement with a SHALL line, scenario blocks in GIVEN/WHEN/THEN — so every criterion is checkable before code exists; our brief's requirement slot is free text, and Phase 4's gate has no explicit upstream list to run down. Second, OpenSpec's proposals store only deltas — ADDED/MODIFIED/REMOVED requirements against current behavior — which makes review sharp about what changes, not just what gets built; L-tier plans can state acceptance the same way without owning a permanent spec tree. A second pass over OpenSpec's verify discipline (its `/opsx:verify` skill) added a third, smaller rule: a REMOVED requirement is verified by absence — the behavior still present in code is a critical finding — which our regression dimension ("existing behavior didn't break") did not say.
 
 ## Decision
 
 Distill the two practices; take nothing else.
 
 - **Scenario acceptance criteria.** In the Step-0 brief (M/L), the requirement's acceptance criteria are written as one-line scenarios — GIVEN a starting state, WHEN the user or system acts, THEN the observable outcome — covering the normal path and the error paths. Phase 4's coverage starts by running down the brief's scenarios. A criterion that cannot be phrased as an observable outcome is a design question for Phase 2, not a requirement.
-- **Behavior deltas in L-tier plans.** An L plan states acceptance as a delta — which observable behaviors the system ADDED, MODIFIED, or REMOVED relative to current behavior — so review sees what changes in behavior, not only what gets built.
+- **Behavior deltas in L-tier plans.** An L plan states acceptance as a delta — which observable behaviors the system ADDED, MODIFIED, or REMOVED relative to current behavior — so review sees what changes in behavior, not only what gets built. REMOVED rows owe an absence check in Phase 4: the behavior is gone, not merely unbroken.
 
 Not copied, with reasons:
 

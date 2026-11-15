@@ -102,7 +102,7 @@ Where practical, keep business calculations as pure functions with explicit inpu
 
 Write a failing test → write the minimal implementation that passes → refactor with tests green. This loop is the iteration engine — run it fast and let it fail: a red test is data, not a setback. Iterate freely inside the phase, never past the gate. What crosses the gate crosses it polished — defaults chosen, errors worded, edges handled.
 
-**Coverage (all required):** the brief's scenarios · normal path · permission checks · boundaries (input ranges / empty / extremes) · error paths · regression (existing behavior intact).
+**Coverage (all required):** the brief's scenarios · normal path · permission checks · boundaries (input ranges / empty / extremes) · error paths · regression (existing behavior intact, deliberately removed behavior gone).
 
 Test through the caller's interface and assert observable results and required side effects; avoid coupling tests to private call sequences.
 
