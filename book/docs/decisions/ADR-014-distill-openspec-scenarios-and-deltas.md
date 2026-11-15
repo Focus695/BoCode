@@ -34,5 +34,6 @@ Not copied, with reasons:
 
 - The brief's requirement slot and Phase 4's gate close a loop explicitly: scenarios written before code become the first test list.
 - L plans gain a delta view of acceptance at no standing maintenance cost — the delta lives in the plan, which already records intent.
+- Both weaves carry falsification conditions, set by the five-step audit of this change (ADR-005's discipline applied to its own output): if brief scenarios decay into slot-filling ceremony, or L-plan deltas restate the impact range instead of behavior, the offending weave is deleted, not defended.
 - No new directory, tool, phase, gate, or truth source. The weaves land in `guidelines/workflow.md`, `plans/README.md`, and the boscope skill's brief template; the session-side structured-feature-implementation skill is aligned with the same wording.
 - Credit where due: the two practices and the format inspiration come from OpenSpec (MIT, Fission-AI). The convergences above are recorded as validation of decisions this repository had already made on its own.
