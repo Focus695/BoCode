@@ -17,11 +17,11 @@
 BoCode はリポジトリを二つに分けます——ソースを置く `code/` と、ドキュメントの流れとナレッジベースを置く `book/` です。両者は双方向に接続されます。今のソフトウェアが実際に書かれている方法、つまり人間と AI コーディングエージェントの共同開発を前提に設計されています。エージェントは速く、メモリもありますが、その記憶はエージェントだけのもの：人間には読めず、管理もできません。プロジェクトの知識がどこに置かれ、誰が読めるかが、速さが制御とともにあるか、制御のない速さになるかを決めます。
 
 <details>
-<summary><b>最新情報</b> · 2026-11-07 — 三言語の README を現行ゲートに合わせて更新</summary>
+<summary><b>最新情報</b> · 2026-11-15 — シナリオ型受け入れ基準とプランの挙動デルタ（ADR-014）</summary>
 
-- **2026-11-07** — 三言語の README を現行ゲートに合わせて更新
-- **2026-11-06** — ub-mode の精選プラクティスを追加（ADR-011）
-- **2026-11-06** — フェーズ 2 停止ルールを統一、L の ADR トリガーを判定可能に
+- **2026-11-15** — シナリオ型受け入れ基準とプランの挙動デルタ（ADR-014）
+- **2026-11-07** — セッション開始時に更新確認、自動同期は同意制（ADR-013）
+- **2026-11-07** — アップグレードがツールゲート式同期に（ADR-012）
 
 履歴全文と移行手順は [CHANGELOG.md](CHANGELOG.md)
 
@@ -184,7 +184,7 @@ cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-sk
 #    あとは何かを作るだけ。スキルがワークフローを駆動します。
 ```
 
-必要なもの：`bash` と `node`（二つのスクリプト用）。パッケージなし、インストールステップなし、lockfile なし——ツールチェーンは意図的に退屈に作られています。
+必要なもの：`bash` と `node`（スクリプト用）。パッケージなし、インストールステップなし、lockfile なし——ツールチェーンは意図的に退屈に作られています。
 
 ## リポジトリツアー
 
@@ -197,7 +197,7 @@ cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-sk
 | `book/notes/{summary,learn,task,issue}/` | 四種類のノート |
 | `book/docs/{architecture,api,decisions}/` | スナップショット、契約、ADR |
 | `skills/` | `bocode`、`boscope`、`book-writeback`、`bowrite` |
-| `code/tools/gen-book-index.mjs` | インデックスジェネレータ |
+| `code/tools/` | インデックスジェネレータと `bocode:upgrade` / `bocode:doctor` 同期ゲート |
 | `scripts/init-project.sh` | テンプレート → あなたのプロジェクト |
 | `scripts/check-commit-message.mjs` | Clean Commit バリデータ（`.githooks/` 付き） |
 | `scripts/check-release-changelog.mjs` | リリースゲート：テンプレート変更には CHANGELOG 記載が必須 |
@@ -208,10 +208,10 @@ cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-sk
 はい——[ADOPT.md](ADOPT.md) を AI エージェントに渡してください。エージェント向けに書かれた段階的な移行プレイブックです：棚卸し、book スケルトン、レイアウト決定、ドキュメント移行、ツールチェーン、スキル、最初の書き戻し。手動の道もあります：`book/`、`skills/`、`scripts/`、`.githooks/`、`AGENTS.md`、`code/tools/` をコピーし、既存ドキュメントを book に統合し、インデックスジェネレータを実行するだけです。
 
 **プロジェクトが古い BoCode を使っていますが、アップグレードは？**
-[UPGRADE.md](UPGRADE.md) を AI エージェントに渡してください。プロジェクトの `.bocode-version` スタンプと現在のテンプレートを diff し、テンプレート所有のファイル（guidelines、スキル、ツール）だけを更新し、あなた自身の記録には触れません。[CHANGELOG.md](CHANGELOG.md) にスタンプ以降のすべての変更が並んでいます。
+同期ツールはプロジェクトに同梱されています：`cd code && npm run bocode:doctor` で遅れを確認し、`npm run bocode:upgrade -- --check` でテンプレート所有の変更をファイル単位の処置付きで一覧し、`--apply` が未編集ファイルの更新・ディスクからの検証・`book/changelogs/` へのレポート書き出しを行います。同期が完了したのは `--verify` が 0 で終了したとき——エージェントが「終わった」と言ったときではありません。セッション開始時に自動で遅れを確認し、任意の `.bocode.json`（`autoSync`、`skillsTool`）が自動化の程度を決めます。[UPGRADE.md](UPGRADE.md) が手引書、[CHANGELOG.md](CHANGELOG.md) にスタンプ以降の全変更が並んでいます。
 
 **言語やスタックに縛られますか？**
-いいえ。book は Markdown、二つのスクリプトは依存ゼロのプレーン Node です。`code/` には何を置いても構いません——テンプレート自身の `code/` にはツールしか入っていません。
+いいえ。book は Markdown、スクリプトは依存ゼロのプレーン Node です。`code/` には何を置いても構いません——テンプレート自身の `code/` にはツールしか入っていません。
 
 **どの AI ツールで動きますか？**
 `AGENTS.md` を指示ファイルとして読み、`SKILL.md` 形式をサポートするものなら何でも（ZCode、Claude Code、互換エージェント）。スキルがなくてもワークフローは劣化なしで機能します：guidelines が同じルールを文章で運びます。

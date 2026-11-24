@@ -50,10 +50,11 @@ Render the brief below and fill every slot. For empty slots you have two duties:
 - Boundaries: <input ranges, error modes, data shapes>
 
 ## Requirement
-<the behavior in detail — fill or ask>
+<the behavior in detail — fill or ask; acceptance criteria as one-line
+GIVEN/WHEN/THEN scenarios, normal and error paths>
 ```
 
-> The **exclusions** slot is REQUIRED. An empty "does not affect" list is the number-one cause of out-of-scope changes in Phase 3. Focus is saying no — the exclusions slot is where the feature gets its shape.
+> The **exclusions** slot is REQUIRED. An empty "does not affect" list is the number-one cause of out-of-scope changes in Phase 3. Focus is saying no — the exclusions slot is where the feature gets its shape. A criterion that cannot be phrased as an observable outcome is a Phase-2 design question, not a requirement.
 
 **Axes checklist (review every time, raise the relevant ones):** permissions/auth · notifications · idempotency · cache invalidation · transaction boundaries · concurrency/races · rate limits · data migration · regression impact · generated-artifact sync (codegen / schema / proto — refresh per the project's build scripts after changes).
 
@@ -101,7 +102,7 @@ Where practical, keep business calculations as pure functions with explicit inpu
 
 Write a failing test → write the minimal implementation that passes → refactor with tests green. This loop is the iteration engine — run it fast and let it fail: a red test is data, not a setback. Iterate freely inside the phase, never past the gate. What crosses the gate crosses it polished — defaults chosen, errors worded, edges handled.
 
-**Coverage (all required):** normal path · permission checks · boundaries (input ranges / empty / extremes) · error paths · regression (existing behavior intact).
+**Coverage (all required):** the brief's scenarios · normal path · permission checks · boundaries (input ranges / empty / extremes) · error paths · regression (existing behavior intact, deliberately removed behavior gone).
 
 Test through the caller's interface and assert observable results and required side effects; avoid coupling tests to private call sequences.
 

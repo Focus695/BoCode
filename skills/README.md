@@ -23,4 +23,6 @@ Copy the four skill directories, including any `references/` subdirectories, int
 cp -r skills/bocode skills/boscope skills/book-writeback skills/bowrite <your-skills-dir>/
 ```
 
+Skills do not update themselves. Re-install them on every BoCode upgrade — `cd code && npm run bocode:upgrade -- --apply --skills-dir <your-skills-dir>` does it, and `--verify` fails while an installed skill lags its `skills/` source. Stale skills are the number-one reason an upgraded repo still behaves old.
+
 `bowrite` distills two upstreams with attribution kept: [shuorenhua](https://github.com/MrGeDiao/shuorenhua) (MIT, by MrGeDiao) for cleanup, and [human-writing](https://github.com/KKKKhazix/human-writing) (MIT, by KKKKhazix) for the from-scratch gates（材料门槛、段段有新货、成稿禁令）— together with patterns accumulated in this project's own reviews. For deep Chinese cleanups or full long-form creation the upstreams go further and are worth installing alongside.

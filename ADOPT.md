@@ -46,14 +46,15 @@ Every migrated file gets a frontmatter `description` — one plain-language line
 
 ## Step 4 — Install the tooling
 
-1. Copy `code/tools/gen-book-index.mjs` and wire the script (see the `scripts` block in BoCode's `code/package.json`). If the project has no JavaScript tooling at all, a shell wrapper calling `node` is fine — the script is zero-dependency.
-2. Optional, recommended: copy `scripts/check-commit-message.mjs` and `.githooks/`, then run `git config core.hooksPath .githooks`.
-3. Optional: copy `.github/workflows/git-policy.yml`. **Check the branch names** — if the project's integration branch isn't `dev`, either ask the user to adopt the branch model or adapt the workflow's branch filters. Don't silently rewrite their branch model. Also **delete the "Check template cleanliness" step** — it enforces the BoCode template repository's own cleanliness rule (its ADR-004) and would fail on a real project's notes and changelogs.
-4. Run the index generator: every book file must carry a `description` and every internal link must resolve; zero warnings is the only passing state.
+1. Copy all of `code/tools/` (the index generator plus the `bocode-upgrade` / `bocode-doctor` sync gate and its selftest) and wire the `scripts` block from BoCode's `code/package.json` into the project's `code/package.json` (keep the project's `name`). If the project has no JavaScript tooling at all, a shell wrapper calling `node` is fine — the scripts are zero-dependency.
+2. Copy `UPGRADE.md` to the project root — it is the upgrade playbook, template-owned, and refreshes itself on every future sync.
+3. Optional, recommended: copy `scripts/check-commit-message.mjs` and `.githooks/`, then run `git config core.hooksPath .githooks`.
+4. Optional: copy `.github/workflows/git-policy.yml`. **Check the branch names** — if the project's integration branch isn't `dev`, either ask the user to adopt the branch model or adapt the workflow's branch filters. Don't silently rewrite their branch model. Also **delete the "Check template cleanliness" step** — it enforces the BoCode template repository's own cleanliness rule (its ADR-004) and would fail on a real project's notes and changelogs.
+5. Run the index generator: every book file must carry a `description` and every internal link must resolve; zero warnings is the only passing state.
 
 ## Step 5 — Install the skills
 
-Copy `skills/bocode`, `skills/boscope`, `skills/book-writeback`, and `skills/bowrite` into the agent's skills directory (see BoCode's `skills/README.md` for per-tool locations). If the user's agent can't install skills, the workflow still works — the guidelines carry the same rules in prose.
+Copy `skills/bocode`, `skills/boscope`, `skills/book-writeback`, and `skills/bowrite` into the agent's skills directory (see BoCode's `skills/README.md` for per-tool locations). If the user's agent can't install skills, the workflow still works — the guidelines carry the same rules in prose. Skills do not auto-update: every later BoCode sync must re-install them (`cd code && npm run bocode:upgrade -- --apply --skills-dir <dir>`), or the agent keeps running the old behavior.
 
 ## Step 6 — Write the project's `AGENTS.md`
 
@@ -63,9 +64,11 @@ Adapt BoCode's `AGENTS.md`: fill the project overview (what it is, in two senten
 
 1. Index generator: zero warnings, exit 0.
 2. `git config core.hooksPath .githooks` (if adopted) and the hook fires on commit.
-3. Write `.bocode-version` at the project root — one line with the BoCode repository's current HEAD SHA (`git -C <bocode-clone> rev-parse HEAD`). Future upgrades diff against it.
-4. Commit the adoption. Follow the project's existing commit convention unless the user chooses to adopt Clean Commit — their call, not yours.
-5. Don't rewrite git history. Adoption is ordinary commits on top of what exists.
+3. `cd code && npm run bocode:selftest` — the sync gate proves itself on a fixture; green is the only passing state.
+4. Write `.bocode-version` at the project root — one line with the BoCode repository's current HEAD SHA (`git -C <bocode-clone> rev-parse HEAD`). Future upgrades diff against it.
+5. `npm run bocode:doctor` — clean, or knowingly green on the warnings.
+6. Commit the adoption. Follow the project's existing commit convention unless the user chooses to adopt Clean Commit — their call, not yours.
+7. Don't rewrite git history. Adoption is ordinary commits on top of what exists.
 
 ## Step 8 — First writeback
 
@@ -75,7 +78,7 @@ Adapt BoCode's `AGENTS.md`: fill the project overview (what it is, in two senten
 
 ## Later upgrades
 
-When the BoCode template evolves, hand `UPGRADE.md` from the BoCode repository to an agent — it diffs the project's `.bocode-version` stamp against template HEAD, refreshes template-owned files, and leaves the project's own records untouched. `CHANGELOG.md` lists every change since the stamp.
+The sync tooling installed in Step 4 carries the project forward: `cd code && npm run bocode:doctor` reports staleness, `npm run bocode:upgrade -- --check` lists every template-owned delta, and `--apply` refreshes pristine files, merges script entries, re-installs the skills (with `--skills-dir`), verifies, and writes a report into the project's `book/changelogs/`. `UPGRADE.md` at the project root is the playbook — a sync is done when `--verify` exits 0.
 
 ## What not to do
 
